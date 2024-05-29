@@ -339,7 +339,7 @@ p.banner-text-p {
 
 }
 
-h1.banner-text-h3, h3.banner-text-h3 {
+h1.banner-text-h3, h2.banner-text-h3, h3.banner-text-h3 {
     color: #efb14f;
     text-transform: uppercase;
     font-size: 45px;
