@@ -1,4 +1,4 @@
-# 「7月12日」最高速度23M/S，2024年SingBox节点每日更新订阅免费节点链接  更新时间 2024-07-12 10:02:08
+# 「7月13日」最高速度22.5M/S，2024年SingBox节点每日更新订阅免费节点链接  更新时间 2024-07-13 12:51:33
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://singboxnode.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,19 +9,19 @@
 
 ### Clash订阅链接
 
-- https://singboxnode.github.io/uploads/2024/07/0-20240712.yaml
-- https://singboxnode.github.io/uploads/2024/07/1-20240712.yaml
-- https://singboxnode.github.io/uploads/2024/07/2-20240712.yaml
-- https://singboxnode.github.io/uploads/2024/07/3-20240712.yaml
-- https://singboxnode.github.io/uploads/2024/07/4-20240712.yml
+- https://singboxnode.github.io/uploads/2024/07/0-20240713.yaml
+- https://singboxnode.github.io/uploads/2024/07/1-20240713.yaml
+- https://singboxnode.github.io/uploads/2024/07/2-20240713.yaml
+- https://singboxnode.github.io/uploads/2024/07/3-20240713.yaml
+- https://singboxnode.github.io/uploads/2024/07/4-20240713.yml
 
 ### V2ray订阅链接
 
-- https://singboxnode.github.io/uploads/2024/07/0-20240712.txt
-- https://singboxnode.github.io/uploads/2024/07/1-20240712.txt
-- https://singboxnode.github.io/uploads/2024/07/2-20240712.txt
-- https://singboxnode.github.io/uploads/2024/07/3-20240712.txt
-- https://singboxnode.github.io/uploads/2024/07/4-20240712.txt
+- https://singboxnode.github.io/uploads/2024/07/0-20240713.txt
+- https://singboxnode.github.io/uploads/2024/07/1-20240713.txt
+- https://singboxnode.github.io/uploads/2024/07/2-20240713.txt
+- https://singboxnode.github.io/uploads/2024/07/3-20240713.txt
+- https://singboxnode.github.io/uploads/2024/07/4-20240713.txt
 
 ## 更多clash节点订阅 ：
 
