@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-24524.htm" />
+    <title>vue+egg.js使用websocket</title>
+    <!--meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="==&gt; 服务端促使客户端退出的小案例。 1 安装与配置 1.1 安装依赖包 # 1 egg 项目中安装npminstall egg-socket.io# 2 vue 项目中安装npminstal" />
+        <!--//meta tags ends here-->
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href="/assets/website/img/singboxnode/favicon.ico" type="image/x-icon"/>
+    <!-- bootstrap style sheet -->
+    <link href="/assets/website/css/singboxnode/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--smooth box-->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/smoothbox.css" type='text/css' media="all" />
+    <!--stylesheets-->
+    <link href="/assets/website/css/singboxnode/style.css" rel='stylesheet' type='text/css' media="all">
+    <!-- flexslider -->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/flexslider.css" type="text/css" media="all" />
+    <!-- fontawesome -->
+    <link href="/assets/website/css/singboxnode/fontawesome-all.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Popup css (for Video Popup) -->
+    <link href="/assets/website/css/singboxnode/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-982T9L7Y5V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-982T9L7Y5V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- nav -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="/"><span class="brand-d">SingBox</span>Node</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/">首页</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/free-nodes/">免费节点</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/paid-subscribe/">推荐机场</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/news/">新闻资讯</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="#">关于</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scroll" href="#">联系</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- //nav -->
+    <!-- Clients -->
+    <div class="clients py-5" id="client">
+        <div class="banner-dott1">
+            <div class="h3-head text-center">
+                <h1 class="banner-text-h3" style="word-break: break-all;">vue+egg.js使用websocket</h1>
+            </div>
+            <div class="container">
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
+            </div>
+        </div>
+    </div>
+    <!-- //Clients -->
+    <!-- about -->
+    <div class="about py-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                              				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night-eighties"> <h2><a id="__0" rel="nofollow"></a><strong>==&gt; 服务端促使客户端退出的小案例。</strong></h2> <h3><a id="1__2" rel="nofollow"></a>1 安装与配置</h3> <h4><a id="11__4" rel="nofollow"></a>1.1 安装依赖包</h4> <pre><code class="prism language-shell"><span class="token comment"># 1 egg 项目中安装</span><span class="token function">npm</span><span class="token function">install</span> egg-socket.io<span class="token comment"># 2 vue 项目中安装</span><span class="token function">npm</span><span class="token function">install</span> vue-socket.io</code></pre> <h4><a id="12__eggjs_14" rel="nofollow"></a>1.2 配置 egg.js</h4> <h5><a id="configconfigdefaultjs_16" rel="nofollow"></a>config/config.default.js</h5> <pre><code class="prism language-js">module<span class="token punctuation">.</span><span class="token function-variable function">exports</span><span class="token operator">=</span><span class="token parameter">appInfo</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span><span class="token keyword">const</span> config<span class="token operator">=</span> exports<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token operator">...</span><span class="token operator">...</span><span class="token comment">// 关闭 csrf</span>   config<span class="token punctuation">.</span>security<span class="token operator">=</span><span class="token punctuation">{<!-- --></span>     csrf<span class="token operator">:</span><span class="token punctuation">{<!-- --></span>       enable<span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token comment">// cors 跨域配置</span>   config<span class="token punctuation">.</span>cors<span class="token operator">=</span><span class="token punctuation">{<!-- --></span>     origin<span class="token operator">:</span><span class="token string">'*'</span><span class="token punctuation">,</span><span class="token comment">// 允许请求的方法</span>     allowMethods<span class="token operator">:</span><span class="token string">'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token comment">// ************** socket.io 配置 **************</span>   config<span class="token punctuation">.</span>io<span class="token operator">=</span><span class="token punctuation">{<!-- --></span>     init<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">,</span>     namespace<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 命名空间</span><span class="token string">'/'</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 可通过 app.io.of('/') 获取到这个命名空间，下面代码中有用到</span><span class="token comment">// 对应下面的 app/io/middleware/connection.js</span>         connectionMiddleware<span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">'connection'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token comment">// 对应下面的 app/io/middleware/packet.js</span>         packetMiddleware<span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">'packet'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token comment">// *******************************************</span><span class="token keyword">return</span><span class="token punctuation">{<!-- --></span><span class="token operator">...</span>config<span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <h5><a id="configpluginjs_58" rel="nofollow"></a>config/plugin.js</h5> <pre><code class="prism language-js">module<span class="token punctuation">.</span>exports<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token operator">...</span><span class="token operator">...</span><span class="token operator">...</span><span class="token operator">...</span>   io<span class="token operator">:</span><span class="token punctuation">{<!-- --></span>     enable<span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token keyword">package</span><span class="token operator">:</span><span class="token string">'egg-socket.io'</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre> <h5><a id="appiomiddlewareconnectionjs_71" rel="nofollow"></a>app/io/middleware/connection.js</h5> <pre><code class="prism language-js"><span class="token comment">/**  * 在每一个客户端连接或者退出时发生作用  * @param app  * @returns {(function(*, *): Promise&lt;void&gt;)|*}  */</span> module<span class="token punctuation">.</span><span class="token function-variable function">exports</span><span class="token operator">=</span><span class="token parameter">app</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token keyword">async</span><span class="token punctuation">(</span><span class="token parameter">ctx<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span>     ctx<span class="token punctuation">.</span>socket<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token string">'res'</span><span class="token punctuation">,</span><span class="token string">'connected!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'server socket connected'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">await</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre> <h5><a id="appiomiddlewarepacketjs_88" rel="nofollow"></a>app/io/middleware/packet.js</h5> <pre><code class="prism language-js"><span class="token comment">/**  * 对消息进行预处理  * @param app  * @returns {(function(*, *): Promise&lt;void&gt;)|*}  */</span> module<span class="token punctuation">.</span><span class="token function-variable function">exports</span><span class="token operator">=</span><span class="token parameter">app</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token keyword">async</span><span class="token punctuation">(</span><span class="token parameter">ctx<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span>     ctx<span class="token punctuation">.</span>socket<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token string">'res'</span><span class="token punctuation">,</span><span class="token string">'packet received!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'packet:'</span><span class="token punctuation">,</span> ctx<span class="token punctuation">.</span>packet<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">await</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre> <h3><a id="2_eggjs__websocket__105" rel="nofollow"></a>2 egg.js 中 websocket 使用</h3> <pre><code class="prism language-js"><span class="token keyword">class</span><span class="token class-name">AdminController</span><span class="token keyword">extends</span><span class="token class-name">Controller</span><span class="token punctuation">{<!-- --></span><span class="token operator">...</span><span class="token operator">...</span><span class="token comment">// 其他代码</span><span class="token operator">...</span><span class="token operator">...</span><span class="token comment">/**    * @description: 修改用户信息    * @param {*}    * @return {*}    */</span><span class="token keyword">async</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">const</span><span class="token punctuation">{<!-- --></span> ctx<span class="token punctuation">,</span> app<span class="token punctuation">}</span><span class="token operator">=</span><span class="token keyword">this</span><span class="token punctuation">;</span><span class="token comment">// =================== 引入 nsp，用于 websocket 相关操作 ===================</span><span class="token keyword">const</span> nsp<span class="token operator">=</span> app<span class="token punctuation">.</span>io<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 获取到对应的命名空间的内容</span><span class="token comment">// =====================================================================</span><span class="token keyword">let</span> res<span class="token punctuation">;</span><span class="token keyword">const</span> reqBody<span class="token operator">=</span> ctx<span class="token punctuation">.</span>request<span class="token punctuation">.</span>body<span class="token punctuation">;</span><span class="token keyword">if</span><span class="token punctuation">(</span>reqBody<span class="token punctuation">.</span>type<span class="token operator">===</span><span class="token string">'rename'</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 重命名</span>       res<span class="token operator">=</span><span class="token keyword">await</span> ctx<span class="token punctuation">.</span>service<span class="token punctuation">.</span>admin<span class="token punctuation">.</span><span class="token function">rename</span><span class="token punctuation">(</span>ctx<span class="token punctuation">.</span>params<span class="token punctuation">.</span>id<span class="token punctuation">,</span> reqBody<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">else</span><span class="token keyword">if</span><span class="token punctuation">(</span>reqBody<span class="token punctuation">.</span>type<span class="token operator">===</span><span class="token string">'editPassword'</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 重置密码</span>       res<span class="token operator">=</span><span class="token keyword">await</span> ctx<span class="token punctuation">.</span>service<span class="token punctuation">.</span>admin<span class="token punctuation">.</span><span class="token function">editPassword</span><span class="token punctuation">(</span>ctx<span class="token punctuation">.</span>params<span class="token punctuation">.</span>id<span class="token punctuation">,</span> reqBody<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">else</span><span class="token keyword">if</span><span class="token punctuation">(</span>reqBody<span class="token punctuation">.</span>type<span class="token operator">===</span><span class="token string">'editStatus'</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 设置用户状态</span>       res<span class="token operator">=</span><span class="token keyword">await</span> ctx<span class="token punctuation">.</span>service<span class="token punctuation">.</span>admin<span class="token punctuation">.</span><span class="token function">editStatus</span><span class="token punctuation">(</span>ctx<span class="token punctuation">.</span>params<span class="token punctuation">.</span>id<span class="token punctuation">,</span> reqBody<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">if</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">if</span><span class="token punctuation">(</span>reqBody<span class="token punctuation">.</span>userStatus<span class="token operator">===</span><span class="token number">2</span><span class="token operator">||</span> reqBody<span class="token punctuation">.</span>userStatus<span class="token operator">===</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">// ====================== 发送消息 ======================</span>           nsp<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token string">'logout'</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span> msg<span class="token operator">:</span><span class="token string">'logout'</span><span class="token punctuation">,</span> id<span class="token operator">:</span> ctx<span class="token punctuation">.</span>params<span class="token punctuation">.</span>id<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// ====================================================</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token keyword">if</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>       ctx<span class="token punctuation">.</span>body<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">SuccessResponse</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span><span class="token string">'修改成功'</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{<!-- --></span>       ctx<span class="token punctuation">.</span>body<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">ErrorResponse</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span><span class="token string">'修改失败'</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">...</span><span class="token operator">...</span><span class="token comment">// 其他代码</span><span class="token operator">...</span><span class="token operator">...</span><span class="token punctuation">}</span></code></pre> <h3><a id="3_vue__websocket_156" rel="nofollow"></a>3 vue 中使用 websocket</h3> <h5><a id="mainjs_158" rel="nofollow"></a>main.js</h5> <pre><code class="prism language-js"><span class="token comment">// 引入 websocket</span><span class="token keyword">import</span> VueSocketIO<span class="token keyword">from</span><span class="token string">'vue-socket.io'</span><span class="token comment">// 配置</span><span class="token keyword">const</span> vueSocketIO<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">VueSocketIO</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>   debug<span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token comment">// 后端服务地址</span>   connection<span class="token operator">:</span><span class="token string">'http://127.0.0.1:7001'</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token comment">// 监听connect事件</span> vueSocketIO<span class="token punctuation">.</span>io<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'connect'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span>   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'socket connect from main.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>vueSocketIO<span class="token punctuation">)</span></code></pre> <h5><a id="homevue_177" rel="nofollow"></a>home.vue</h5> <pre><code class="prism language-js"><span class="token operator">&lt;</span>script<span class="token operator">&gt;</span><span class="token operator">...</span><span class="token operator">...</span><span class="token keyword">export</span><span class="token keyword">default</span><span class="token punctuation">{<!-- --></span>   sockets<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 连接事件</span><span class="token function-variable function">connect</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"socket connect from HOME page"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token comment">// 登出事件</span><span class="token function-variable function">logout</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"wesocket-logout"</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">if</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>id<span class="token operator">===</span> sessionStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"userId"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">this</span><span class="token punctuation">.</span>$notify<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>           title<span class="token operator">:</span><span class="token string">"您的账号已被停用/注销/删除！"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"我退出了"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">logout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span></code></pre> <h3><a id="4__205" rel="nofollow"></a>4 参考文献</h3> <p>[1]<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/dreamsqin/p/12018866.html"  rel="nofollow">vue-socket.io使用教程与踩坑记录.</a></p> <p>[2]<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/kbnet/archive/2019/05/30/10949074.html"  rel="nofollow">egg-socket在egg中的使用.</a></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-23809.htm">新疆养狗基地（新疆大型犬基地）</a></p>
+                                        <p>下一个：<a href="/news/article-24525.htm">中国最大的宠物粮生产厂家是哪家呢（中国宠物粮厂家批发网）</a></p>
+                                    </div>
+                                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-5-9-free-high-speed-nodes.htm" title="「5月9日」最高速度19.2M/S，2024年V2ray/SSR/Shadowrocket/Clash每日更新订阅免费节点链接">「5月9日」最高速度19.2M/S，2024年V2ray/SSR/Shadowrocket/Clash每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-13-shadowrocket-node.htm" title="「9月13日」最高速度22.1M/S，2024年SingBox节点每日更新订阅免费节点链接">「9月13日」最高速度22.1M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-23-free-v2ray-subscribe.htm" title="「8月23日」最高速度22.7M/S，2024年SingBox节点每日更新订阅免费节点链接">「8月23日」最高速度22.7M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-9-free-node-subscribe.htm" title="「12月9日」最高速度22.7M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「12月9日」最高速度22.7M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-free-high-speed-nodes.htm" title="「11月13日」最高速度18.1M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月13日」最高速度18.1M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-11-free-v2ray-subscribe.htm" title="「8月11日」最高速度18.7M/S，2024年SingBox节点每日更新订阅免费节点链接">「8月11日」最高速度18.7M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-4-free-clash.htm" title="「8月4日」最高速度18.1M/S，2024年SingBox节点每日更新订阅免费节点链接">「8月4日」最高速度18.1M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-23-free-clash-subscribe.htm" title="「10月23日」最高速度22.1M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月23日」最高速度22.1M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-8-clash-v2ray-ss-ssr.htm" title="「10月8日」最高速度22.9M/S，2024年SingBox节点每日更新订阅免费节点链接">「10月8日」最高速度22.9M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-7-31-free-v2ray-subscribe.htm" title="「7月31日」最高速度22.5M/S，2024年SingBox节点每日更新订阅免费节点链接">「7月31日」最高速度22.5M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about -->
+        <!-- footer -->
+    <footer>
+        <p class="copyright-agileinfo">
+            SingBoxNode官网订阅站 版权所有
+            <br />
+            Powered by WordPress
+        </p>
+    </footer>
+    <!-- //footer -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.min.v3.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/jquery-2.2.3.min.js"></script>
+    <!-- gallery -->
+    <script src="/assets/website/js/frontend/singboxnode/smoothbox.jquery2.js"></script>
+    <!-- //gallery -->
+    <!-- pop-up(for video popup)-->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.magnific-popup.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+    </script>
+    <!-- //pop-up-box (syllabus section video)-->
+    <!-- video js (background) -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.vide.min.js"></script>
+    <!-- //video js (background) -->
+    <!-- banner Slider script  -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider, #slider1").responsiveSlides({
+            auto: true,
+            nav: false,
+            speed: 1500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+    </script>
+    <!-- //banner Slider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: false,
+            speed: 1000,
+            namespace: "callbacks",
+            before: function() {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function() {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    });
+    </script>
+    <!-- start-smooth-scrolling -->
+    <script src="/assets/website/js/frontend/singboxnode/move-top.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/easing.js"></script>
+    <script>
+    // jQuery(document).ready(function($) {
+    //     $(".scroll").click(function(event) {
+    //         event.preventDefault();
+
+    //         $('html,body').animate({
+    //             scrollTop: $(this.hash).offset().top
+    //         }, 1000);
+    //     });
+    // });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+    $(document).ready(function() {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear' 
+        };
+        */
+
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+    </script>
+    <script src="/assets/website/js/frontend/singboxnode/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- FlexSlider-JavaScript -->
+    <script defer src="/assets/website/js/frontend/singboxnode/jquery.flexslider.js"></script>
+    <script>
+    // $(function() {
+    //     SyntaxHighlighter.all();
+    // });
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+    </script>
+    <!-- //FlexSlider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
