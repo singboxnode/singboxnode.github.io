@@ -2,13 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://singboxnode.github.io" />
-    <title>2024-05归档 - SingBoxNode官网订阅站</title>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-24743.htm" />
+    <title>JavaScript将数字转换为数十，数百，数千等方法详解</title>
     <!--meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <meta name="keywords" content="2024-05归档" />
-        <meta name="description" content="2024-05归档" />
+        <meta name="description" content="我们需要编写一个函数，给定一个数字，例如123，它将输出一个数组- [100,20,3] 基本上，该函数应返回一个数组，该数组包含该函数作为自变量的数字中存在的所有数字的位置值。 我们可以通过使用递归" />
         <!--//meta tags ends here-->
     <script>
         addEventListener("load", function () {
@@ -47,7 +46,7 @@
      crossorigin="anonymous"></script>
 </head>
 
-<body data-page="category">
+<body data-page="detail">
         <!-- nav -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -84,36 +83,28 @@
     <div class="clients py-5" id="client">
         <div class="banner-dott1">
             <div class="h3-head text-center">
-                <h1 class="banner-text-h3">2024-05 归档</h1>
+                <h1 class="banner-text-h3" style="word-break: break-all;">JavaScript将数字转换为数十，数百，数千等方法详解</h1>
             </div>
             <div class="container">
-                <p><a href="/">首页</a> / 2024-05 归档</p>
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
             </div>
         </div>
     </div>
     <!-- //Clients -->
-    <!-- blog -->
-    <div class="blog py-5" id="blog">
+    <!-- about -->
+    <div class="about py-5" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <div class="row xcblog-blog-list">
-                                                <div class="col-md-12 py-1 xcblog-blog-item" data-date="2024-05-03">
-                            <div class="row">
-                                <div class="col-md-3 blog-img">
-                                    <a href="/free-nodes/2024-5-3-free-ssr-subscribe.htm" class="xcblog-blog-url">
-                                        <img src="/uploads/20240503/d15026c04bf3a824256edbb20ff7e7df.webp" alt="「5月3日」最高速度18.3M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接" class="img-responsive" />
-                                    </a>
-                                </div>
-                                <div class="col-md-9 blog-content">
-                                    <a href="/free-nodes/2024-5-3-free-ssr-subscribe.htm" class="xcblog-blog-url">
-                                        <h6 class="text-h6h xcblog-blog-title">「5月3日」最高速度18.3M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接</h6>
-                                    </a>
-                                    <p>这一次的节点更新覆盖了美国、日本、香港、欧洲、新加坡、韩国、加拿大等地区,最高速度可达18.3 M/S。只需复制下方的Clash/v2ray订阅链接,在客户端添加后即可正常使用。</p>
-                                </div>
-                            </div>
-                        </div>
-                                                <ul class="pagination"><li><a href="/date/2024-05/page-2.htm">&laquo;</a></li> <li><a href="/date/2024-05/">1</a></li><li><a href="/date/2024-05/page-2.htm">2</a></li><li class="active"><span>3</span></li> <li class="disabled"><span>&raquo;</span></li></ul>                    </div>
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                              				  				  				<p>我们需要编写一个函数，给定一个数字，例如123，它将输出一个数组-</p> <pre>[100,20,3]</pre> <p>基本上，该函数应返回一个数组，该数组包含该函数作为自变量的数字中存在的所有数字的位置值。</p> <p>我们可以通过使用递归方法来解决此问题。</p> <h2>示例</h2> <p>以下是代码-</p> <pre>const&nbsp;num&nbsp;=&nbsp;123; const&nbsp;placeValue&nbsp;=&nbsp;(num,&nbsp;res&nbsp;=&nbsp;[],&nbsp;factor&nbsp;=&nbsp;1)&nbsp;=&gt;&nbsp;{ &nbsp;&nbsp;&nbsp;if(num){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;val&nbsp;=&nbsp;(num&nbsp;%&nbsp;10)&nbsp;*&nbsp;factor; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res.unshift(val); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;placeValue(Math.floor(num&nbsp;/&nbsp;10),&nbsp;res,&nbsp;factor&nbsp;*&nbsp;10); &nbsp;&nbsp;&nbsp;}; &nbsp;&nbsp;&nbsp;return&nbsp;res; }; console.log(placeValue(num));</pre> <p>输出结果</p> <p>这将在控制台中产生以下输出-</p> <pre>[&nbsp;100,&nbsp;20,&nbsp;3&nbsp;]</pre> <div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-24525.htm">中国最大的宠物粮生产厂家是哪家呢（中国宠物粮厂家批发网）</a></p>
+                                        <p>下一个：<a href="/news/article-24744.htm">Java 9中的JShell中的前向参考是什么？</a></p>
+                                    </div>
+                                        </div>
+                    </div>
                 </div>
                 <div class="col-md-3">
                     <div class="panel panel-default">
@@ -122,16 +113,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-8-free-ssr-subscribe.htm" title="「11月8日」最高速度21.5M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月8日」最高速度21.5M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-4-free-subscribe-node.htm" title="「11月4日」最高速度19.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月4日」最高速度19.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-5-21-free-clash-subscribe.htm" title="「5月21日」最高速度20.9M/S，2024年SingBox节点每日更新订阅免费节点链接">「5月21日」最高速度20.9M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-10-free-high-speed-nodes.htm" title="「12月10日」最高速度21.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「12月10日」最高速度21.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-10-free-clash-subscribe.htm" title="「9月10日」最高速度18.8M/S，2024年SingBox节点每日更新订阅免费节点链接">「9月10日」最高速度18.8M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-6-26-clash-windows.htm" title="「6月26日」最高速度22.4M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月26日」最高速度22.4M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-11-clash-v2ray-ss-ssr.htm" title="「12月11日」最高速度21.8M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「12月11日」最高速度21.8M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-11-free-ssr-node.htm" title="「9月11日」最高速度21M/S，2024年SingBox节点每日更新订阅免费节点链接">「9月11日」最高速度21M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-21521.htm" title="养猫的人,都容易得哪些“猫病”?（养猫的人容易得什么病?）">养猫的人,都容易得哪些“猫病”?（养猫的人容易得什么病?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-6-29-free-ssr-subscribe.htm" title="「6月29日」最高速度18.3M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月29日」最高速度18.3M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-8-11-free-v2ray-subscribe.htm" title="「8月11日」最高速度18.7M/S，2024年SingBox节点每日更新订阅免费节点链接">「8月11日」最高速度18.7M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-7-14-free-subscribe-node.htm" title="「7月14日」最高速度21.3M/S，2024年SingBox节点每日更新订阅免费节点链接">「7月14日」最高速度21.3M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-16-node-share-links.htm" title="「10月16日」最高速度18.7M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月16日」最高速度18.7M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/news/article-23808.htm" title="Unity制作一个小星球">Unity制作一个小星球</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-6-5-free-v2ray.htm" title="「6月5日」最高速度18.6M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月5日」最高速度18.6M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-5-22-free-clash.htm" title="「5月22日」最高速度22.3M/S，2024年SingBox节点每日更新订阅免费节点链接">「5月22日」最高速度22.3M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-node-subscribe.htm" title="「11月11日」最高速度19.3M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月11日」最高速度19.3M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-6-4-free-clash.htm" title="「6月4日」最高速度20.4M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月4日」最高速度20.4M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-v2ray-subscribe.htm" title="「12月4日」最高速度22.5M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「12月4日」最高速度22.5M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
                     </ul>
     </div>
 </div>
@@ -176,7 +167,7 @@
             </div>
         </div>
     </div>
-    <!-- //blog -->
+    <!-- //about -->
         <!-- footer -->
     <footer>
         <p class="copyright-agileinfo">

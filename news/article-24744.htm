@@ -2,13 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://singboxnode.github.io" />
-    <title>2024-05归档 - SingBoxNode官网订阅站</title>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-24744.htm" />
+    <title>Java 9中的JShell中的前向参考是什么？</title>
     <!--meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <meta name="keywords" content="2024-05归档" />
-        <meta name="description" content="2024-05归档" />
+        <meta name="description" content="JShell是一个命令行工具，它使我们可以输入Java语句（简单语句，复合语句，甚至完整的方法和类），对其进行评估并打印结果。 前向引用是指引用我们在JShell中键入的任何代码中都不存在的方法，变量" />
         <!--//meta tags ends here-->
     <script>
         addEventListener("load", function () {
@@ -47,7 +46,7 @@
      crossorigin="anonymous"></script>
 </head>
 
-<body data-page="category">
+<body data-page="detail">
         <!-- nav -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -84,36 +83,27 @@
     <div class="clients py-5" id="client">
         <div class="banner-dott1">
             <div class="h3-head text-center">
-                <h1 class="banner-text-h3">2024-05 归档</h1>
+                <h1 class="banner-text-h3" style="word-break: break-all;">Java 9中的JShell中的前向参考是什么？</h1>
             </div>
             <div class="container">
-                <p><a href="/">首页</a> / 2024-05 归档</p>
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
             </div>
         </div>
     </div>
     <!-- //Clients -->
-    <!-- blog -->
-    <div class="blog py-5" id="blog">
+    <!-- about -->
+    <div class="about py-5" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <div class="row xcblog-blog-list">
-                                                <div class="col-md-12 py-1 xcblog-blog-item" data-date="2024-05-03">
-                            <div class="row">
-                                <div class="col-md-3 blog-img">
-                                    <a href="/free-nodes/2024-5-3-free-ssr-subscribe.htm" class="xcblog-blog-url">
-                                        <img src="/uploads/20240503/d15026c04bf3a824256edbb20ff7e7df.webp" alt="「5月3日」最高速度18.3M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接" class="img-responsive" />
-                                    </a>
-                                </div>
-                                <div class="col-md-9 blog-content">
-                                    <a href="/free-nodes/2024-5-3-free-ssr-subscribe.htm" class="xcblog-blog-url">
-                                        <h6 class="text-h6h xcblog-blog-title">「5月3日」最高速度18.3M/S，2024年SSR/Shadowrocket/Clash/V2ray每天更新免费节点订阅链接</h6>
-                                    </a>
-                                    <p>这一次的节点更新覆盖了美国、日本、香港、欧洲、新加坡、韩国、加拿大等地区,最高速度可达18.3 M/S。只需复制下方的Clash/v2ray订阅链接,在客户端添加后即可正常使用。</p>
-                                </div>
-                            </div>
-                        </div>
-                                                <ul class="pagination"><li><a href="/date/2024-05/page-2.htm">&laquo;</a></li> <li><a href="/date/2024-05/">1</a></li><li><a href="/date/2024-05/page-2.htm">2</a></li><li class="active"><span>3</span></li> <li class="disabled"><span>&raquo;</span></li></ul>                    </div>
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                              				  				  				<p><strong>JShell</strong>是一个<strong>命令行</strong><strong>工具</strong>，它使我们可以输入Java语句（简单语句，复合语句，甚至完整的方法和类），对其进行评估并打印结果。</p> <p><strong>前向</strong><strong>引用</strong>是指<strong>引用</strong>我们在JShell中键入的任何代码中都不存在的<strong>方法</strong>，<strong>变量</strong>或<strong>类的</strong>命令。在JShell中按顺序输入和评估代码后，这些<strong>前向</strong><strong>引用</strong>已暂时无法解析。JShell支持向前引用<strong>方法</strong><strong>机构</strong>，<strong>返回</strong><strong>类型</strong>，<strong>参数</strong><strong>类型</strong>，<strong>变量</strong><strong>的类型</strong>，以及<strong>内</strong><strong>一</strong><strong>类</strong>。</p> <p>在下面的代码片段中，在<strong>Jshell中</strong>创建了一个方法<strong>forwardReference()</strong>。在声明变量之前，无法调用此方法。如果我们试图尝试调用此方法，它将引发警告消息：“<strong>试图<code>forwardReference()</code>调用在声明了变量notYetDeclared之前无法调用的方法</strong>”</p> <pre>C:\Users\User&gt;jshell |&nbsp;Welcome&nbsp;to&nbsp;JShell&nbsp;--&nbsp;Version&nbsp;9.0.4 |&nbsp;For&nbsp;an&nbsp;introduction&nbsp;type:&nbsp;/help&nbsp;intro  jshell&gt;&nbsp;void&nbsp;forwardReference()&nbsp;{ ...&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(notYetDeclared); ...&gt;&nbsp;&nbsp;&nbsp;&nbsp;} |&nbsp;created&nbsp;method&nbsp;forwardReference(),&nbsp;however,&nbsp;it&nbsp;cannot&nbsp;be&nbsp;invoked&nbsp;until&nbsp;variable&nbsp;notYetDeclared&nbsp;is&nbsp;declared  jshell&gt;&nbsp;forwardReference()|&nbsp;attempted&nbsp;to&nbsp;call&nbsp;method&nbsp;forwardReference()&nbsp;which&nbsp;cannot&nbsp;be&nbsp;invoked&nbsp;until&nbsp;variable&nbsp;notYetDeclared&nbsp;is&nbsp;declared</pre> <p></p> <p>在下面的代码片段中，我们声明了返回字符串的“<strong>notYetDeclared</strong> ”变量。最后，如果我们在JShell中调用<strong>forwardReference()</strong>，则它会显示<strong>“ variable is</strong> defined<strong>”</strong>。</p> <pre>jshell&gt;&nbsp;String&nbsp;notYetDeclared&nbsp;=&nbsp;"variable&nbsp;is&nbsp;declared" notYetDeclared&nbsp;==&gt;&nbsp;"variable&nbsp;is&nbsp;declared"  jshell&gt;&nbsp;forwardReference()variable&nbsp;is&nbsp;declared</pre> <div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-24743.htm">JavaScript将数字转换为数十，数百，数千等方法详解</a></p>
+                                    </div>
+                                        </div>
+                    </div>
                 </div>
                 <div class="col-md-3">
                     <div class="panel panel-default">
@@ -122,16 +112,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-8-free-ssr-subscribe.htm" title="「11月8日」最高速度21.5M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月8日」最高速度21.5M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-4-free-subscribe-node.htm" title="「11月4日」最高速度19.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月4日」最高速度19.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-5-21-free-clash-subscribe.htm" title="「5月21日」最高速度20.9M/S，2024年SingBox节点每日更新订阅免费节点链接">「5月21日」最高速度20.9M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-11-free-v2ray-subscribe.htm" title="「8月11日」最高速度18.7M/S，2024年SingBox节点每日更新订阅免费节点链接">「8月11日」最高速度18.7M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-7-14-free-subscribe-node.htm" title="「7月14日」最高速度21.3M/S，2024年SingBox节点每日更新订阅免费节点链接">「7月14日」最高速度21.3M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-16-node-share-links.htm" title="「10月16日」最高速度18.7M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月16日」最高速度18.7M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/news/article-23808.htm" title="Unity制作一个小星球">Unity制作一个小星球</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-6-5-free-v2ray.htm" title="「6月5日」最高速度18.6M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月5日」最高速度18.6M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-5-22-free-clash.htm" title="「5月22日」最高速度22.3M/S，2024年SingBox节点每日更新订阅免费节点链接">「5月22日」最高速度22.3M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-node-subscribe.htm" title="「11月11日」最高速度19.3M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月11日」最高速度19.3M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-27-free-node-subscribe-links.htm" title="「8月27日」最高速度21.7M/S，2024年SingBox节点每日更新订阅免费节点链接">「8月27日」最高速度21.7M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-28-free-high-speed-nodes.htm" title="「9月28日」最高速度22.7M/S，2024年SingBox节点每日更新订阅免费节点链接">「9月28日」最高速度22.7M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-30-node-share.htm" title="「8月30日」最高速度20.6M/S，2024年SingBox节点每日更新订阅免费节点链接">「8月30日」最高速度20.6M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-21-clash-v2ray-ss-ssr.htm" title="「9月21日」最高速度19.3M/S，2024年SingBox节点每日更新订阅免费节点链接">「9月21日」最高速度19.3M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-19-clash-node.htm" title="「10月19日」最高速度20.5M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月19日」最高速度20.5M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-15-free-node-subscribe-links.htm" title="「8月15日」最高速度22.6M/S，2024年SingBox节点每日更新订阅免费节点链接">「8月15日」最高速度22.6M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-18642.htm" title="河北农大动物医院简介图片（河北农大动物医院怎么样）">河北农大动物医院简介图片（河北农大动物医院怎么样）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-6-21-clash-v2ray-ss-ssr.htm" title="「6月21日」最高速度19.8M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月21日」最高速度19.8M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-5-free-ssr-subscribe.htm" title="「8月5日」最高速度18.8M/S，2024年SingBox节点每日更新订阅免费节点链接">「8月5日」最高速度18.8M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-15-free-clash.htm" title="「10月15日」最高速度20.8M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月15日」最高速度20.8M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
                     </ul>
     </div>
 </div>
@@ -176,7 +166,7 @@
             </div>
         </div>
     </div>
-    <!-- //blog -->
+    <!-- //about -->
         <!-- footer -->
     <footer>
         <p class="copyright-agileinfo">
