@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-26148.htm" />
+    <title>服务器安全加固 &#8211; Linux_在线工具</title>
+    <!--meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="一、账号和口令 1.1 禁用或删除无用账号 查看 /etc/passwd 文件查看是否有无用的账号，如果存在则删除，降低安全风险。 操作步骤：  使用命令userdel &lt;用户名&gt;&nbs" />
+        <!--//meta tags ends here-->
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href="/assets/website/img/singboxnode/favicon.ico" type="image/x-icon"/>
+    <!-- bootstrap style sheet -->
+    <link href="/assets/website/css/singboxnode/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--smooth box-->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/smoothbox.css" type='text/css' media="all" />
+    <!--stylesheets-->
+    <link href="/assets/website/css/singboxnode/style.css" rel='stylesheet' type='text/css' media="all">
+    <!-- flexslider -->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/flexslider.css" type="text/css" media="all" />
+    <!-- fontawesome -->
+    <link href="/assets/website/css/singboxnode/fontawesome-all.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Popup css (for Video Popup) -->
+    <link href="/assets/website/css/singboxnode/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-982T9L7Y5V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-982T9L7Y5V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- nav -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="/"><span class="brand-d">SingBox</span>Node</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/">首页</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/free-nodes/">免费节点</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/paid-subscribe/">推荐机场</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/news/">新闻资讯</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="#">关于</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scroll" href="#">联系</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- //nav -->
+    <!-- Clients -->
+    <div class="clients py-5" id="client">
+        <div class="banner-dott1">
+            <div class="h3-head text-center">
+                <h1 class="banner-text-h3" style="word-break: break-all;">服务器安全加固 &#8211; Linux_在线工具</h1>
+            </div>
+            <div class="container">
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
+            </div>
+        </div>
+    </div>
+    <!-- //Clients -->
+    <!-- about -->
+    <div class="about py-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                              				  				  				<h3 id="id-服务器安全加固文档-1.账号和口令">一、账号和口令</h3> <h4 id="id-服务器安全加固文档-1.1禁用或删除无用账号">1.1 禁用或删除无用账号</h4> <p>查看 /etc/passwd 文件查看是否有无用的账号，如果存在则删除，降低安全风险。</p> <p><strong>操作步骤：</strong></p> <ul> <li>使用命令<code>userdel &lt;用户名&gt;</code>&nbsp;删除不必要的账号。</li> <li>使用命令<code>passwd -l &lt;用户名&gt;</code>&nbsp;锁定不必要的账号。</li> <li>使用命令<code>passwd -u &lt;用户名&gt;</code>&nbsp;解锁必要的账号。</li> </ul> <h4 id="id-服务器安全加固文档-1.2检查特殊账号">1.2 检查特殊账号</h4> <p><strong>操作步骤：</strong></p> <ol> <li>查看空口令和root权限账号，确认是否存在异常账号： <ul> <li>使用命令<code>awk -F: '($2=="")' /etc/shadow</code>&nbsp;查看空口令账号。</li> <li>使用命令<code>awk -F: '($3==0)' /etc/passwd</code>&nbsp;查看UID为零的账号。</li> </ul> </li> <li>加固空口令账号： <ul> <li>使用命令<code>passwd &lt;用户名&gt;</code>&nbsp;为空口令账号设定密码。</li> <li>确认UID为0的账号只有root账号。</li> </ul> </li> </ol> <h4 id="id-服务器安全加固文档-1.3添加口令策略">1.3 添加口令策略</h4> <p><strong>操作步骤</strong></p> <ol> <li>使用命令<code>vim /etc/login.defs</code>&nbsp;修改配置文件。 <ul> <li><code>PASS_MAX_DAYS 90</code>&nbsp; &nbsp;#新建用户的密码最长使用天数</li> <li><code>PASS_MIN_DAYS 0</code>&nbsp; &nbsp; &nbsp;#新建用户的密码最短使用天数（两次修改口令的最小间隔时间）</li> <li><code>PASS_MIN_LEN&nbsp; 8</code>&nbsp; &nbsp; &nbsp;#新建用户的密码最小长度</li> <li><code>PASS_WARN_AGE&nbsp;14</code>&nbsp; &nbsp;#新建用户的密码到期提前提醒天数</li> </ul> </li> <li> <p class="auto-cursor-target">使用chage命令修改用户设置。</p> <pre class="language-bash"><code># 设置用户密码最短使用天数为7天，密码最长使用天数为30天，过期前14天警告用户 sudo chage -m 7 -M 90 -W 14 root    sudo chage -m 7 -M 90 -W 14 admin # 密码过期时间查看方法： [admin@Centos7 ~]$ sudo chage -l root Last password change                               : Sep 14, 2020【最近一次修改密码的时间】 Password expires                                   : Dec 13, 2020【密码过期时间】 Password inactive                                  : never【密码失效时间】 Account expires                                    : never【账户过期时间】 Minimum number of days between password change     : 7【两次改变密码之间相距最小天数】 Maximum number of days between password change     : 90【两次密码改变密码相距最大天数】 Number of days of warning before password expires  : 15【密码过期前开始警告的天数】</code></pre> </li> <li>密码锁定策略 <pre class="language-bash"><code># 设置连续输错五次密码，账号锁定五分钟。 vim /etc/pam.d/system-auth auth        required      pam_tally2.so onerr=fail deny=5 unlock_time=300 even_deny_root root_unlock_time=90</code></pre> <p>说明：</p> <ul> <li>deny：设置普通用户和root用户连续错误登陆的最大次数，超过最大次数，则锁定该用户</li> <li>unlock_time：设定普通用户锁定后，多少时间后解锁，单位是秒</li> <li>root_unlock_time：设定root用户锁定后，多少时间后解锁，单位是秒</li> </ul> </li> <li>密码复杂度 <pre class="language-bash"><code># 设置用户密码最小长度8位，必须包含大小写字母+数字+特殊字符（root用户同理） vim /etc/pam.d/system-auth password    requisite     pam_pwquality.so try_first_pass local_users_only minlen=8 ucredit=-1 lcredit=-1 dcredit=-1 password    required      pam_pwhistory.so use_authtok remember=5 enforce_for_root vim /etc/pam.d/password-auth password    requisite     pam_pwquality.so try_first_pass local_users_only minlen=8 ucredit=-1 lcredit=-1 dcredit=-1 password    required      pam_pwhistory.so use_authtok remember=5 enforce_for_root</code></pre> <p>说明：</p> <ul> <li>minlen=8：将密码的最小长度设置为8个字符。</li> <li>lcredit=-1 ：将密码应包含的小写字母的最小数目设置为至少一个</li> <li>ucredit=-1：将密码上的大写字母的最小数目设置为至少一个。</li> <li>dcredit=-1 ：将密码中包含的最小位数至少设置为一个</li> <li>ocredit=-1：设置其他符号的最小数量，例如@，＃、!&nbsp;$％等，至少要有一个密码</li> <li>remember=5：口令不能修改为过去5次使用过的旧口令</li> <li>enforce_for_root ：确保即使是root用户设置密码，也应强制执行复杂性策略。</li> </ul> </li> </ol> <h4 id="id-服务器安全加固文档-1.4限制用户su">1.4 限制用户su</h4> <p><strong>操作步骤</strong></p> <p>使用命令<code>vim /etc/pam.d/su</code>修改配置文件，在配置文件中添加行。<br />例如，只允许admin组用户su到root，则添加<code>auth required pam_wheel.so group=admin</code>。</p> <p>【可选】为了方便操作，可配置admin支持免密sudo：在 /etc/sudoers 文件中添加&nbsp;admin ALL=(ALL) NOPASSWD:ALL</p> <h4 id="id-服务器安全加固文档-1.5加固su命令">1.5 加固su命令</h4> <p>为了防止使用"su"命令将当前用户环境变量带入其它用户，修改/etc/login.defs添加ALWAYS_SET_PATH=yes并保存。</p> <h4 id="id-服务器安全加固文档-1.6禁止root用户直接登入">1.6 禁止root用户直接登入</h4> <p><strong>操作步骤</strong></p> <ol> <li> <p class="auto-cursor-target">创建普通权限账号并配置密码，防止无法远程登录，如：</p> <pre class="language-bash"><code>groupadd -g 1000 admin &amp;&amp; useradd -g admin -c "Administrator" -u 1000 -n -s /bin/bash admin</code></pre> </li> <li class="auto-cursor-target">使用命令<code>vi /etc/ssh/sshd_config</code>修改配置文件将PermitRootLogin的值改成no，并重启<code>sshd</code>服务。</li> </ol> <h3 id="id-服务器安全加固文档-2.服务">二、系统服务</h3> <h4 id="id-服务器安全加固文档-2.1关闭不必要的服务">2.1 关闭不必要的服务</h4> <p><strong>操作步骤：</strong></p> <p>查看所有服务列表 systemctl list-units --type=service</p> <ul> <li>关闭不必要的服务：systemctl stop &lt;服务名&gt;</li> <li>设置开机不自启动：systemctl disable &lt;服务名&gt;</li> </ul> <h4 id="id-服务器安全加固文档-2.2SSH服务安全">2.2 SSH服务安全</h4> <p><strong>操作步骤</strong></p> <p>使用命令<code>vim /etc/ssh/sshd_config</code>编辑配置文件。</p> <div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-name="code"> <div class="codeContent panelContent pdl"> <div> <div id="highlighter_315738" class="syntaxhighlighter sh-midnight nogutter  bash"></div> </div> </div> </div> <pre class="language-bash"><code>PermitRootLogin no  # 不允许root账号直接登录系统 Protocol 2          # 修改SSH使用的协议版本 MaxAuthTries 3      # 修改允许密码错误次数（默认6次） ClientAliveInterval 60   # server每隔60秒给客户端发送一次保活信息包给客户端 ClientAliveCountMax 30   # server端发出的请求客户端没有回应的次数达到30次的时候就断开连接。</code></pre> <p>配置文件修改完成后，重启sshd服务生效（systemctl restart sshd）。</p> <h3 id="id-服务器安全加固文档-3.文件系统">三、文件系统</h3> <h4 id="id-服务器安全加固文档-3.1设置umask值">3.1 设置umask值</h4> <p><strong>操作步骤</strong></p> <p><code>修改/etc/profile</code>&nbsp;配置文件，添加行<code>umask 027</code>， 即新创建的文件属主拥有读写执行权限，同组用户拥有读和执行权限，其他用户无权限。</p> <h4 id="id-服务器安全加固文档-3.2设置登入超时">3.2 设置登入超时</h4> <p><strong>操作步骤</strong></p> <p>修改<code>/etc/profile</code>&nbsp;配置文件，设置为<code>TMOUT=600，</code>表示超时10分钟无操作自动退出登录。</p> <h3 id="id-服务器安全加固文档-4.日志">四、系统日志</h3> <h4 id="id-服务器安全加固文档-4.1syslogd日志">4.1 syslogd日志</h4> <p><strong>操作步骤</strong></p> <p>Linux系统默认启用以下类型日志，配置文件为 /etc/rsyslog.conf：</p> <ul> <li>系统日志（默认）/var/log/messages</li> <li>cron日志（默认）/var/log/cron</li> <li>安全日志（默认）/var/log/secure</li> </ul> <h4 id="id-服务器安全加固文档-4.2记录所有用户的登入日志和操作日志">4.2 记录所有用户的登入日志和操作日志</h4> <div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-name="code"> <div class="codeContent panelContent pdl"> <div> <div id="highlighter_558245" class="syntaxhighlighter sh-midnight nogutter  bash"></div> </div> </div> </div> <pre class="language-bash"><code># 打开配置文件/etc/profile，在配置文件最后中输入以下内容： history USER=`whoami` USER_IP=`who -u am i 2&gt;/dev/null| awk '{print $NF}'|sed -e 's/[()]//g'` if [ "$USER_IP" = "" ]; then   USER_IP=`hostname` fi if [ ! -d /var/log/history ]; then   mkdir /var/log/history   chmod 777 /var/log/history fi if [ ! -d /var/log/history/${LOGNAME} ]; then   mkdir /var/log/history/${LOGNAME}   chmod 300 /var/log/history/${LOGNAME} fi export HISTSIZE=4096 DT=`date +"%Y%m%d_%H:%M:%S"` export HISTFILE="/var/log/history/${LOGNAME}/${USER}@${USER_IP}_$DT" chmod 600 /var/log/history/${LOGNAME}/*history* 2&gt;/dev/null # 执行source使其生效 source /etc/profile</code></pre> <p>通过上述步骤，可以在 /var/log/history 目录下以每个用户为名新建一个文件夹，每次用户退出后都会产生以用户名、登录IP、时间的日志文件，包含此用户本次的所有操作（root用户除外）</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-25682.htm">广州宠物批发市场星期几开放（广州宠物市场搬去哪了）</a></p>
+                                        <p>下一个：<a href="/news/article-26149.htm">动物疫苗的目的 动物疫苗的目的是什么</a></p>
+                                    </div>
+                                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-6-11-free-node-subscribe.htm" title="「6月11日」最高速度22.9M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月11日」最高速度22.9M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-24-node-share-links.htm" title="「10月24日」最高速度21.3M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月24日」最高速度21.3M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-11-clash-node.htm" title="「10月11日」最高速度21.7M/S，2024年SingBox节点每日更新订阅免费节点链接">「10月11日」最高速度21.7M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-6-28-free-high-speed-nodes.htm" title="「6月28日」最高速度19.5M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月28日」最高速度19.5M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-21982.htm" title="动物疫苗招聘信息最新（动物疫苗招聘信息最新消息）">动物疫苗招聘信息最新（动物疫苗招聘信息最新消息）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-7-26-free-high-speed-nodes.htm" title="「7月26日」最高速度21.5M/S，2024年SingBox节点每日更新订阅免费节点链接">「7月26日」最高速度21.5M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-7-14-free-subscribe-node.htm" title="「7月14日」最高速度21.3M/S，2024年SingBox节点每日更新订阅免费节点链接">「7月14日」最高速度21.3M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-5-6-free-clash-subscribe.htm" title="「5月6日」最高速度22.7M/S，2024年Shadowrocket/Clash/V2ray/SSR每日更新订阅免费节点链接">「5月6日」最高速度22.7M/S，2024年Shadowrocket/Clash/V2ray/SSR每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-21-free-v2ray.htm" title="「8月21日」最高速度22.2M/S，2024年SingBox节点每日更新订阅免费节点链接">「8月21日」最高速度22.2M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-4-free-node-subscribe.htm" title="「10月4日」最高速度18.1M/S，2024年SingBox节点每日更新订阅免费节点链接">「10月4日」最高速度18.1M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">45</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about -->
+        <!-- footer -->
+    <footer>
+        <p class="copyright-agileinfo">
+            SingBoxNode官网订阅站 版权所有
+            <br />
+            Powered by WordPress
+        </p>
+    </footer>
+    <!-- //footer -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.min.v3.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/jquery-2.2.3.min.js"></script>
+    <!-- gallery -->
+    <script src="/assets/website/js/frontend/singboxnode/smoothbox.jquery2.js"></script>
+    <!-- //gallery -->
+    <!-- pop-up(for video popup)-->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.magnific-popup.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+    </script>
+    <!-- //pop-up-box (syllabus section video)-->
+    <!-- video js (background) -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.vide.min.js"></script>
+    <!-- //video js (background) -->
+    <!-- banner Slider script  -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider, #slider1").responsiveSlides({
+            auto: true,
+            nav: false,
+            speed: 1500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+    </script>
+    <!-- //banner Slider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: false,
+            speed: 1000,
+            namespace: "callbacks",
+            before: function() {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function() {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    });
+    </script>
+    <!-- start-smooth-scrolling -->
+    <script src="/assets/website/js/frontend/singboxnode/move-top.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/easing.js"></script>
+    <script>
+    // jQuery(document).ready(function($) {
+    //     $(".scroll").click(function(event) {
+    //         event.preventDefault();
+
+    //         $('html,body').animate({
+    //             scrollTop: $(this.hash).offset().top
+    //         }, 1000);
+    //     });
+    // });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+    $(document).ready(function() {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear' 
+        };
+        */
+
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+    </script>
+    <script src="/assets/website/js/frontend/singboxnode/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- FlexSlider-JavaScript -->
+    <script defer src="/assets/website/js/frontend/singboxnode/jquery.flexslider.js"></script>
+    <script>
+    // $(function() {
+    //     SyntaxHighlighter.all();
+    // });
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+    </script>
+    <!-- //FlexSlider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
