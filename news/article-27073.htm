@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-27073.htm" />
+    <title>SpringBoot 转发请求至指定页面</title>
+    <!--meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="1、前言   原先的页面访问地址为：http://127.0.0.1:8888/office/schdule/index/， 重构项目，SpringBoot 项目，前后分离，前端文件放置静态目录（st" />
+        <!--//meta tags ends here-->
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href="/assets/website/img/singboxnode/favicon.ico" type="image/x-icon"/>
+    <!-- bootstrap style sheet -->
+    <link href="/assets/website/css/singboxnode/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--smooth box-->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/smoothbox.css" type='text/css' media="all" />
+    <!--stylesheets-->
+    <link href="/assets/website/css/singboxnode/style.css" rel='stylesheet' type='text/css' media="all">
+    <!-- flexslider -->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/flexslider.css" type="text/css" media="all" />
+    <!-- fontawesome -->
+    <link href="/assets/website/css/singboxnode/fontawesome-all.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Popup css (for Video Popup) -->
+    <link href="/assets/website/css/singboxnode/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-982T9L7Y5V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-982T9L7Y5V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- nav -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="/"><span class="brand-d">SingBox</span>Node</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/">首页</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/free-nodes/">免费节点</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/paid-subscribe/">推荐机场</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/news/">新闻资讯</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="#">关于</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scroll" href="#">联系</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- //nav -->
+    <!-- Clients -->
+    <div class="clients py-5" id="client">
+        <div class="banner-dott1">
+            <div class="h3-head text-center">
+                <h1 class="banner-text-h3" style="word-break: break-all;">SpringBoot 转发请求至指定页面</h1>
+            </div>
+            <div class="container">
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
+            </div>
+        </div>
+    </div>
+    <!-- //Clients -->
+    <!-- about -->
+    <div class="about py-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                              				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h2><a id="1_0" rel="nofollow"></a>1、前言</h2> <p>  原先的页面访问地址为：<code>http://127.0.0.1:8888/office/schdule/index/</code>，<br /> 重构项目，SpringBoot 项目，前后分离，前端文件放置静态目录（<code>static</code>）下，访问地址：<code>http://127.0.0.1:8888/office/schdule/index.html</code>。可以看出，原先是请求接口进行转发到指定页面的，而现在是直接访问静态文件，为了能兼容原先访问地址，则需对请求进行转发处理。</p> <h2><a id="2_4" rel="nofollow"></a>2、多种方式尝试</h2> <h3><a id="21_redirectforward_Java__5" rel="nofollow"></a>2.1 redirect、forward关键字（不是 Java 关键字）</h3> <pre><code class="prism language-java"><span class="token comment">/**  * 跳转控制器  * @author pky  */</span><span class="token annotation punctuation">@Controller</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">JumpController</span><span class="token keyword">extends</span><span class="token class-name">BaseResultController</span><span class="token punctuation">{<!-- --></span><span class="token comment">/**      * 跳转主页      * @return 要转发的页面地址      */</span><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"html/index"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token class-name">String</span><span class="token function">forwordIndexHtml</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token string">"forword：/schdule/index.html"</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">/**      * 跳转主页      * @return 要重定向的页面地址      */</span><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"html/index"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token class-name">String</span><span class="token function">redirectIndexHtml</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token string">"redirect：/schdule/index.html"</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <blockquote> <p>注意：需要使用<code>@Controller</code>，不可使用<code>@RestController</code>。<br /><code>@RestController</code>相当于<code>@Controller</code>和<code>@ResponseBody</code>合在一起的作用，如果使用<code>@RestController</code>注解<code>Controller</code>层的话，则返回的是<code>return</code>里面的内容，无法返回到指定的页面，配置的视图解析器<code>InternalResourceViewResolver</code>也就自然没有作用了。</p> </blockquote> <p>  然而，上述代码报了<code>Cannot resolve MVC View ‘forword：/schdule/index.html’</code><strong><font color="red">无法解析视图的错误</font></strong>。</p> <h3><a id="22__WebMvcConfigurer__37" rel="nofollow"></a>2.2 重写 WebMvcConfigurer 接口中的方法</h3> <p>  创建<code>WebConfig</code> 类实现<code>WebMvcConfigurer</code> 接口，重写<code>addViewControllers</code> 方法。如下代码：</p> <pre><code class="prism language-java"><span class="token keyword">import</span><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span></span><span class="token class-name">SpringBootConfiguration</span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>config<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span><span class="token comment">/**  * Web 配置类  *  * @author pky  */</span><span class="token annotation punctuation">@SpringBootConfiguration</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">WebConfig</span><span class="token keyword">implements</span><span class="token class-name">WebMvcConfigurer</span><span class="token punctuation">{<!-- --></span><span class="token annotation punctuation">@Override</span><span class="token keyword">public</span><span class="token keyword">void</span><span class="token function">addViewControllers</span><span class="token punctuation">(</span><span class="token class-name">ViewControllerRegistry</span> registry<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 设置访问相对路径及其对应的 HTML 文件的相对路径（相对于静态目录）</span>         registry<span class="token punctuation">.</span><span class="token function">addViewController</span><span class="token punctuation">(</span><span class="token string">"html/index"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setViewName</span><span class="token punctuation">(</span><span class="token string">"schdule/index.html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p>  依然还是报了<code>Cannot resolve MVC View ‘forword：/schdule/index.html’</code><strong><font color="red">无法解析视图的错误</font></strong>。</p> <h3><a id="23__thymeleaf_62" rel="nofollow"></a>2.3 引入 thymeleaf</h3> <p>  以上的错误是因为没有使用模板引擎，无法识别静态页面。</p> <ul> <li><strong>pom.xml</strong></li> </ul> <pre><code class="prism language-xml"><span class="token comment">&lt;!--    模板引擎   --&gt;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-thymeleaf<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre> <ul> <li><strong>applicaiton.properties</strong></li> </ul> <pre><code class="prism language-yaml">server.servlet.context<span class="token punctuation">-</span>path=/office/ server.port=10000<span class="token comment"># 静态资源路径</span> spring.resources.static<span class="token punctuation">-</span>locations=classpath<span class="token punctuation">:</span>/static/<span class="token punctuation">,</span> classpath<span class="token punctuation">:</span>/templates/</code></pre> <p>  值得注意的是，<font color="blue">SpringBoot 默认的静态目录是<code>resources</code>下的<code>static</code></font>，引入<code>thymeleaf</code>模板引擎后，还是无法识别<code>static</code>下的文件，只能识别<code>templates</code>下的文件。因此<code>applicaiton.properties</code>需配置<code>templates</code>资源路径地址，如下图<code>index.html</code>路径：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221130/14e9675c60d155762346622dbc062b08.jpg" alt="SpringBoot 转发请求至指定页面"></p> <ul> <li><strong>修改 Controller</strong></li> </ul> <p>  去掉<code>forword</code><code>redirect</code>关键字，直接写需跳转的地址。</p> <pre><code class="prism language-java"><span class="token comment">/**  * 跳转控制器  * @author pky  */</span><span class="token annotation punctuation">@Controller</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">JumpController</span><span class="token keyword">extends</span><span class="token class-name">BaseResultController</span><span class="token punctuation">{<!-- --></span><span class="token comment">/**      * 跳转主页（使用template模板引擎）      * @return 要转发到指定页面的相对地址（相对于 templates）      */</span><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"html/index"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token class-name">String</span><span class="token function">forwordIndexHtml</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token string">"schdule/index.html"</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <blockquote> <p>另外，引入了引入<code>thymeleaf</code>模板引擎后，上述<code>addViewControllers(ViewControllerRegistry registry)</code>方法也能在<code>IDEA</code> 中正常跳转到指定地址，但是运行时，却总是报找不到静态文件，无论怎么修改路径都不行。具体原因不明，因此不采用。</p> </blockquote> <h2><a id="3_108" rel="nofollow"></a>3、最终效果</h2> <ul> <li><code>http://127.0.0.1:8888/office/schdule/index/</code></li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221130/3ed71b2a6dc472e1924f931d977cda77.jpg" alt="SpringBoot 转发请求至指定页面"></p> <ul> <li><code>http://127.0.0.1:8888/office/schdule/index.html</code></li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221130/a5895a4a17db3178397efcee3e6b57a4.jpg" alt="SpringBoot 转发请求至指定页面"></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-26609.htm">吉泰科技有限公司（吉泰有限公司怎么样）</a></p>
+                                        <p>下一个：<a href="/news/article-27074.htm">一元店货源批发市场雨伞（一块钱的雨伞）</a></p>
+                                    </div>
+                                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-8-29-shadowrocket-node.htm" title="「8月29日」最高速度22.5M/S，2024年SingBox节点每日更新订阅免费节点链接">「8月29日」最高速度22.5M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-27-clash-node.htm" title="「10月27日」最高速度22.7M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月27日」最高速度22.7M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-24744.htm" title="Java 9中的JShell中的前向参考是什么？">Java 9中的JShell中的前向参考是什么？</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-7-23-free-node-subscribe-links.htm" title="「7月23日」最高速度22.9M/S，2024年SingBox节点每日更新订阅免费节点链接">「7月23日」最高速度22.9M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-5-29-free-ssr-node.htm" title="「5月29日」最高速度18.6M/S，2024年SingBox节点每日更新订阅免费节点链接">「5月29日」最高速度18.6M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-6-24-clash-v2ray-ss-ssr.htm" title="「6月24日」最高速度23M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月24日」最高速度23M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-free-subscribe-node.htm" title="「12月17日」最高速度19.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「12月17日」最高速度19.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-node-share.htm" title="「12月3日」最高速度19.9M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「12月3日」最高速度19.9M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-6-11-free-node-subscribe.htm" title="「6月11日」最高速度22.9M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月11日」最高速度22.9M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-12-free-clash-subscribe.htm" title="「8月12日」最高速度22M/S，2024年SingBox节点每日更新订阅免费节点链接">「8月12日」最高速度22M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">51</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about -->
+        <!-- footer -->
+    <footer>
+        <p class="copyright-agileinfo">
+            SingBoxNode官网订阅站 版权所有
+            <br />
+            Powered by WordPress
+        </p>
+    </footer>
+    <!-- //footer -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.min.v3.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/jquery-2.2.3.min.js"></script>
+    <!-- gallery -->
+    <script src="/assets/website/js/frontend/singboxnode/smoothbox.jquery2.js"></script>
+    <!-- //gallery -->
+    <!-- pop-up(for video popup)-->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.magnific-popup.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+    </script>
+    <!-- //pop-up-box (syllabus section video)-->
+    <!-- video js (background) -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.vide.min.js"></script>
+    <!-- //video js (background) -->
+    <!-- banner Slider script  -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider, #slider1").responsiveSlides({
+            auto: true,
+            nav: false,
+            speed: 1500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+    </script>
+    <!-- //banner Slider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: false,
+            speed: 1000,
+            namespace: "callbacks",
+            before: function() {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function() {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    });
+    </script>
+    <!-- start-smooth-scrolling -->
+    <script src="/assets/website/js/frontend/singboxnode/move-top.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/easing.js"></script>
+    <script>
+    // jQuery(document).ready(function($) {
+    //     $(".scroll").click(function(event) {
+    //         event.preventDefault();
+
+    //         $('html,body').animate({
+    //             scrollTop: $(this.hash).offset().top
+    //         }, 1000);
+    //     });
+    // });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+    $(document).ready(function() {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear' 
+        };
+        */
+
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+    </script>
+    <script src="/assets/website/js/frontend/singboxnode/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- FlexSlider-JavaScript -->
+    <script defer src="/assets/website/js/frontend/singboxnode/jquery.flexslider.js"></script>
+    <script>
+    // $(function() {
+    //     SyntaxHighlighter.all();
+    // });
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+    </script>
+    <!-- //FlexSlider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
