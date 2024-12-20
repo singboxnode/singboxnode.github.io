@@ -18,7 +18,7 @@
             window.scrollTo(0, 1);
         }
     </script>
-    <link rel="icon" href="__ADDON__/img/singboxnode/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="/assets/website/img/singboxnode/favicon.ico" type="image/x-icon"/>
     <!-- bootstrap style sheet -->
     <link href="/assets/website/css/singboxnode/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!--smooth box-->
@@ -98,7 +98,8 @@
                 <div class="col-md-9">
                     <div class="row py-3">
                         <div class="col-md-12 about-content">
-                                              				  				  				<div id="content_views" class="htmledit_views"> <p>这个问题主要是承接上文，上文说到，需要解析前端传递的base64字符串，转成文件并保存到文件服务器中，这就用到了base64转码等操作。刚开始没当回事觉得很常见，但是做的时候才各种坑。后续大家注意以下提到的点。</p> <p>首先是base64Util工具类</p> <p>主要的问题来源于引入jar包的种类，由于虽然本项目依赖于jdk1.8但是也要支持1.7的情况所以jdk1.8类库中的base无法使用。下面上代码。</p> <pre><code class="language-html hljs">import sun.misc.BASE64Decoder; import sun.misc.BASE64Encoder;  import javax.imageio.stream.FileImageInputStream; import java.io.BufferedOutputStream; import java.io.ByteArrayOutputStream; import java.io.File; import java.io.IOException; import java.util.regex.Matcher; import java.util.regex.Pattern;  public class base64Util {      /**      * base64转文件并输出到指定目录      * @param base64Str      * @param fileName      * @param filePath      * @return      */     public static byte[] decode(String base64Str,String fileName,String filePath){         File file = null;         //创建文件目录         File  dir=new File(filePath);         if (!dir.exists() &amp;&amp; !dir.isDirectory()) {             dir.mkdirs();         }         BufferedOutputStream bos = null;         java.io.FileOutputStream fos = null;          byte[] b = null;         BASE64Decoder decoder = new BASE64Decoder();         try {             b = decoder.decodeBuffer(replaceEnter(base64Str));             //window             //file=new File(filePath+"\\"+fileName);             //linux             file=new File(filePath+"/"+fileName);             fos = new java.io.FileOutputStream(file);             bos = new BufferedOutputStream(fos);             bos.write(b);         } catch (IOException e) {             e.printStackTrace();         }finally {             if (bos != null) {                 try {                     bos.close();                 } catch (IOException e) {                     e.printStackTrace();                 }             }             if (fos != null) {                 try {                     fos.close();                 } catch (IOException e) {                     e.printStackTrace();                 }             }         }         return b;     }      /**      * 图片转字符串      * @param image      * @return      */     public static String encode(byte[] image){         BASE64Encoder decoder = new BASE64Encoder();         return replaceEnter(decoder.encode(image));     }      public static String encode(String uri){         BASE64Encoder encoder = new BASE64Encoder();         return replaceEnter(encoder.encode(uri.getBytes()));     }      /**      *      * @path    图片路径      * @return      */      public static byte[] imageTobyte(String path){         byte[] data = null;         FileImageInputStream input = null;         try {             input = new FileImageInputStream(new File(path));             ByteArrayOutputStream output = new ByteArrayOutputStream();             byte[] buf = new byte[1024];             int numBytesRead = 0;             while((numBytesRead = input.read(buf)) != -1){                 output.write(buf, 0, numBytesRead);             }             data = output.toByteArray();             output.close();             input.close();          } catch (Exception e) {             e.printStackTrace();         }          return data;     }      public static String replaceEnter(String str){         String reg ="[\n-\r]";         Pattern p = Pattern.compile(reg);         Matcher m = p.matcher(str);         return m.replaceAll("");     }  }</code></pre> <p>使用：里面的参数大家自己定义哈。</p> <p><span style="color:#f33b45;">注意：用来转换或者其他操作的的base64字符串一定要是纯粹的base64，不要带有前端的标识字段</span></p> <p><img fetchpriority="high" decoding="async" alt="" class="has" height="174" src="http://img.555519.xyz/uploads3/20220607/06be7291c0ca8bd6cc38a8949e5b5241.jpg"></p> </div> 			                <div class="clearfix"></div>
+                                            <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>这个问题主要是承接上文，上文说到，需要解析前端传递的base64字符串，转成文件并保存到文件服务器中，这就用到了base64转码等操作。刚开始没当回事觉得很常见，但是做的时候才各种坑。后续大家注意以下提到的点。</p> <p>首先是base64Util工具类</p> <p>主要的问题来源于引入jar包的种类，由于虽然本项目依赖于jdk1.8但是也要支持1.7的情况所以jdk1.8类库中的base无法使用。下面上代码。</p> <pre><code class="language-html hljs">import sun.misc.BASE64Decoder; import sun.misc.BASE64Encoder;  import javax.imageio.stream.FileImageInputStream; import java.io.BufferedOutputStream; import java.io.ByteArrayOutputStream; import java.io.File; import java.io.IOException; import java.util.regex.Matcher; import java.util.regex.Pattern;  public class base64Util {      /**      * base64转文件并输出到指定目录      * @param base64Str      * @param fileName      * @param filePath      * @return      */     public static byte[] decode(String base64Str,String fileName,String filePath){         File file = null;         //创建文件目录         File  dir=new File(filePath);         if (!dir.exists() &amp;&amp; !dir.isDirectory()) {             dir.mkdirs();         }         BufferedOutputStream bos = null;         java.io.FileOutputStream fos = null;          byte[] b = null;         BASE64Decoder decoder = new BASE64Decoder();         try {             b = decoder.decodeBuffer(replaceEnter(base64Str));             //window             //file=new File(filePath+"\\"+fileName);             //linux             file=new File(filePath+"/"+fileName);             fos = new java.io.FileOutputStream(file);             bos = new BufferedOutputStream(fos);             bos.write(b);         } catch (IOException e) {             e.printStackTrace();         }finally {             if (bos != null) {                 try {                     bos.close();                 } catch (IOException e) {                     e.printStackTrace();                 }             }             if (fos != null) {                 try {                     fos.close();                 } catch (IOException e) {                     e.printStackTrace();                 }             }         }         return b;     }      /**      * 图片转字符串      * @param image      * @return      */     public static String encode(byte[] image){         BASE64Encoder decoder = new BASE64Encoder();         return replaceEnter(decoder.encode(image));     }      public static String encode(String uri){         BASE64Encoder encoder = new BASE64Encoder();         return replaceEnter(encoder.encode(uri.getBytes()));     }      /**      *      * @path    图片路径      * @return      */      public static byte[] imageTobyte(String path){         byte[] data = null;         FileImageInputStream input = null;         try {             input = new FileImageInputStream(new File(path));             ByteArrayOutputStream output = new ByteArrayOutputStream();             byte[] buf = new byte[1024];             int numBytesRead = 0;             while((numBytesRead = input.read(buf)) != -1){                 output.write(buf, 0, numBytesRead);             }             data = output.toByteArray();             output.close();             input.close();          } catch (Exception e) {             e.printStackTrace();         }          return data;     }      public static String replaceEnter(String str){         String reg ="[\n-\r]";         Pattern p = Pattern.compile(reg);         Matcher m = p.matcher(str);         return m.replaceAll("");     }  }</code></pre> <p>使用：里面的参数大家自己定义哈。</p> <p><span style="color:#f33b45;">注意：用来转换或者其他操作的的base64字符串一定要是纯粹的base64，不要带有前端的标识字段</span></p> <p><img fetchpriority="high" decoding="async" alt="" class="has" height="174" src="http://img.555519.xyz/uploads3/20220607/06be7291c0ca8bd6cc38a8949e5b5241.jpg"></p> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-21982.htm">动物疫苗招聘信息最新（动物疫苗招聘信息最新消息）</a></p>
                                         <p>下一个：<a href="/news/article-22439.htm">动物疫苗接种时间要求多久（动物疫苗的使用方法及注意事项）</a></p>
@@ -113,16 +114,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-9-28-free-high-speed-nodes.htm" title="「9月28日」最高速度22.7M/S，2024年SingBox节点每日更新订阅免费节点链接">「9月28日」最高速度22.7M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-7-14-free-subscribe-node.htm" title="「7月14日」最高速度21.3M/S，2024年SingBox节点每日更新订阅免费节点链接">「7月14日」最高速度21.3M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-6-4-free-clash.htm" title="「6月4日」最高速度20.4M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月4日」最高速度20.4M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-7-7-free-ssr-node.htm" title="「7月7日」最高速度18.8M/S，2024年SingBox节点每日更新订阅免费节点链接">「7月7日」最高速度18.8M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-16-node-share-links.htm" title="「9月16日」最高速度20.9M/S，2024年SingBox节点每日更新订阅免费节点链接">「9月16日」最高速度20.9M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-20604.htm" title="养猫容易得哪些病（养猫容易引起哪些疾病）">养猫容易得哪些病（养猫容易引起哪些疾病）</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-10-20-node-share-links.htm" title="「10月20日」最高速度18.8M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月20日」最高速度18.8M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-9-free-node-subscribe.htm" title="「12月9日」最高速度22.7M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「12月9日」最高速度22.7M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-16-free-clash-subscribe.htm" title="「11月16日」最高速度19.2M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月16日」最高速度19.2M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-6-8-free-node-subscribe-links.htm" title="「6月8日」最高速度20.9M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月8日」最高速度20.9M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-6-21-clash-v2ray-ss-ssr.htm" title="「6月21日」最高速度19.8M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月21日」最高速度19.8M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-19231.htm" title="动物疫苗的作用有哪些呢英语 动物疫苗的作用有哪些呢英语翻译">动物疫苗的作用有哪些呢英语 动物疫苗的作用有哪些呢英语翻译</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-21-free-shadowrocket-node.htm" title="「10月21日」最高速度20.1M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月21日」最高速度20.1M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-2-free-subscribe-node.htm" title="「12月2日」最高速度21.2M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「12月2日」最高速度21.2M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-26149.htm" title="动物疫苗的目的 动物疫苗的目的是什么">动物疫苗的目的 动物疫苗的目的是什么</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-7-17-clash-windows.htm" title="「7月17日」最高速度19.4M/S，2024年SingBox节点每日更新订阅免费节点链接">「7月17日」最高速度19.4M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-24525.htm" title="中国最大的宠物粮生产厂家是哪家呢（中国宠物粮厂家批发网）">中国最大的宠物粮生产厂家是哪家呢（中国宠物粮厂家批发网）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-20-node-share.htm" title="「9月20日」最高速度22.9M/S，2024年SingBox节点每日更新订阅免费节点链接">「9月20日」最高速度22.9M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-18-clash-node-daily-updates.htm" title="「8月18日」最高速度20.6M/S，2024年SingBox节点每日更新订阅免费节点链接">「8月18日」最高速度20.6M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -134,7 +135,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -171,6 +172,15 @@
         <!-- footer -->
     <footer>
         <p class="copyright-agileinfo">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
             SingBoxNode官网订阅站 版权所有
             <br />
             Powered by WordPress

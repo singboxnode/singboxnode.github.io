@@ -98,7 +98,8 @@
                 <div class="col-md-9">
                     <div class="row py-3">
                         <div class="col-md-12 about-content">
-                                              				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <ol> <li> <p>VS code配置步骤先按照网上的方法完成，大概就是安装mingw，cmake，VS code，然后安装VS code中的插件：<img decoding="async" src="http://img.555519.xyz/uploads3/20220707/23bdf13b6393350f47b091757de4f4de.jpg" alt="VScode中使用Cmake遇到的问题及其解决方法for Windows OS"><br /> 安装好之后，新建文件夹/项目如下:<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220707/16e3a8006e84326d6bf612f9aba2ca54.jpg" alt="VScode中使用Cmake遇到的问题及其解决方法for Windows OS"><br /> 其中，build是打开文件夹以后自动生成的。test中是源文件还有项目文件等。</p> </li> <li> <p>打开终端（可以是powershell，也可以是vscode中的终端），进入到build中，使用</p> </li> </ol> <pre><code>cmake -G "MinGW Makefiles" ..</code></pre> <p>其中的 MinGW Makefiles 可以修改成其他的编译选项。根据错误的提示来选择就好。<br /> 如果cmake的配置出错，有可能是没有选择kit，Ctrl+Shift+P输入</p> <pre><code>Cmake: Select a Kit</code></pre> <p>选择一个kit，我这里选择是有mingw的那个GCC的选项。如果不行的话就再选择另外一个。</p> <p>成功之后会生成makefile。网上说要输入</p> <pre><code>make</code></pre> <p>去生成可执行文件，但是我这里总是会报错：</p> <pre><code>make : 无法将“make”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。请检查名称的拼写，如果包括路径，请确保路径正确 ，然后再试一次。 所在位置 行:1 字符: 1 + make -v + ~~~~     + CategoryInfo          : ObjectNotFound: (make:String) [], CommandNotFoundException     + FullyQualifiedErrorId : CommandNotFoundException</code></pre> <p>（为了解决这个问题，还专门去下载GNU make，添加了相应的系统环境变量。但是也没有解决问题。最后将GNU make卸载了。）用make的命令其实是想调用make的exe文件，不用输入路径是因为在环境变量中添加了相应的路径。但是其实在安装mingw的时候已经安装了make命令，调用不到是因为那个exe文件没有改成make.exe。可以使用</p> <pre><code>mingw32-make</code></pre> <p>命令来执行make的命令，也可以将mingw32-make.exe改名成make.exe，然后输入</p> <pre><code>make</code></pre> <p>来执行。成功之后，在终端接着输入</p> <pre><code>./TEST_C.exe</code></pre> <p>其中TEST_C是项目名称。 这样就可以得到程序的输出啦。</p> <ol start="3"> <li>附：<br /> CmakeLists.txt内容：</li> </ol> <pre><code>cmake_minimum_required (VERSION 3.0) project(Main) set(CMAKE_C_COMPILER "gcc") add_executable(TEST_C test/test_mod.c)</code></pre> <p>test/test_mod.c的内容：</p> <pre><code>#include&lt;stdlib.h&gt; #include&lt;stdio.h&gt;  int main(){     int a = -123;     int b, c;     b = a / 10;     c = a % 10;     printf("%d, %d\n", b ,c);     system("pause"); }</code></pre> </div> 			                <div class="clearfix"></div>
+                                            <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <ol> <li> <p>VS code配置步骤先按照网上的方法完成，大概就是安装mingw，cmake，VS code，然后安装VS code中的插件：<img decoding="async" src="http://img.555519.xyz/uploads3/20220707/23bdf13b6393350f47b091757de4f4de.jpg" alt="VScode中使用Cmake遇到的问题及其解决方法for Windows OS"><br /> 安装好之后，新建文件夹/项目如下:<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220707/16e3a8006e84326d6bf612f9aba2ca54.jpg" alt="VScode中使用Cmake遇到的问题及其解决方法for Windows OS"><br /> 其中，build是打开文件夹以后自动生成的。test中是源文件还有项目文件等。</p> </li> <li> <p>打开终端（可以是powershell，也可以是vscode中的终端），进入到build中，使用</p> </li> </ol> <pre><code>cmake -G "MinGW Makefiles" ..</code></pre> <p>其中的 MinGW Makefiles 可以修改成其他的编译选项。根据错误的提示来选择就好。<br /> 如果cmake的配置出错，有可能是没有选择kit，Ctrl+Shift+P输入</p> <pre><code>Cmake: Select a Kit</code></pre> <p>选择一个kit，我这里选择是有mingw的那个GCC的选项。如果不行的话就再选择另外一个。</p> <p>成功之后会生成makefile。网上说要输入</p> <pre><code>make</code></pre> <p>去生成可执行文件，但是我这里总是会报错：</p> <pre><code>make : 无法将“make”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。请检查名称的拼写，如果包括路径，请确保路径正确 ，然后再试一次。 所在位置 行:1 字符: 1 + make -v + ~~~~     + CategoryInfo          : ObjectNotFound: (make:String) [], CommandNotFoundException     + FullyQualifiedErrorId : CommandNotFoundException</code></pre> <p>（为了解决这个问题，还专门去下载GNU make，添加了相应的系统环境变量。但是也没有解决问题。最后将GNU make卸载了。）用make的命令其实是想调用make的exe文件，不用输入路径是因为在环境变量中添加了相应的路径。但是其实在安装mingw的时候已经安装了make命令，调用不到是因为那个exe文件没有改成make.exe。可以使用</p> <pre><code>mingw32-make</code></pre> <p>命令来执行make的命令，也可以将mingw32-make.exe改名成make.exe，然后输入</p> <pre><code>make</code></pre> <p>来执行。成功之后，在终端接着输入</p> <pre><code>./TEST_C.exe</code></pre> <p>其中TEST_C是项目名称。 这样就可以得到程序的输出啦。</p> <ol start="3"> <li>附：<br /> CmakeLists.txt内容：</li> </ol> <pre><code>cmake_minimum_required (VERSION 3.0) project(Main) set(CMAKE_C_COMPILER "gcc") add_executable(TEST_C test/test_mod.c)</code></pre> <p>test/test_mod.c的内容：</p> <pre><code>#include&lt;stdlib.h&gt; #include&lt;stdio.h&gt;  int main(){     int a = -123;     int b, c;     b = a / 10;     c = a % 10;     printf("%d, %d\n", b ,c);     system("pause"); }</code></pre> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-22896.htm">宠物领养活动宣传语（宠物领养活动方案）</a></p>
                                         <p>下一个：<a href="/news/article-23350.htm">天津市宠物用品批发市场在哪（天津卖宠物用品的地方）</a></p>
@@ -113,16 +114,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-11-clash-node.htm" title="「10月11日」最高速度21.7M/S，2024年SingBox节点每日更新订阅免费节点链接">「10月11日」最高速度21.7M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-6-node-share-links.htm" title="「8月6日」最高速度20M/S，2024年SingBox节点每日更新订阅免费节点链接">「8月6日」最高速度20M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-v2ray-subscribe.htm" title="「11月21日」最高速度22.6M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月21日」最高速度22.6M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-7-free-ssr-subscribe.htm" title="「11月7日」最高速度20.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月7日」最高速度20.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/news/article-21521.htm" title="养猫的人,都容易得哪些“猫病”?（养猫的人容易得什么病?）">养猫的人,都容易得哪些“猫病”?（养猫的人容易得什么病?）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-5-8-free-clash-subscribe.htm" title="「5月8日」最高速度22.9M/S，2024年Clash/V2ray/SSR/Shadowrocket每日更新订阅免费节点链接">「5月8日」最高速度22.9M/S，2024年Clash/V2ray/SSR/Shadowrocket每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-7-16-shadowrocket-node.htm" title="「7月16日」最高速度20.9M/S，2024年SingBox节点每日更新订阅免费节点链接">「7月16日」最高速度20.9M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-5-23-free-ssr-subscribe.htm" title="「5月23日」最高速度19.2M/S，2024年SingBox节点每日更新订阅免费节点链接">「5月23日」最高速度19.2M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-6-11-free-node-subscribe.htm" title="「6月11日」最高速度22.9M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月11日」最高速度22.9M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-14-free-subscribe-node.htm" title="「10月14日」最高速度22.5M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月14日」最高速度22.5M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-6-28-free-high-speed-nodes.htm" title="「6月28日」最高速度19.5M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月28日」最高速度19.5M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-27995.htm" title="动物疫苗定义及分类（动物疫苗分几种）">动物疫苗定义及分类（动物疫苗分几种）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-clash-node.htm" title="「11月5日」最高速度19.2M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月5日」最高速度19.2M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-21-clash-v2ray-ss-ssr.htm" title="「9月21日」最高速度19.3M/S，2024年SingBox节点每日更新订阅免费节点链接">「9月21日」最高速度19.3M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-8-free-clash-subscribe.htm" title="「12月8日」最高速度19.8M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「12月8日」最高速度19.8M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-5-19-free-node-subscribe-links.htm" title="「5月19日」最高速度18.3M/S，2024年SingBox节点每日更新订阅免费节点链接">「5月19日」最高速度18.3M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-18-clash-windows.htm" title="「12月18日」最高速度20.3M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「12月18日」最高速度20.3M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-20149.htm" title="宠物粮加工厂总投资 宠物粮加工厂总投资多少钱">宠物粮加工厂总投资 宠物粮加工厂总投资多少钱</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-26-shadowrocket-node.htm" title="「10月26日」最高速度21.9M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月26日」最高速度21.9M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-6-17-node-share.htm" title="「6月17日」最高速度20.2M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月17日」最高速度20.2M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -134,7 +135,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -171,6 +172,15 @@
         <!-- footer -->
     <footer>
         <p class="copyright-agileinfo">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
             SingBoxNode官网订阅站 版权所有
             <br />
             Powered by WordPress
