@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-30818.htm" />
+    <title>关于springboot项目中及mysql中Date、datetime、timestamp类型的相关说明</title>
+    <!--meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="自古以来，我们的springboot项目中常有这样的不一致问题：  数据库的默认字段，create_time、update_time等字段，使用什么数据类型？（datetime，date，还是time" />
+        <!--//meta tags ends here-->
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href="/assets/website/img/singboxnode/favicon.ico" type="image/x-icon"/>
+    <!-- bootstrap style sheet -->
+    <link href="/assets/website/css/singboxnode/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--smooth box-->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/smoothbox.css" type='text/css' media="all" />
+    <!--stylesheets-->
+    <link href="/assets/website/css/singboxnode/style.css" rel='stylesheet' type='text/css' media="all">
+    <!-- flexslider -->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/flexslider.css" type="text/css" media="all" />
+    <!-- fontawesome -->
+    <link href="/assets/website/css/singboxnode/fontawesome-all.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Popup css (for Video Popup) -->
+    <link href="/assets/website/css/singboxnode/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-982T9L7Y5V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-982T9L7Y5V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- nav -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="/"><span class="brand-d">SingBox</span>Node</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/">首页</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/free-nodes/">免费节点</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/paid-subscribe/">推荐机场</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/news/">新闻资讯</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="#">关于</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scroll" href="#">联系</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- //nav -->
+    <!-- Clients -->
+    <div class="clients py-5" id="client">
+        <div class="banner-dott1">
+            <div class="h3-head text-center">
+                <h1 class="banner-text-h3" style="word-break: break-all;">关于springboot项目中及mysql中Date、datetime、timestamp类型的相关说明</h1>
+            </div>
+            <div class="container">
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
+            </div>
+        </div>
+    </div>
+    <!-- //Clients -->
+    <!-- about -->
+    <div class="about py-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                            <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <p>自古以来，我们的springboot项目中常有这样的不一致问题：</p> <ol> <li>数据库的默认字段，create_time、update_time等字段，使用什么数据类型？（datetime，date，还是timestamp）</li> <li>数据库的其他业务字段，用来表示时间的，用什么数据类型？（同上的困惑）</li> <li>使用了这些类型后，java代码中的DO、BO要用什么数据类型来接（Date，String，Long，还是别的什么？），各层和各个方法之间传递的时候以什么类型传？</li> <li>当某些字段需要通过RestController接口返回给前端的时候，ResDTO的字段类型又要如何设计，是 String、Date 还是通过某种注解配合字段来实现？</li> <li>后端java方法中，使用什么类型传递呢? Date，String，Long，还是别的什么？</li> <li>前后端交互的时候，形式要如何确定，是看起来不知所云的数字时间戳呢，还是让某一方转换一次使用人人期待的“yyyy-MM-dd HH:mm:ss” 呢？</li> </ol> <p>在没有一个统一约定的情况下，这些确实是老大难问题。</p> <p>现在约定一个统一标准。</p> </h1> <p><strong>注：以下内容都经过验证，非凭空臆想。</strong></p> <ol> <li>myslq表设计中，固定字段 create_time, update_time 字段使用timestamp格式，且update_time 勾选“根据当前时间戳更新”</li> <li>mysql表中的其他表示时间的字段，日期的则使用 date 格式，日期时间的则使用 datetime格式 （因为业务时间可能需要时间范围为很多年之后的情况，比如卖了一个终身有效的课程，超出了timestamp的范围）。</li> <li>java代码中的DO、BO以及最终返回给前端的ResDTO ，甚至方法之间的传参，都用 java 的 Date 类型。都可以直接接收，不会报错。</li> <li>ReqDTO中的参数就用java的 Date 格式，前端直接传 “yyyy-MM-dd” 或 “yyyy-MM-dd HH:mm:ss” 即可识别。</li> </ol> <p>如果这样约定的话，则任何地方，我们都不再需要：</p> <ol> <li>把难以理解，不能望文生义的数值时间戳传来传去和反复转换<br /> 2.各种DateUtil转换，@Date注解以生成“yyyy-MM-dd HH:mm:ss”类型字符串给前端的过程，都不需要了</li> <li>mybatis映射时，Date 类型直接就能成功，无需额外关心。</li> </ol> </h1> <h2><a id="21__jackson_36" rel="nofollow"></a>2.1 通常情况 (jackson)</h2> <p>springboot项目中，如果声明一个@RestController 接口，如果返回 Date格式的话，则前端通过http接收到的格式默认为：<code>Tue May 24 2022 17:49:42</code>。</p> <p>这一点想必大家深受其扰。</p> <p>但实际上，这是因为springboot框架中默认使用了<code>jackson</code> 进行序列化。我们只需指定一个全局的jackson序列化格式即可，非常简单</p> <p>在<code>application.properties</code>配置文件增加以下配置:</p> <pre><code>spring.jackson.date-format=yyyy-MM-dd HH:mm:ss spring.jackson.time-zone=GMT+8</code></pre> <h2><a id="22___Gson_54" rel="nofollow"></a>2.2 有些时候 (如 Gson)</h2> <p>有些时候，有的人并不想用默认的jackson序列化内容，于是就采用了自定义的序列化库。</p> <p>如<code>Gson</code>等。</p> <hr/> <p>办法：在指定自定义的序列化库的时候，顺便指定Date序列化的格式。</p> </h1> <p>项目很简单试一下就明白了。</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://download.csdn.net/download/festone000/85465322"  rel="nofollow">https://download.csdn.net/download/festone000/85465322</a></p> <p>或仓库地址:<br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://gitee.com/festone/springboot-datetime-demo"  rel="nofollow">https://gitee.com/festone/springboot-datetime-demo</a></p> <p>内容是一样的。</p> <p>综上，此做法具备一切优点，没有任何不足，值得大力推广。</p> </h1> <p>但由于现状的原因，返回给前端的不是“yyyy-MM-dd HH:mm:ss”格式，而是 毫秒时间戳格式。</p> <p>故，我们统一全局配置一下格式，使得：</p> <p>ResDTO中的Date类型，给前端的时候直接就是毫秒时间戳格式。</p> <p>毫秒时间戳格式的请求参数，后端也可以直接用Date类型接收。</p> <p>前后端双方都不需要额外的任何显式转换。</p> <p><strong>示例（springboot版本 2.1.9.RELEASE，与当前我们项目中用的版本一致）:</strong></p> <p><code>application.yml文件：</code></p> <pre><code>spring:   jackson:     # yyyy-MM-dd HH:mm:ss 格式     #date-format: yyyy-MM-dd HH:mm:ss     time-zone: GMT+8     serialization:       # 毫秒时间戳格式       write-dates-as-timestamps: true</code></pre> <p>resDTO 示例:<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/179e529df4cb001958d29a2287dd9ed2.jpg" alt="关于springboot项目中及mysql中Date、datetime、timestamp类型的相关说明"><br /><code>java 类型：</code></p> <pre><code>@Data @Builder @AllArgsConstructor @NoArgsConstructor public class XtResponse implements Serializable {       private String name;       private Date date; }</code></pre> <p><strong>reqDTO示例：</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220606/06cdd5f1d11d289a8cc647b6f22df4f9.jpg" alt="关于springboot项目中及mysql中Date、datetime、timestamp类型的相关说明"><br /><strong>java类型：</strong></p> <pre><code>@Data @Builder @AllArgsConstructor @NoArgsConstructor public class DateReq implements Serializable {       private String name;       private Date date; }</code></pre> <p>综上，完美，具备一切优点，基本上可以说没有任何缺点。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-30351.htm">动物医院叫什么医院名称呢英文（动物医院的名字）</a></p>
+                                        <p>下一个：<a href="/news/article-30819.htm">动物疫苗证明哪里开的 动物疫苗证明哪里开的啊</a></p>
+                                    </div>
+                                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-9-21-clash-v2ray-ss-ssr.htm" title="「9月21日」最高速度19.3M/S，2024年SingBox节点每日更新订阅免费节点链接">「9月21日」最高速度19.3M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-clash-v2ray-ss-ssr.htm" title="「11月17日」最高速度22.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月17日」最高速度22.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-21520.htm" title="动物医院故事在线听（动物医院纪录片）">动物医院故事在线听（动物医院纪录片）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-5-shadowrocket-node.htm" title="「9月5日」最高速度21.1M/S，2024年SingBox节点每日更新订阅免费节点链接">「9月5日」最高速度21.1M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-14-free-node-subscribe-links.htm" title="「9月14日」最高速度18M/S，2024年SingBox节点每日更新订阅免费节点链接">「9月14日」最高速度18M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-3-free-node-subscribe-links.htm" title="「10月3日」最高速度22.7M/S，2024年SingBox节点每日更新订阅免费节点链接">「10月3日」最高速度22.7M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-6-14-free-v2ray.htm" title="「6月14日」最高速度19.7M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月14日」最高速度19.7M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-5-22-free-clash.htm" title="「5月22日」最高速度22.3M/S，2024年SingBox节点每日更新订阅免费节点链接">「5月22日」最高速度22.3M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-v2ray-subscribe.htm" title="「11月19日」最高速度19.6M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月19日」最高速度19.6M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-6-20-clash-node-daily-updates.htm" title="「6月20日」最高速度18.9M/S，2024年SingBox节点每日更新订阅免费节点链接">「6月20日」最高速度18.9M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">75</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about -->
+        <!-- footer -->
+    <footer>
+        <p class="copyright-agileinfo">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+            SingBoxNode官网订阅站 版权所有
+            <br />
+            Powered by WordPress
+        </p>
+    </footer>
+    <!-- //footer -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.min.v3.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/jquery-2.2.3.min.js"></script>
+    <!-- gallery -->
+    <script src="/assets/website/js/frontend/singboxnode/smoothbox.jquery2.js"></script>
+    <!-- //gallery -->
+    <!-- pop-up(for video popup)-->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.magnific-popup.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+    </script>
+    <!-- //pop-up-box (syllabus section video)-->
+    <!-- video js (background) -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.vide.min.js"></script>
+    <!-- //video js (background) -->
+    <!-- banner Slider script  -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider, #slider1").responsiveSlides({
+            auto: true,
+            nav: false,
+            speed: 1500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+    </script>
+    <!-- //banner Slider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: false,
+            speed: 1000,
+            namespace: "callbacks",
+            before: function() {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function() {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    });
+    </script>
+    <!-- start-smooth-scrolling -->
+    <script src="/assets/website/js/frontend/singboxnode/move-top.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/easing.js"></script>
+    <script>
+    // jQuery(document).ready(function($) {
+    //     $(".scroll").click(function(event) {
+    //         event.preventDefault();
+
+    //         $('html,body').animate({
+    //             scrollTop: $(this.hash).offset().top
+    //         }, 1000);
+    //     });
+    // });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+    $(document).ready(function() {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear' 
+        };
+        */
+
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+    </script>
+    <script src="/assets/website/js/frontend/singboxnode/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- FlexSlider-JavaScript -->
+    <script defer src="/assets/website/js/frontend/singboxnode/jquery.flexslider.js"></script>
+    <script>
+    // $(function() {
+    //     SyntaxHighlighter.all();
+    // });
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+    </script>
+    <!-- //FlexSlider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
