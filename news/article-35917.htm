@@ -2,11 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://singboxnode.github.io/free-nodes/page-10.htm" />
-    <title>免费节点 - SingBoxNode官网订阅站 - 第9页</title>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-35917.htm" />
+    <title>Vue 学习  之 封装模块方法</title>
     <!--meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="&lt;template&gt;   &lt;div &gt;       &lt;!-- 实现回车键事情@keydown="doAdd($event)"  --&gt;     &lt;input " />
         <!--//meta tags ends here-->
     <script>
         addEventListener("load", function () {
@@ -45,7 +46,7 @@
      crossorigin="anonymous"></script>
 </head>
 
-<body data-page="category">
+<body data-page="detail">
         <!-- nav -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -82,36 +83,29 @@
     <div class="clients py-5" id="client">
         <div class="banner-dott1">
             <div class="h3-head text-center">
-                <h1 class="banner-text-h3">免费节点</h1>
+                <h1 class="banner-text-h3" style="word-break: break-all;">Vue 学习  之 封装模块方法</h1>
             </div>
             <div class="container">
-                <p><a href="/">首页</a> / 免费节点</p>
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
             </div>
         </div>
     </div>
     <!-- //Clients -->
-    <!-- blog -->
-    <div class="blog py-5" id="blog">
+    <!-- about -->
+    <div class="about py-5" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <div class="row xcblog-blog-list">
-                                                <div class="col-md-12 py-1 xcblog-blog-item" data-date="2024-10-07">
-                            <div class="row">
-                                <div class="col-md-3 blog-img">
-                                    <a href="/free-nodes/2024-10-7-free-clash-subscribe.htm" class="xcblog-blog-url">
-                                        <img src="/uploads/20240503/c8bb8a6c5a03106b9c1f4297cfb85d33.webp" alt="「10月7日」最高速度18.4M/S，2024年SingBox节点每日更新订阅免费节点链接" class="img-responsive" />
-                                    </a>
-                                </div>
-                                <div class="col-md-9 blog-content">
-                                    <a href="/free-nodes/2024-10-7-free-clash-subscribe.htm" class="xcblog-blog-url">
-                                        <h6 class="text-h6h xcblog-blog-title">「10月7日」最高速度18.4M/S，2024年SingBox节点每日更新订阅免费节点链接</h6>
-                                    </a>
-                                    <p>这一次的节点更新覆盖了欧洲、美国、韩国、日本、加拿大、香港、新加坡等地区,最高速度可达18.4 M/S。只需复制下方的Clash/v2ray订阅链接,在客户端添加后即可正常使用。</p>
-                                </div>
-                            </div>
-                        </div>
-                                                <ul class="pagination"><li><a href="/free-nodes/page-9.htm">&laquo;</a></li> <li><a href="/free-nodes/">1</a></li><li><a href="/free-nodes/page-2.htm">2</a></li><li><a href="/free-nodes/page-3.htm">3</a></li><li><a href="/free-nodes/page-4.htm">4</a></li><li><a href="/free-nodes/page-5.htm">5</a></li><li><a href="/free-nodes/page-6.htm">6</a></li><li><a href="/free-nodes/page-7.htm">7</a></li><li><a href="/free-nodes/page-8.htm">8</a></li><li><a href="/free-nodes/page-9.htm">9</a></li><li class="active"><span>10</span></li> <li class="disabled"><span>&raquo;</span></li></ul>                    </div>
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                            <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <pre><code>&lt;template&gt;   &lt;div &gt;       &lt;!-- 实现回车键事情@keydown="doAdd($event)"  --&gt;     &lt;input type="text"  v-model='todo' @keydown="doAdd($event)" /&gt;       &lt;hr&gt;     &lt;br&gt;     &lt;h2&gt;进行中&lt;/h2&gt;     &lt;!-- @change="saveList()"点击文本框时发生改变机制事情 --&gt;      &lt;ul&gt;         &lt;li v-for="(item,key) in list" v-if="!item.checked"&gt;            &lt;input type="checkbox" v-model="item.checked" @change="saveList()" /&gt; {<!-- -->{item.title}}               -- &lt;button @click="removeData(key)"&gt;删除&lt;/button&gt;         &lt;/li&gt;       &lt;/ul&gt;     &lt;br&gt;     &lt;h2&gt;已完成&lt;/h2&gt;   &lt;ul&gt;               &lt;li v-for="(item,key) in list" v-if="item.checked"&gt;           &lt;input type="checkbox"  v-model="item.checked" @change="saveList()" /&gt; {<!-- -->{item.title}}             -- &lt;button @click="removeData(key)"&gt;删除&lt;/button&gt;         &lt;/li&gt;       &lt;/ul&gt;     &lt;br&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt; import storage from './model/storage.js'; console.log(storage);     export default {            data () {  /*业务逻辑里面定义的数据*/         return {           todo:'',           list:[],         }       },       methods:{        // 新增         doAdd(e){           // connect.log(e);            //新增时直接按回车键盘显示 键位==keyCode==13           if(e.keyCode==13){             this.list.push({               title:this.todo,               checked:false,             })                      }          // 调用 组件显示 storage            storage.set('list',this.list);           //缓存         //  localStorage.setItem('list',JSON.stringify(this.list))         },           //删除           removeData(key){             this.list.splice(key,1)              //缓存               storage.set('list',this.list);           // localStorage.setItem('list',JSON.stringify(this.list))           },           // 每次点击文本框checkbox改变时，从新保存一下           saveList(){             // localStorage.setItem('list', JSON.stringify(this.list))              storage.set('list',this.list);           },              },       //生命周期函数,vue页面刷新就会触发的方法(和 bata  methods 同级)           mounted(){         //  var list=JSON.parse(localStorage.getItem('list'));         //调用组件使用         var list=storage.get('list');           //判断是否存在           if(list){             this.list=list;           }           }             } &lt;/script&gt; &lt;style scoped &gt; &lt;/style&gt; </code></pre> <h2> <a id="_81" rel="nofollow"></a>封装操作</h2> <pre><code>//封装操作，localstorage 本地存储的方法，模块化文件 //封装模块方法  var storage={     set(key,value){         localStorage.setItem(key,JSON.stringify(value));     },     get(key){         return JSON.parse(localStorage.getItem(key));     },     remove(key){         localStorage.removeItem(key);     } } //把storage 暴露出去 export default storage; </code></pre> <h2> <a id="_100" rel="nofollow"></a>显示</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/582dc56ae97ac701dfd47fe7b1e51849.jpg" alt="Vue 学习  之 封装模块方法"></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-35441.htm">猫根本不必打三联多少钱（猫咪需要打三联多少钱）</a></p>
+                                        <p>下一个：<a href="/news/article-35918.htm">天津宠物救助站流浪猫（天津流浪猫救助站联系）</a></p>
+                                    </div>
+                                        </div>
+                    </div>
                 </div>
                 <div class="col-md-3">
                     <div class="panel panel-default">
@@ -120,16 +114,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-25-free-clash-subscribe.htm" title="「10月25日」最高速度21M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月25日」最高速度21M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-23-free-clash-subscribe.htm" title="「10月23日」最高速度22.1M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月23日」最高速度22.1M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-27-clash-node.htm" title="「10月27日」最高速度22.7M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月27日」最高速度22.7M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-8-clash-v2ray-ss-ssr.htm" title="「10月8日」最高速度22.9M/S，2024年SingBox节点每日更新订阅免费节点链接">「10月8日」最高速度22.9M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-35917.htm" title="Vue 学习  之 封装模块方法">Vue 学习  之 封装模块方法</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-v2ray.htm" title="「12月1日」最高速度21.7M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「12月1日」最高速度21.7M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-29-free-clash.htm" title="「10月29日」最高速度20.6M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月29日」最高速度20.6M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-27-node-share.htm" title="「11月27日」最高速度18.1M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月27日」最高速度18.1M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/news/article-27533.htm" title="南昌免费领养猫咪（南昌免费领养猫咪在哪里）">南昌免费领养猫咪（南昌免费领养猫咪在哪里）</a></li>
-                        <li class="py-2"><a href="/news/article-26608.htm" title="动物疫苗生产厂家排名榜前十名图片（动物疫苗品牌）">动物疫苗生产厂家排名榜前十名图片（动物疫苗品牌）</a></li>
+                        <li class="py-2"><a href="/news/article-22896.htm" title="宠物领养活动宣传语（宠物领养活动方案）">宠物领养活动宣传语（宠物领养活动方案）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-2-free-subscribe-node.htm" title="「12月2日」最高速度21.2M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「12月2日」最高速度21.2M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-clash-node.htm" title="「11月22日」最高速度20.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月22日」最高速度20.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-22-free-clash-subscribe.htm" title="「10月22日」最高速度22.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月22日」最高速度22.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-18-clash-v2ray-ss-ssr.htm" title="「10月18日」最高速度19.5M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月18日」最高速度19.5M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-25682.htm" title="广州宠物批发市场星期几开放（广州宠物市场搬去哪了）">广州宠物批发市场星期几开放（广州宠物市场搬去哪了）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-2-free-node-subscribe-links.htm" title="「11月2日」最高速度20.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月2日」最高速度20.4M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-node-share.htm" title="「12月3日」最高速度19.9M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「12月3日」最高速度19.9M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-13-clash-windows.htm" title="「10月13日」最高速度22.4M/S，2024年SingBox节点每日更新订阅免费节点链接">「10月13日」最高速度22.4M/S，2024年SingBox节点每日更新订阅免费节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-35440.htm" title="宠物美容师多少钱一个月工资高（宠物美容师工作时间一般是多少）">宠物美容师多少钱一个月工资高（宠物美容师工作时间一般是多少）</a></li>
                     </ul>
     </div>
 </div>
@@ -162,7 +156,7 @@
             </div>
         </div>
     </div>
-    <!-- //blog -->
+    <!-- //about -->
         <!-- footer -->
     <footer>
         <p class="copyright-agileinfo">
