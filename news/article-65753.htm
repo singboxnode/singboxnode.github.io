@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-65753.htm" />
+    <title>helm部署redis集群</title>
+    <!--meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="helm部署redis集群 一： 配置： 		nfs存储：100G 		节点1：node1-iot.com 192.168.0.201 		节点2：node2-iot.com 192.168.0.20" />
+        <!--//meta tags ends here-->
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href="/assets/website/img/singboxnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBoxNode官网订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxnode.github.io/news/article-65753.htm" />
+    <meta property="og:site_name" content="SingBoxNode官网订阅站" />
+    <meta property="og:title" content="helm部署redis集群" />
+    <meta property="og:image" content="https://singboxnode.github.io/uploads/20240503/ce80c730e52370037b70d6d07079c90a.webp" />
+        <meta property="og:release_date" content="2025-03-02T09:37:01" />
+    <meta property="og:updated_time" content="2025-03-02T09:37:01" />
+        <meta property="og:description" content="helm部署redis集群 一： 配置： 		nfs存储：100G 		节点1：node1-iot.com 192.168.0.201 		节点2：node2-iot.com 192.168.0.20" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="helm部署redis集群">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- bootstrap style sheet -->
+    <link href="/assets/website/css/singboxnode/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--smooth box-->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/smoothbox.css" type='text/css' media="all" />
+    <!--stylesheets-->
+    <link href="/assets/website/css/singboxnode/style.css" rel='stylesheet' type='text/css' media="all">
+    <!-- flexslider -->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/flexslider.css" type="text/css" media="all" />
+    <!-- fontawesome -->
+    <link href="/assets/website/css/singboxnode/fontawesome-all.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Popup css (for Video Popup) -->
+    <link href="/assets/website/css/singboxnode/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-982T9L7Y5V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-982T9L7Y5V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- nav -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/">
+                        <span class="brand-d">SingBox</span>Node            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/">首页</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/free-nodes/">免费节点</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/paid-subscribe/">推荐机场</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/client.htm">客户端</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/news/">新闻资讯</a>
+                    </li>
+                                    </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- //nav -->
+    <!-- Clients -->
+    <div class="clients py-5" id="client">
+        <div class="banner-dott1">
+            <div class="h3-head text-center">
+                <h1 class="banner-text-h3" style="word-break: break-all;">helm部署redis集群</h1>
+            </div>
+            <div class="container">
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
+            </div>
+        </div>
+    </div>
+    <!-- //Clients -->
+    <!-- about -->
+    <div class="about py-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                            <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <pre><code class="prism language-css">helm部署redis集群 一： 配置： 		nfs存储：100G 		节点1：node1-iot.com 192.168.0.201 		节点2：node2-iot.com 192.168.0.202 		节点3：node3-iot.com 192.168.0.204  二：部署storageclass [root@master-iot ~]# kubectl get nodes NAME             STATUS   ROLES    AGE   VERSION master-iot.com   Ready    master   37h   v1.17.0 node1-iot.com    Ready    &lt;none&gt;   37h   v1.17.0 node2-iot.com    Ready    &lt;none&gt;   37h   v1.17.0 node3-iot.com    Ready    &lt;none&gt;   24m   v1.17.0 [root@master-iot ~]# helm install stable/nfs-client-provisioner --set nfs.server=192.168.0.203 --set nfs.path=/opt 注意修改nfs地址和路径 [root@master-iot ~]# kubectl get pods NAME                                                   READY   STATUS    RESTARTS   AGE giggly-goose-nfs-client-provisioner-7b94d4dc4f-6dhw4   1/1     Running   0          53m  三：helm部署redis集群 [root@master-iot redis]# cat values.yaml<span class="token property">image</span><span class="token punctuation">:</span><span class="token property">repository</span><span class="token punctuation">:</span> redis<span class="token property">tag</span><span class="token punctuation">:</span> 5.0.5<span class="token property">pullPolicy</span><span class="token punctuation">:</span> IfNotPresent<span class="token property">redis</span><span class="token punctuation">:</span><span class="token property">resources</span><span class="token punctuation">:</span><span class="token property">requests</span><span class="token punctuation">:</span><span class="token property">memory</span><span class="token punctuation">:</span> 200Mi<span class="token property">cpu</span><span class="token punctuation">:</span> 100m<span class="token property">limits</span><span class="token punctuation">:</span><span class="token property">memory</span><span class="token punctuation">:</span> 700Mi<span class="token property">sentinel</span><span class="token punctuation">:</span><span class="token property">resources</span><span class="token punctuation">:</span><span class="token property">requests</span><span class="token punctuation">:</span><span class="token property">memory</span><span class="token punctuation">:</span> 200Mi<span class="token property">cpu</span><span class="token punctuation">:</span> 100m<span class="token property">limits</span><span class="token punctuation">:</span><span class="token property">memory</span><span class="token punctuation">:</span> 200Mi<span class="token property">persistentVolume</span><span class="token punctuation">:</span><span class="token property">enabled</span><span class="token punctuation">:</span> true<span class="token property">storageClass</span><span class="token punctuation">:</span><span class="token string">"nfs-client"</span><span class="token property">accessModes</span><span class="token punctuation">:</span>     - ReadWriteOnce<span class="token property">size</span><span class="token punctuation">:</span> 10Gi [root@master-iot redis]# helm install stable/redis-ha --name=redis-ha --namespace=redis [root@master-iot redis]# kubectl get all -n redis NAME                    READY   STATUS    RESTARTS   AGE pod/redis-ha-server-0   2/2     Running   3          24m pod/redis-ha-server-1   2/2     Running   0          24m pod/redis-ha-server-2   2/2     Running   0          24m  NAME                          TYPE        CLUSTER-IP      EXTERNAL-IP<span class="token function">PORT</span><span class="token punctuation">(</span>S<span class="token punctuation">)</span>              AGE service/redis-ha              ClusterIP   None            &lt;none&gt;        6379/TCP,26379/TCP   24m service/redis-ha-announce-0   ClusterIP   10.96.177.155   &lt;none&gt;        6379/TCP,26379/TCP   24m service/redis-ha-announce-1   ClusterIP   10.96.255.63    &lt;none&gt;        6379/TCP,26379/TCP   24m service/redis-ha-announce-2   ClusterIP   10.96.166.228   &lt;none&gt;        6379/TCP,26379/TCP   24m  NAME                               READY   AGE statefulset.apps/redis-ha-server   3/3     24m  四：测试 [root@master-iot redis]# kubectl get svc -n redis NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP<span class="token function">PORT</span><span class="token punctuation">(</span>S<span class="token punctuation">)</span>              AGE redis-ha              ClusterIP   None            &lt;none&gt;        6379/TCP,26379/TCP   25m redis-ha-announce-0   ClusterIP   10.96.177.155   &lt;none&gt;        6379/TCP,26379/TCP   25m redis-ha-announce-1   ClusterIP   10.96.255.63    &lt;none&gt;        6379/TCP,26379/TCP   25m redis-ha-announce-2   ClusterIP   10.96.166.228   &lt;none&gt;        6379/TCP,26379/TCP   25m [root@master-iot redis]# redis-cli -h 10.96.166.228 -p 6379 10.96.166.228<span class="token punctuation">:</span>6379&gt; INFO replication # Replication<span class="token property">role</span><span class="token punctuation">:</span>master<span class="token property">connected_slaves</span><span class="token punctuation">:</span>2<span class="token property">min_slaves_good_slaves</span><span class="token punctuation">:</span>2<span class="token property">slave0</span><span class="token punctuation">:</span>ip=10.96.255.63,port=6379,state=online,offset=218033,lag=1<span class="token property">slave1</span><span class="token punctuation">:</span>ip=10.96.177.155,port=6379,state=online,offset=218174,lag=0<span class="token property">master_replid</span><span class="token punctuation">:</span>ebe58c1995af9ee29119744503a20a805aab28ae<span class="token property">master_replid2</span><span class="token punctuation">:</span>7ff4e6ea64e6f76766409679e6f6d18867dfa7f2<span class="token property">master_repl_offset</span><span class="token punctuation">:</span>218174<span class="token property">second_repl_offset</span><span class="token punctuation">:</span>26098<span class="token property">repl_backlog_active</span><span class="token punctuation">:</span>1<span class="token property">repl_backlog_size</span><span class="token punctuation">:</span>1048576<span class="token property">repl_backlog_first_byte_offset</span><span class="token punctuation">:</span>868<span class="token property">repl_backlog_histlen</span><span class="token punctuation">:</span>217307 10.96.166.228<span class="token punctuation">:</span>6379&gt; set foo1 bar1 OK 10.96.166.228<span class="token punctuation">:</span>6379&gt; set foo2 bar2 OK [root@master-iot redis]# redis-cli -h 10.96.255.63  -p 6379 10.96.255.63<span class="token punctuation">:</span>6379&gt; KEYS * 1<span class="token punctuation">)</span><span class="token string">"foo1"</span> 2<span class="token punctuation">)</span><span class="token string">"foo2"</span> 接下来删除一个pod看是否重建 [root@master-iot redis]# kubectl get pods -n redis NAME                READY   STATUS    RESTARTS   AGE redis-ha-server-0   2/2     Running   3          32m redis-ha-server-1   2/2     Running   0          32m redis-ha-server-2   2/2     Running   0          32m [root@master-iot redis]# kubectl delete pod redis-ha-server-0 -n redis pod<span class="token string">"redis-ha-server-0"</span> deleted [root@master-iot redis]# kubectl get pods -n redis NAME                READY   STATUS    RESTARTS   AGE redis-ha-server-0   2/2     Running   0          18s redis-ha-server-1   2/2     Running   0          33m redis-ha-server-2   2/2     Running   0          33m 重建完毕 [root@master-iot redis]# redis-cli -h 10.96.177.155 -p 6379 10.96.177.155<span class="token punctuation">:</span>6379&gt; KEYS * 1<span class="token punctuation">)</span><span class="token string">"foo1"</span> 2<span class="token punctuation">)</span><span class="token string">"foo2"</span> 数据保持一致</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-65171.htm">开个宠物医院需要什么条件才能开（开个宠物医院需要什么条件才能开呢）</a></p>
+                                        <p>下一个：<a href="/news/article-65754.htm">聊城宠物店地址电话（聊城宠物店在哪里）</a></p>
+                                    </div>
+                                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-44469.htm" title="符合动物医院法定条件的是什么（符合动物医院法定条件的是什么）">符合动物医院法定条件的是什么（符合动物医院法定条件的是什么）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-7-free-shadowrocket-node.htm" title="「1月7日」最高速度21.8M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「1月7日」最高速度21.8M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-30-free-high-speed-nodes.htm" title="「12月30日」最高速度21.3M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「12月30日」最高速度21.3M/S，2024年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-36550.htm" title="正大猪饲料多少钱一吨（正大饲料价格表）">正大猪饲料多少钱一吨（正大饲料价格表）</a></li>
+                        <li class="py-2"><a href="/news/article-65171.htm" title="开个宠物医院需要什么条件才能开（开个宠物医院需要什么条件才能开呢）">开个宠物医院需要什么条件才能开（开个宠物医院需要什么条件才能开呢）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-20-free-v2ray.htm" title="「1月20日」最高速度18.9M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「1月20日」最高速度18.9M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-43468.htm" title="netty系列之:netty中的frame解码器_在线工具">netty系列之:netty中的frame解码器_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-46939.htm" title="太原哪里可以领养狗 太原哪里可以领养狗狗">太原哪里可以领养狗 太原哪里可以领养狗狗</a></li>
+                        <li class="py-2"><a href="/news/article-20606.htm" title="兽医站给猫打疫苗要多少钱一针（畜牧站给猫打疫苗多少钱）">兽医站给猫打疫苗要多少钱一针（畜牧站给猫打疫苗多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-40983.htm" title="同安宠物医院 同安宠物医院哪家好">同安宠物医院 同安宠物医院哪家好</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about -->
+        <!-- footer -->
+    <footer>
+        <p class="copyright-agileinfo">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+            SingBoxNode官网订阅站 版权所有
+            <br />
+            Powered by WordPress
+        </p>
+    </footer>
+    <!-- //footer -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.min.v3.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/jquery-2.2.3.min.js"></script>
+    <!-- gallery -->
+    <script src="/assets/website/js/frontend/singboxnode/smoothbox.jquery2.js"></script>
+    <!-- //gallery -->
+    <!-- pop-up(for video popup)-->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.magnific-popup.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+    </script>
+    <!-- //pop-up-box (syllabus section video)-->
+    <!-- video js (background) -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.vide.min.js"></script>
+    <!-- //video js (background) -->
+    <!-- banner Slider script  -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider, #slider1").responsiveSlides({
+            auto: true,
+            nav: false,
+            speed: 1500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+    </script>
+    <!-- //banner Slider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: false,
+            speed: 1000,
+            namespace: "callbacks",
+            before: function() {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function() {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    });
+    </script>
+    <!-- start-smooth-scrolling -->
+    <script src="/assets/website/js/frontend/singboxnode/move-top.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/easing.js"></script>
+    <script>
+    // jQuery(document).ready(function($) {
+    //     $(".scroll").click(function(event) {
+    //         event.preventDefault();
+
+    //         $('html,body').animate({
+    //             scrollTop: $(this.hash).offset().top
+    //         }, 1000);
+    //     });
+    // });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+    $(document).ready(function() {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear' 
+        };
+        */
+
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+    </script>
+    <script src="/assets/website/js/frontend/singboxnode/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- FlexSlider-JavaScript -->
+    <script defer src="/assets/website/js/frontend/singboxnode/jquery.flexslider.js"></script>
+    <script>
+    // $(function() {
+    //     SyntaxHighlighter.all();
+    // });
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+    </script>
+    <!-- //FlexSlider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
