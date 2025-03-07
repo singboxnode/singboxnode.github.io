@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-68970.htm" />
+    <title>Spring boot将图片转成base64,使用sun.misc.BASE64Decoder转换图片</title>
+    <!--meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="本来项目要求的是后台给前端返回文件的地址，前端可以读取文件，图片或者pdf文件都能读取到，pdf根据浏览器会有显示和下载两种情况，doc等其他类型需要联网使用微软公司的接口。但是这样就暴露了服务器存放" />
+        <!--//meta tags ends here-->
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href="/assets/website/img/singboxnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBoxNode官网订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxnode.github.io/news/article-68970.htm" />
+    <meta property="og:site_name" content="SingBoxNode官网订阅站" />
+    <meta property="og:title" content="Spring boot将图片转成base64,使用sun.misc.BASE64Decoder转换图片" />
+    <meta property="og:image" content="https://singboxnode.github.io/uploads/20240503/d15026c04bf3a824256edbb20ff7e7df.webp" />
+        <meta property="og:release_date" content="2025-03-07T06:35:33" />
+    <meta property="og:updated_time" content="2025-03-07T06:35:33" />
+        <meta property="og:description" content="本来项目要求的是后台给前端返回文件的地址，前端可以读取文件，图片或者pdf文件都能读取到，pdf根据浏览器会有显示和下载两种情况，doc等其他类型需要联网使用微软公司的接口。但是这样就暴露了服务器存放" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Spring boot将图片转成base64,使用sun.misc.BASE64Decoder转换图片">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- bootstrap style sheet -->
+    <link href="/assets/website/css/singboxnode/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--smooth box-->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/smoothbox.css" type='text/css' media="all" />
+    <!--stylesheets-->
+    <link href="/assets/website/css/singboxnode/style.css" rel='stylesheet' type='text/css' media="all">
+    <!-- flexslider -->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/flexslider.css" type="text/css" media="all" />
+    <!-- fontawesome -->
+    <link href="/assets/website/css/singboxnode/fontawesome-all.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Popup css (for Video Popup) -->
+    <link href="/assets/website/css/singboxnode/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-982T9L7Y5V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-982T9L7Y5V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- nav -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/">
+                        <span class="brand-d">SingBox</span>Node            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/">首页</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/free-nodes/">免费节点</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/paid-subscribe/">推荐机场</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/client.htm">客户端</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/news/">新闻资讯</a>
+                    </li>
+                                    </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- //nav -->
+    <!-- Clients -->
+    <div class="clients py-5" id="client">
+        <div class="banner-dott1">
+            <div class="h3-head text-center">
+                <h1 class="banner-text-h3" style="word-break: break-all;">Spring boot将图片转成base64,使用sun.misc.BASE64Decoder转换图片</h1>
+            </div>
+            <div class="container">
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
+            </div>
+        </div>
+    </div>
+    <!-- //Clients -->
+    <!-- about -->
+    <div class="about py-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                            <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <p>本来项目要求的是后台给前端返回文件的地址，前端可以读取文件，图片或者pdf文件都能读取到，pdf根据浏览器会有显示和下载两种情况，doc等其他类型需要联网使用微软公司的接口。但是这样就暴露了服务器存放文件的地址，所以更改为把图片大小限制后转成base64编码持久化保存。</p> </h1> <p>pom文件直接导入：</p> <pre><code>&lt;!-- 图片转base64 --&gt;         &lt;!-- https://mvnrepository.com/artifact/com.slzx.third/sun.misc.BASE64Decoder --&gt; 		&lt;dependency&gt; 		    &lt;groupId&gt;com.slzx.third&lt;/groupId&gt; 		    &lt;artifactId&gt;sun.misc.BASE64Decoder&lt;/artifactId&gt; 		    &lt;version&gt;1.0&lt;/version&gt; 		&lt;/dependency&gt;</code></pre> <p>就是文件下载不下来，就直接把jar包下载下来放到本地mvn库中<br /> 路径不变<br /> 进cmd后输入</p> <pre><code>mvn install:install-file -DgroupId=com.slzx.third -DartifactId=sun.misc.BASE64Decoder -Dversion=1.0 -Dpackaging=jar -Dfile=D:\software\sunmiscbase64decoder\sun.misc.BASE64Decoder.jar</code></pre> </h1> <p>@param imgFilePath 待处理图片的地址<br /> @return 注意这里只返回图片的base64编码，没有文件类型》》data:image/png;base64,添加类型信息后可以在img标签中显示</p> <pre><code>package com.psbc.pfpj.utils;  import java.io.File; import java.io.FileInputStream; import java.io.FileOutputStream; import java.io.IOException; import java.io.InputStream; import java.io.OutputStream;  import Decoder.BASE64Decoder; import Decoder.BASE64Encoder;  public class ImgTypeConvert { 	 	/** 	 * 将图片转换成Base64编码 	 *  	 * @param imgFilePath  待处理图片文件的地址 	 * @return 注意这里只返回图片的base64编码，没有文件类型》》data:image/png;base64,添加类型信息后可以在img标签中显示 	 */ 	public static String getImgStr(String imgFilePath) { 		// 将图片文件转化为字节数组字符串，并对其进行Base64编码处理 		File file=new File(imgFilePath); 		InputStream in = null; 		byte[] data = null; 		// 读取图片字节数组 		try { 			in = new FileInputStream(file); 			data = new byte[in.available()]; 			in.read(data); 			in.close(); 			if(data!=null&amp;&amp;data.length&gt;0){ 				//删除图片 //				file.delete(); 			} 		} catch (IOException e) { 			e.printStackTrace(); 		} 		 		BASE64Encoder encoder = new BASE64Encoder(); 		return encoder.encode(data); 	} 	          public static void main(String[] args) {     	String base64 = ImgTypeConvert.getImgStr("C:\\Users\\28054\\Pictures\\QQ浏览器截图\\QQ浏览器截图20210112094524.png"); 		System.out.println(base64); 		System.out.println(ImgTypeConvert.GenerateImage(base64, "D:\\a.jpg")); 		 	}          /** 	 * @Description: 将base64编码字符串转换为图片 	 * @Author:  	 * @CreateTime:  	 * @param imgStr base64编码字符串 	 * @param path 图片路径-文件名自己定义 	 * @return 	*/      public static boolean GenerateImage(String imgStr,String imgFilePath)       {   //对字节数组字符串进行Base64解码并生成图片           if (imgStr == null) //图像数据为空               return false;           BASE64Decoder decoder = new BASE64Decoder();           try            {               //Base64解码               byte[] b = decoder.decodeBuffer(imgStr);               for(int i=0;i&lt;b.length;++i)               {                   if(b[i]&lt;0)                   {//调整异常数据                       b[i]+=256;                   }               }               //生成图片               OutputStream out = new FileOutputStream(imgFilePath);                   out.write(b);               out.flush();               out.close();               return true;           }            catch (Exception e)            {               return false;           }       }               }</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-68303.htm">猫挠出血不打针有事吗（猫挠出血不打针有事吗科普）</a></p>
+                                        <p>下一个：<a href="/news/article-68971.htm">人跟狗打的狂犬疫苗一样吗多少钱（狗和人狂犬疫苗区别）</a></p>
+                                    </div>
+                                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-55809.htm" title="中国十大宠物粮生产企业名单公示（中国十大宠物粮生产企业名单公示栏）">中国十大宠物粮生产企业名单公示（中国十大宠物粮生产企业名单公示栏）</a></li>
+                        <li class="py-2"><a href="/news/article-66410.htm" title="从 jQuery 到 Vue3 的快捷通道_在线工具">从 jQuery 到 Vue3 的快捷通道_在线工具</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-5-free-v2ray.htm" title="「2月5日」最高速度19.3M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「2月5日」最高速度19.3M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-49431.htm" title="动物疫苗板块前景分析报告范文（动物疫苗行业）">动物疫苗板块前景分析报告范文（动物疫苗行业）</a></li>
+                        <li class="py-2"><a href="/news/article-38522.htm" title="南平猫咪领养中心（南平猫舍）">南平猫咪领养中心（南平猫舍）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-16-free-ssr-node.htm" title="「2月16日」最高速度18.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「2月16日」最高速度18.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-68971.htm" title="人跟狗打的狂犬疫苗一样吗多少钱（狗和人狂犬疫苗区别）">人跟狗打的狂犬疫苗一样吗多少钱（狗和人狂犬疫苗区别）</a></li>
+                        <li class="py-2"><a href="/news/article-53080.htm" title="宠物领养平台的设计与实现方***文怎么写（宠物领养系统国内外现状）">宠物领养平台的设计与实现方***文怎么写（宠物领养系统国内外现状）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-22-clash-node-daily-updates.htm" title="「2月22日」最高速度19.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「2月22日」最高速度19.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-11-shadowrocket-node.htm" title="「2月11日」最高速度18.8M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「2月11日」最高速度18.8M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about -->
+        <!-- footer -->
+    <footer>
+        <p class="copyright-agileinfo">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+            SingBoxNode官网订阅站 版权所有
+            <br />
+            Powered by WordPress
+        </p>
+    </footer>
+    <!-- //footer -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.min.v3.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/jquery-2.2.3.min.js"></script>
+    <!-- gallery -->
+    <script src="/assets/website/js/frontend/singboxnode/smoothbox.jquery2.js"></script>
+    <!-- //gallery -->
+    <!-- pop-up(for video popup)-->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.magnific-popup.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+    </script>
+    <!-- //pop-up-box (syllabus section video)-->
+    <!-- video js (background) -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.vide.min.js"></script>
+    <!-- //video js (background) -->
+    <!-- banner Slider script  -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider, #slider1").responsiveSlides({
+            auto: true,
+            nav: false,
+            speed: 1500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+    </script>
+    <!-- //banner Slider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: false,
+            speed: 1000,
+            namespace: "callbacks",
+            before: function() {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function() {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    });
+    </script>
+    <!-- start-smooth-scrolling -->
+    <script src="/assets/website/js/frontend/singboxnode/move-top.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/easing.js"></script>
+    <script>
+    // jQuery(document).ready(function($) {
+    //     $(".scroll").click(function(event) {
+    //         event.preventDefault();
+
+    //         $('html,body').animate({
+    //             scrollTop: $(this.hash).offset().top
+    //         }, 1000);
+    //     });
+    // });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+    $(document).ready(function() {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear' 
+        };
+        */
+
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+    </script>
+    <script src="/assets/website/js/frontend/singboxnode/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- FlexSlider-JavaScript -->
+    <script defer src="/assets/website/js/frontend/singboxnode/jquery.flexslider.js"></script>
+    <script>
+    // $(function() {
+    //     SyntaxHighlighter.all();
+    // });
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+    </script>
+    <!-- //FlexSlider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
