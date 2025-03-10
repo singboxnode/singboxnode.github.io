@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-70264.htm" />
+    <title>Java两个List＜T＞ 求交集,差集,并集,去重后的并集_java</title>
+    <!--meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="目录  操作的List&lt;T&gt;声明 求交集 retainAll() 求差集 removeAll() 求并集 addAll() 求去重后的并集     操作的List&lt;T&gt;声明 o" />
+        <!--//meta tags ends here-->
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href="/assets/website/img/singboxnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBoxNode官网订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxnode.github.io/news/article-70264.htm" />
+    <meta property="og:site_name" content="SingBoxNode官网订阅站" />
+    <meta property="og:title" content="Java两个List＜T＞ 求交集,差集,并集,去重后的并集_java" />
+    <meta property="og:image" content="https://singboxnode.github.io/uploads/20240503/1cfb41fff771ef7fed23f91f339d161e.webp" />
+        <meta property="og:release_date" content="2025-03-09T09:45:58" />
+    <meta property="og:updated_time" content="2025-03-09T09:45:58" />
+        <meta property="og:description" content="目录  操作的List&lt;T&gt;声明 求交集 retainAll() 求差集 removeAll() 求并集 addAll() 求去重后的并集     操作的List&lt;T&gt;声明 o" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Java两个List＜T＞ 求交集,差集,并集,去重后的并集_java">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- bootstrap style sheet -->
+    <link href="/assets/website/css/singboxnode/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--smooth box-->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/smoothbox.css" type='text/css' media="all" />
+    <!--stylesheets-->
+    <link href="/assets/website/css/singboxnode/style.css" rel='stylesheet' type='text/css' media="all">
+    <!-- flexslider -->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/flexslider.css" type="text/css" media="all" />
+    <!-- fontawesome -->
+    <link href="/assets/website/css/singboxnode/fontawesome-all.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Popup css (for Video Popup) -->
+    <link href="/assets/website/css/singboxnode/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-982T9L7Y5V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-982T9L7Y5V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- nav -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/">
+                        <span class="brand-d">SingBox</span>Node            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/">首页</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/free-nodes/">免费节点</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/paid-subscribe/">推荐机场</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/client.htm">客户端</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/news/">新闻资讯</a>
+                    </li>
+                                    </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- //nav -->
+    <!-- Clients -->
+    <div class="clients py-5" id="client">
+        <div class="banner-dott1">
+            <div class="h3-head text-center">
+                <h1 class="banner-text-h3" style="word-break: break-all;">Java两个List＜T＞ 求交集,差集,并集,去重后的并集_java</h1>
+            </div>
+            <div class="container">
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
+            </div>
+        </div>
+    </div>
+    <!-- //Clients -->
+    <!-- about -->
+    <div class="about py-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                            <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">操作的List&lt;T&gt;声明</a></li> <li><a href="#_label1" rel="nofollow">求交集 retainAll()</a></li> <li><a href="#_label2" rel="nofollow">求差集 removeAll()</a></li> <li><a href="#_label3" rel="nofollow">求并集 addAll()</a></li> <li><a href="#_label4" rel="nofollow">求去重后的并集 </a></li> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>操作的List&lt;T&gt;声明</h2> <p>oldList</p> <div class="ay1code"> <pre class="brush:java;">List&lt;String&gt; oldList = new ArrayList&lt;&gt;();  oldList.add("a");  oldList.add("b");  oldList.add("c");  System.out.println("oldList ## " + oldList);  </pre> </div> <p>newList</p> <div class="ay1code"> <pre class="brush:java;">List&lt;String&gt; newList = new ArrayList&lt;&gt;();  newList.add("a");  newList.add("1");  newList.add("2");  System.out.println("newList ## " + newList);  </pre> </div> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>求交集 retainAll()</h2> <p>1. oldList 与 newList 的交集</p> <div class="ay1code"> <pre class="brush:java;">oldList.retainAll(newList);  System.out.println("求交集 ## " + oldList);  </pre> </div> <p>响应</p> <blockquote> <p>oldList ## [a, b, c]<br />newList ## [a, 1, 2]<br />求交集 ## [a]</p> </blockquote> <p>2. newList 与 oldList 的交集</p> <div class="ay1code"> <pre class="brush:java;">newList.retainAll(oldList);  System.out.println("求交集 ## " + newList);  </pre> </div> <p>响应</p> <blockquote> <p>oldList ## [a, b, c]<br />newList ## [a, 1, 2]<br />求交集 ## [a]</p> </blockquote> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>求差集 removeAll()</h2> <p>1. oldList 与 newList 的差集</p> <div class="ay1code"> <pre class="brush:java;">oldList.removeAll(newList);  System.out.println("oldList.removeAll(newList);  --&gt; 求差集（ 在 oldList 集合中，删掉 oldList 与 newList 中都有的元素）： ## " + oldList);  </pre> </div> <p>响应</p> <blockquote> <p>oldList ## [a, b, c]<br />newList ## [a, 1, 2]<br />oldList.removeAll(newList);  --&gt; 求差集（ 在 oldList 集合中，删掉 oldList 与 newList 中都有的元素）： ## [b, c]</p> </blockquote> <p>2. newList与 oldList 的差集</p> <div class="ay1code"> <pre class="brush:java;">newList.removeAll(oldList);  System.out.println("newList.removeAll(oldList);  --&gt; 求差集（ 在 newList 集合中，删掉 oldList 与 newList 中都有的元素）： ## " + newList);  </pre> </div> <p>响应</p> <blockquote> <p>oldList ## [a, b, c]<br />newList ## [a, 1, 2]<br />newList.removeAll(oldList);  --&gt; 求差集（ 在 newList 集合中，删掉 oldList 与 newList 中都有的元素）： ## [1, 2]</p> </blockquote> <p>3. 源码解析</p> <p>removeAll() 的源码</p> <div class="ay1code"> <pre class="brush:java;">    public boolean removeAll(Collection&lt;?&gt; c) {          Objects.requireNonNull(c);          return batchRemove(c, false);      }   </pre> </div> <p>batchRemove的源码</p> <p>(如果传的第二个参数是false，保留差集;如果传的是true，保留的是交集)</p> <div class="ay1code"> <pre class="brush:java;">    private boolean batchRemove(Collection&lt;?&gt; c, boolean complement) {          final Object[] elementData = this.elementData;          int r = 0, w = 0;          boolean modified = false;          try {              for (; r &lt; size; r++)                  if (c.contains(elementData[r]) == complement)                      elementData[w++] = elementData[r];          } finally {              // Preserve behavioral compatibility with AbstractCollection,              // even if c.contains() throws.              if (r != size) {                  System.arraycopy(elementData, r,                                   elementData, w,                                   size - r);                  w += size - r;              }              if (w != size) {                  // clear to let GC do its work                  for (int i = w; i &lt; size; i++)                      elementData[i] = null;                  modCount += size - w;                  size = w;                  modified = true;              }          }          return modified;      }  </pre> </div> <p class="maodian"><a name="_label3" rel="nofollow"></a></p> <h2>求并集 addAll()</h2> <p>1. oldList 与 newList 的并集</p> <div class="ay1code"> <pre class="brush:java;">oldList.addAll(newList);  System.out.println("求并集 ##" + oldList);  </pre> </div> <p>响应</p> <blockquote> <p>oldList ## [a, b, c]<br />newList ## [a, 1, 2]<br />求并集 ##[a, b, c, a, 1, 2]</p> </blockquote> <p>2. newList 与 oldList 的并集</p> <div class="ay1code"> <pre class="brush:java;">newList.addAll(oldList);  System.out.println("求并集 ##" + newList);  </pre> </div> <p>响应</p> <blockquote> <p>oldList ## [a, b, c]<br />newList ## [a, 1, 2]<br />求并集 ##[a, 1, 2, a, b, c]</p> </blockquote> <p class="maodian"><a name="_label4" rel="nofollow"></a></p> <h2>求去重后的并集 </h2> <p>1. oldList 与 newList 去重后的并集</p> <div class="ay1code"> <pre class="brush:java;">oldList.removeAll(newList); // 先求差集得到去除相同项后的 oldList  oldList.addAll(newList); // 再求并集  System.out.println("求并集 ## " + oldList);  </pre> </div> <p>响应</p> <blockquote> <p>oldList ## [a, b, c]<br />newList ## [a, 1, 2]<br />求并集 ## [b, c, a, 1, 2]</p> </blockquote> <p>2. newList与 oldList 去重后的并集</p> <div class="ay1code"> <pre class="brush:java;">newList.removeAll(oldList);  newList.addAll(oldList);  System.out.println("求并集 ## " + newList);  </pre> </div> <p>响应</p> <blockquote> <p>oldList ## [a, b, c]<br />newList ## [a, 1, 2]<br />求并集 ## [1, 2, a, b, c]</p> </blockquote> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-69622.htm">宠物粮食品牌上市公司排名榜（宠物粮龙头企业）</a></p>
+                                        <p>下一个：<a href="/news/article-70265.htm">饲料加盟免费代理鱼饲料 鱼饲料代理需要多少钱</a></p>
+                                    </div>
+                                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-35917.htm" title="Vue 学习  之 封装模块方法">Vue 学习  之 封装模块方法</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-27-free-shadowrocket-node.htm" title="「2月27日」最高速度18.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「2月27日」最高速度18.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-46459.htm" title="猫咪三针疫苗多少钱一只（猫的三针疫苗多少钱）">猫咪三针疫苗多少钱一只（猫的三针疫苗多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-43954.htm" title="东北农业动物医院在哪个位置啊（东北农业动物医院在哪个位置啊图片）">东北农业动物医院在哪个位置啊（东北农业动物医院在哪个位置啊图片）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-26-free-ssr-node.htm" title="「2月26日」最高速度22.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「2月26日」最高速度22.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-54706.htm" title="附近哪里可以领养狗狗狗（附近哪里可以领养狗狗狗的地方）">附近哪里可以领养狗狗狗（附近哪里可以领养狗狗狗的地方）</a></li>
+                        <li class="py-2"><a href="/news/article-67033.htm" title="兰州哪里有卖猫粮的（兰州哪里有卖狗粮的地方）">兰州哪里有卖猫粮的（兰州哪里有卖狗粮的地方）</a></li>
+                        <li class="py-2"><a href="/news/article-44469.htm" title="符合动物医院法定条件的是什么（符合动物医院法定条件的是什么）">符合动物医院法定条件的是什么（符合动物医院法定条件的是什么）</a></li>
+                        <li class="py-2"><a href="/news/article-48336.htm" title="成都宠物托运价格表查询（宠物托运价格表2022）">成都宠物托运价格表查询（宠物托运价格表2022）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-16-free-ssr-node.htm" title="「2月16日」最高速度18.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「2月16日」最高速度18.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about -->
+        <!-- footer -->
+    <footer>
+        <p class="copyright-agileinfo">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+            SingBoxNode官网订阅站 版权所有
+            <br />
+            Powered by WordPress
+        </p>
+    </footer>
+    <!-- //footer -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.min.v3.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/jquery-2.2.3.min.js"></script>
+    <!-- gallery -->
+    <script src="/assets/website/js/frontend/singboxnode/smoothbox.jquery2.js"></script>
+    <!-- //gallery -->
+    <!-- pop-up(for video popup)-->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.magnific-popup.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+    </script>
+    <!-- //pop-up-box (syllabus section video)-->
+    <!-- video js (background) -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.vide.min.js"></script>
+    <!-- //video js (background) -->
+    <!-- banner Slider script  -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider, #slider1").responsiveSlides({
+            auto: true,
+            nav: false,
+            speed: 1500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+    </script>
+    <!-- //banner Slider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: false,
+            speed: 1000,
+            namespace: "callbacks",
+            before: function() {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function() {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    });
+    </script>
+    <!-- start-smooth-scrolling -->
+    <script src="/assets/website/js/frontend/singboxnode/move-top.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/easing.js"></script>
+    <script>
+    // jQuery(document).ready(function($) {
+    //     $(".scroll").click(function(event) {
+    //         event.preventDefault();
+
+    //         $('html,body').animate({
+    //             scrollTop: $(this.hash).offset().top
+    //         }, 1000);
+    //     });
+    // });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+    $(document).ready(function() {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear' 
+        };
+        */
+
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+    </script>
+    <script src="/assets/website/js/frontend/singboxnode/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- FlexSlider-JavaScript -->
+    <script defer src="/assets/website/js/frontend/singboxnode/jquery.flexslider.js"></script>
+    <script>
+    // $(function() {
+    //     SyntaxHighlighter.all();
+    // });
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+    </script>
+    <!-- //FlexSlider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
