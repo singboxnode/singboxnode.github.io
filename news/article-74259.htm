@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-74259.htm" />
+    <title>C++逆向 可变参数Hook</title>
+    <!--meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="目录  C++逆向 可变参数Hook  0x00 前言： 0x01 C++可变参数：  可变参数简介 可变参数代码实战   0x02 逆向分析C++可变参数原理 0x03 printf Hook实战 " />
+        <!--//meta tags ends here-->
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href="/assets/website/img/singboxnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBoxNode官网订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxnode.github.io/news/article-74259.htm" />
+    <meta property="og:site_name" content="SingBoxNode官网订阅站" />
+    <meta property="og:title" content="C++逆向 可变参数Hook" />
+    <meta property="og:image" content="https://singboxnode.github.io/uploads/20240503/0eeec1d09dec47e5009b6dea075f8830.webp" />
+        <meta property="og:release_date" content="2025-03-15T07:20:15" />
+    <meta property="og:updated_time" content="2025-03-15T07:20:15" />
+        <meta property="og:description" content="目录  C++逆向 可变参数Hook  0x00 前言： 0x01 C++可变参数：  可变参数简介 可变参数代码实战   0x02 逆向分析C++可变参数原理 0x03 printf Hook实战 " />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="C++逆向 可变参数Hook">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- bootstrap style sheet -->
+    <link href="/assets/website/css/singboxnode/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--smooth box-->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/smoothbox.css" type='text/css' media="all" />
+    <!--stylesheets-->
+    <link href="/assets/website/css/singboxnode/style.css" rel='stylesheet' type='text/css' media="all">
+    <!-- flexslider -->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/flexslider.css" type="text/css" media="all" />
+    <!-- fontawesome -->
+    <link href="/assets/website/css/singboxnode/fontawesome-all.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Popup css (for Video Popup) -->
+    <link href="/assets/website/css/singboxnode/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-982T9L7Y5V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-982T9L7Y5V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- nav -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/">
+                        <span class="brand-d">SingBox</span>Node            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/">首页</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/free-nodes/">免费节点</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/paid-subscribe/">推荐机场</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/client.htm">客户端</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/news/">新闻资讯</a>
+                    </li>
+                                    </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- //nav -->
+    <!-- Clients -->
+    <div class="clients py-5" id="client">
+        <div class="banner-dott1">
+            <div class="h3-head text-center">
+                <h1 class="banner-text-h3" style="word-break: break-all;">C++逆向 可变参数Hook</h1>
+            </div>
+            <div class="container">
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
+            </div>
+        </div>
+    </div>
+    <!-- //Clients -->
+    <!-- about -->
+    <div class="about py-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                            <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div class="toc"> <div class="toc-container-header">目录</div> <ul> <li><a href="#c%E9%80%86%E5%90%91-%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0hook" rel="nofollow">C++逆向 可变参数Hook</a> <ul> <li><a href="#0x00-%E5%89%8D%E8%A8%80" rel="nofollow">0x00 前言：</a></li> <li><a href="#0x01-c%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0" rel="nofollow">0x01 C++可变参数：</a> <ul> <li><a href="#%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0%E7%AE%80%E4%BB%8B" rel="nofollow">可变参数简介</a></li> <li><a href="#%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0%E4%BB%A3%E7%A0%81%E5%AE%9E%E6%88%98" rel="nofollow">可变参数代码实战</a></li> </ul> </li> <li><a href="#0x02-%E9%80%86%E5%90%91%E5%88%86%E6%9E%90c%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0%E5%8E%9F%E7%90%86" rel="nofollow">0x02 逆向分析C++可变参数原理</a></li> <li><a href="#0x03-printf-hook%E5%AE%9E%E6%88%98" rel="nofollow">0x03 printf Hook实战</a></li> <li><a href="#pwn%E8%8F%9C%E9%B8%A1%E5%AD%A6%E4%B9%A0%E5%B0%8F%E5%88%86%E9%98%9F" rel="nofollow">Pwn菜鸡学习小分队</a></li> </ul> </li> </ul> </div> </h1> <h2 id="0x00-前言">0x00 前言：</h2> <p>我们在做逆向分析的时候，经常会需要去Hook一个程序的日志输出函数。</p> <p>而这种日志输出函数一般参数都不确定，这就会引起一个问题。我们如何知道参数个数？如何知道他有哪些参数呢？</p> <h2 id="0x01-c可变参数">0x01 C++可变参数：</h2> <h3 id="可变参数简介">可变参数简介</h3> <p>在C++中，可变参数的函数定义可以写成如下格式。用<code>...</code>来声明可变参数。</p> <pre><code class="language-c++">void test(int a,int b,...) {     //Code... }</code></pre> <p>在调用可变参数的函数时，可以在后面不断添加参数，例如。</p> <pre><code class="language-c++">test(1,2,3,4,5,"hello","test",6);</code></pre> <h3 id="可变参数代码实战">可变参数代码实战</h3> <p>那么回归正题，test函数里如何知道它传进来的后面所有参数个数呢？</p> <p>这就需要用到<code>stdarg.h</code>头文件中的几个关键字了<code>va_list</code>、<code>va_start</code>、<code>va_end</code>。</p> <pre><code class="language-c++">#include &lt;stdio.h&gt; #include &lt;stdarg.h&gt; void test(int a,int b,...) { 	va_list      arg_ptr;//定义可变参数指针 	va_start(arg_ptr,b); //b为最后一个固定参数     printf("Address = %p",arg_ptr);//将arg_ptr的地址进行输出。 	va_end(arg_ptr);     //清空可变参数指针 } int main(int argc,char *argv[]) {     test(1,2,3,4,5,"hello","test,6"); }</code></pre> <ol> <li>首先va_list定义了一个可变参数的指针。</li> <li>va_start函数传入，可变参数指针和最后一个固定参数，传出引用可变参数指针。</li> <li>输出可变参数指针地址。</li> <li>清空可变参数指针内存空间。</li> </ol> <h2 id="0x02-逆向分析c可变参数原理">0x02 逆向分析C++可变参数原理</h2> <p>将上面的代码用VC6编译出来后进行调试分析。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/0b8a9f00061708b346d6d42e81869ff1.jpg" alt="C++逆向 可变参数Hook"></p> <p>找到特征。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/a96499674b657840565bbc966956a0f1.jpg" alt="C++逆向 可变参数Hook"></p> <p>在汇编代码中，定位到main函数。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/c17c47a20873b4234c21907ec594ee5b.jpg" alt="C++逆向 可变参数Hook"></p> <p>接着在汇编处<code>call va_arg.401005</code>处下一个断点。可以看到他将参数一个个push到了堆栈中。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/cc49f155e4be2c856188919bc96787dd.jpg" alt="C++逆向 可变参数Hook"></p> <p>接着按<code>F7</code>跟入<code>test</code>函数。</p> <p>通过对汇编代码的分析，我大概知道了<code>va_start函数()</code>为什么要将最后一个固定参数传入。因为他需要用最后一个固定参数在堆栈中进行偏移的计算，计算出可变参数的地址。</p> <p>遍历该堆栈，当遍历到的值是入口点，说明可变参数已经遍历完成。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/52c724f7390e2b80d48d8afb2b150fd4.jpg" alt="C++逆向 可变参数Hook"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/8fae5c40ac348f30e8719cdf1ca66131.jpg" alt="C++逆向 可变参数Hook"></p> <h2 id="0x03-printf-hook实战">0x03 printf Hook实战</h2> <p>这里我随便选了一个系统的可变参数函数，<code>printf</code>可以将格式化后的字符串进行输出，符合我们可变参数函数的要求。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/218d1896d7e1434fd8e3f5c84b0a9df9.jpg" alt="C++逆向 可变参数Hook"></p> <p></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-73574.htm">宠颐生动物医院好么（宠颐生动物医院方庄店）</a></p>
+                                        <p>下一个：<a href="/news/article-74260.htm">动物医院名字有哪些好听的（动物医院名字大气）</a></p>
+                                    </div>
+                                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-29-shadowrocket-node.htm" title="「1月29日」最高速度18.1M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「1月29日」最高速度18.1M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-47423.htm" title="动物疫苗价格排行榜最新图片高清大图 动物疫苗价格排行榜最新图片高清大图大全">动物疫苗价格排行榜最新图片高清大图 动物疫苗价格排行榜最新图片高清大图大全</a></li>
+                        <li class="py-2"><a href="/news/article-49430.htm" title="vue的自动化路由+分模块管理+路由懒加载">vue的自动化路由+分模块管理+路由懒加载</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-28-free-high-speed-nodes.htm" title="「2月28日」最高速度18M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「2月28日」最高速度18M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-60945.htm" title="宠物医院武汉哪里好（宠物医院武汉哪家好点）">宠物医院武汉哪里好（宠物医院武汉哪家好点）</a></li>
+                        <li class="py-2"><a href="/news/article-39020.htm" title="猫抓了一下有红色痕迹（猫抓了一下有点红印有没有问题）">猫抓了一下有红色痕迹（猫抓了一下有点红印有没有问题）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-14-free-v2ray.htm" title="「1月14日」最高速度19M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「1月14日」最高速度19M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-22-clash-node-daily-updates.htm" title="「2月22日」最高速度19.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「2月22日」最高速度19.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-37048.htm" title="哈尔滨农大宠物医院怎么样（哈尔滨农大宠物医院官网）">哈尔滨农大宠物医院怎么样（哈尔滨农大宠物医院官网）</a></li>
+                        <li class="py-2"><a href="/news/article-43955.htm" title="合肥市宠物收容中心电话（青岛宠物收容中心电话）">合肥市宠物收容中心电话（青岛宠物收容中心电话）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about -->
+        <!-- footer -->
+    <footer>
+        <p class="copyright-agileinfo">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+            SingBoxNode官网订阅站 版权所有
+            <br />
+            Powered by WordPress
+        </p>
+    </footer>
+    <!-- //footer -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.min.v3.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/jquery-2.2.3.min.js"></script>
+    <!-- gallery -->
+    <script src="/assets/website/js/frontend/singboxnode/smoothbox.jquery2.js"></script>
+    <!-- //gallery -->
+    <!-- pop-up(for video popup)-->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.magnific-popup.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+    </script>
+    <!-- //pop-up-box (syllabus section video)-->
+    <!-- video js (background) -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.vide.min.js"></script>
+    <!-- //video js (background) -->
+    <!-- banner Slider script  -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider, #slider1").responsiveSlides({
+            auto: true,
+            nav: false,
+            speed: 1500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+    </script>
+    <!-- //banner Slider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: false,
+            speed: 1000,
+            namespace: "callbacks",
+            before: function() {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function() {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    });
+    </script>
+    <!-- start-smooth-scrolling -->
+    <script src="/assets/website/js/frontend/singboxnode/move-top.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/easing.js"></script>
+    <script>
+    // jQuery(document).ready(function($) {
+    //     $(".scroll").click(function(event) {
+    //         event.preventDefault();
+
+    //         $('html,body').animate({
+    //             scrollTop: $(this.hash).offset().top
+    //         }, 1000);
+    //     });
+    // });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+    $(document).ready(function() {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear' 
+        };
+        */
+
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+    </script>
+    <script src="/assets/website/js/frontend/singboxnode/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- FlexSlider-JavaScript -->
+    <script defer src="/assets/website/js/frontend/singboxnode/jquery.flexslider.js"></script>
+    <script>
+    // $(function() {
+    //     SyntaxHighlighter.all();
+    // });
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+    </script>
+    <!-- //FlexSlider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
