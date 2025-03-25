@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-79682.htm" />
+    <title>字符串替换 — C语言【由特殊到一般，找规律，定公式】</title>
+    <!--meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="题目： 本题要求编写程序，将给定字符串中的大写英文字母按以下对应规则替换：    原字母 对应字母     A Z   B Y   C X   D W   … …   X C   Y B   Z A " />
+        <!--//meta tags ends here-->
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href="/assets/website/img/singboxnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBoxNode官网订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxnode.github.io/news/article-79682.htm" />
+    <meta property="og:site_name" content="SingBoxNode官网订阅站" />
+    <meta property="og:title" content="字符串替换 — C语言【由特殊到一般，找规律，定公式】" />
+    <meta property="og:image" content="https://singboxnode.github.io/uploads/20240503/7edacf5c0c7eddd2e7926be4d64fa0ed.webp" />
+        <meta property="og:release_date" content="2025-03-23T08:23:06" />
+    <meta property="og:updated_time" content="2025-03-23T08:23:06" />
+        <meta property="og:description" content="题目： 本题要求编写程序，将给定字符串中的大写英文字母按以下对应规则替换：    原字母 对应字母     A Z   B Y   C X   D W   … …   X C   Y B   Z A " />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="字符串替换 — C语言【由特殊到一般，找规律，定公式】">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- bootstrap style sheet -->
+    <link href="/assets/website/css/singboxnode/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--smooth box-->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/smoothbox.css" type='text/css' media="all" />
+    <!--stylesheets-->
+    <link href="/assets/website/css/singboxnode/style.css" rel='stylesheet' type='text/css' media="all">
+    <!-- flexslider -->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/flexslider.css" type="text/css" media="all" />
+    <!-- fontawesome -->
+    <link href="/assets/website/css/singboxnode/fontawesome-all.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Popup css (for Video Popup) -->
+    <link href="/assets/website/css/singboxnode/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-982T9L7Y5V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-982T9L7Y5V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- nav -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/">
+                        <span class="brand-d">SingBox</span>Node            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/">首页</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/free-nodes/">免费节点</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/paid-subscribe/">推荐机场</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/client.htm">客户端</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/news/">新闻资讯</a>
+                    </li>
+                                    </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- //nav -->
+    <!-- Clients -->
+    <div class="clients py-5" id="client">
+        <div class="banner-dott1">
+            <div class="h3-head text-center">
+                <h1 class="banner-text-h3" style="word-break: break-all;">字符串替换 — C语言【由特殊到一般，找规律，定公式】</h1>
+            </div>
+            <div class="container">
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
+            </div>
+        </div>
+    </div>
+    <!-- //Clients -->
+    <!-- about -->
+    <div class="about py-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                            <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p><strong>题目：</strong></p> <p>本题要求编写程序，将给定字符串中的大写英文字母按以下对应规则替换：</p> <table> <thead> <tr> <th>原字母</th> <th>对应字母</th> </tr> </thead> <tbody> <tr> <td>A</td> <td>Z</td> </tr> <tr> <td>B</td> <td>Y</td> </tr> <tr> <td>C</td> <td>X</td> </tr> <tr> <td>D</td> <td>W</td> </tr> <tr> <td>…</td> <td>…</td> </tr> <tr> <td>X</td> <td>C</td> </tr> <tr> <td>Y</td> <td>B</td> </tr> <tr> <td>Z</td> <td>A</td> </tr> </tbody> </table> <p><strong>输入格式：</strong></p> <p>输入在一行中给出一个不超过80个字符、并以回车结束的字符串。</p> <p><strong>输出格式：</strong></p> <p>输出在一行中给出替换完成后的字符串。</p> <hr/> <p><strong>思路：</strong></p> <p>由题意可知，26个大写字母中，可以分为前13个（A-M）和后13个(N-Z)两组，第一组的字母由小到大，第二组的字母由大到小；通过举例，可以发现其中转化规律，如下图：</p> <p><img fetchpriority="high" decoding="async" alt="" height="217" src="http://img.555519.xyz/uploads/20230202/5f057d2141ee1928cfc11853b046e678.jpg"></p> <p>可得，由小变大公式：rev='Z'-(ch-'A'); &nbsp; 由大变小公式：rev='A'+('Z'-ch);</p> <p>之后再研究发现，这两个公式是等价的，故选择其中一个公式即可满足题目要求，此时不需要再分为两组进行操作。</p> <hr/> <p><strong>代码：</strong></p> <pre><code>#include&lt;stdio.h&gt; int main(){     char ch;     while((ch=getchar())!='\n'){         if(ch&gt;='A'&amp;&amp;ch&lt;='Z'){             char rev;              rev='A'+('Z'-ch);             printf("%c",rev);                      }         else{                //非大写字母，原样输出             printf("%c",ch);         }             }     return 0; }</code></pre> <p><strong>结果：</strong></p> <p><img decoding="async" alt="" height="476" src="http://img.555519.xyz/uploads/20230202/5811aef742ec334b3bdf3269a375637d.jpg"></p> <p><img decoding="async" alt="" height="154" src="http://img.555519.xyz/uploads/20230202/8b60a5b845d9c99f8a4aee0bd4871b58.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="167" src="http://img.555519.xyz/uploads/20230202/906fc320e19c93d40f10a8d847cc3c65.jpg"></p> <hr/> <p>★觉得还不错的话，就点个赞吧☛</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-79007.htm">西米粽子的做法和包法（西米粽子的做法和包法的正确煮法）</a></p>
+                                        <p>下一个：<a href="/news/article-79683.htm">宠物食品厂需要投资多少钱（宠物食品工厂需要办理哪些证件）</a></p>
+                                    </div>
+                                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-2-8-shadowrocket-node.htm" title="「2月8日」最高速度19.1M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「2月8日」最高速度19.1M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-74259.htm" title="C++逆向 可变参数Hook">C++逆向 可变参数Hook</a></li>
+                        <li class="py-2"><a href="/news/article-50948.htm" title="动物疫苗的重要性和意义（动物疫苗包括哪些）">动物疫苗的重要性和意义（动物疫苗包括哪些）</a></li>
+                        <li class="py-2"><a href="/news/article-40983.htm" title="同安宠物医院 同安宠物医院哪家好">同安宠物医院 同安宠物医院哪家好</a></li>
+                        <li class="py-2"><a href="/news/article-67693.htm" title="合肥猫咪领养微信群 合肥猫咪领养微信群号">合肥猫咪领养微信群 合肥猫咪领养微信群号</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-clash-v2ray-ss-ssr.htm" title="「3月6日」最高速度22.4M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「3月6日」最高速度22.4M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-65753.htm" title="helm部署redis集群">helm部署redis集群</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-1-shadowrocket-node.htm" title="「2月1日」最高速度20.9M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「2月1日」最高速度20.9M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-57487.htm" title="1970年农历四月二十七是几号生日呢（1970年农历四月二十七是几号生日呢女）">1970年农历四月二十七是几号生日呢（1970年农历四月二十七是几号生日呢女）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-21-node-share-links.htm" title="「2月21日」最高速度22.3M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「2月21日」最高速度22.3M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">75</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about -->
+        <!-- footer -->
+    <footer>
+        <p class="copyright-agileinfo">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+            SingBoxNode官网订阅站 版权所有
+            <br />
+            Powered by WordPress
+        </p>
+    </footer>
+    <!-- //footer -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.min.v3.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/jquery-2.2.3.min.js"></script>
+    <!-- gallery -->
+    <script src="/assets/website/js/frontend/singboxnode/smoothbox.jquery2.js"></script>
+    <!-- //gallery -->
+    <!-- pop-up(for video popup)-->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.magnific-popup.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+    </script>
+    <!-- //pop-up-box (syllabus section video)-->
+    <!-- video js (background) -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.vide.min.js"></script>
+    <!-- //video js (background) -->
+    <!-- banner Slider script  -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider, #slider1").responsiveSlides({
+            auto: true,
+            nav: false,
+            speed: 1500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+    </script>
+    <!-- //banner Slider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: false,
+            speed: 1000,
+            namespace: "callbacks",
+            before: function() {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function() {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    });
+    </script>
+    <!-- start-smooth-scrolling -->
+    <script src="/assets/website/js/frontend/singboxnode/move-top.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/easing.js"></script>
+    <script>
+    // jQuery(document).ready(function($) {
+    //     $(".scroll").click(function(event) {
+    //         event.preventDefault();
+
+    //         $('html,body').animate({
+    //             scrollTop: $(this.hash).offset().top
+    //         }, 1000);
+    //     });
+    // });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+    $(document).ready(function() {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear' 
+        };
+        */
+
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+    </script>
+    <script src="/assets/website/js/frontend/singboxnode/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- FlexSlider-JavaScript -->
+    <script defer src="/assets/website/js/frontend/singboxnode/jquery.flexslider.js"></script>
+    <script>
+    // $(function() {
+    //     SyntaxHighlighter.all();
+    // });
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+    </script>
+    <!-- //FlexSlider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

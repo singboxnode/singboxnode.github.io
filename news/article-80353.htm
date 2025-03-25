@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-80353.htm" />
+    <title>vue实现图形验证码</title>
+    <!--meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="效果图：  或 或 或 代码： 验证码组件： src/common/sIdentify.vue &lt;template&gt;   &lt;div class="s-canvas"&gt;     " />
+        <!--//meta tags ends here-->
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href="/assets/website/img/singboxnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBoxNode官网订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxnode.github.io/news/article-80353.htm" />
+    <meta property="og:site_name" content="SingBoxNode官网订阅站" />
+    <meta property="og:title" content="vue实现图形验证码" />
+    <meta property="og:image" content="https://singboxnode.github.io/uploads/20240503/9273199e35fe8582c007d07fb3299086.webp" />
+        <meta property="og:release_date" content="2025-03-24T08:20:50" />
+    <meta property="og:updated_time" content="2025-03-24T08:20:50" />
+        <meta property="og:description" content="效果图：  或 或 或 代码： 验证码组件： src/common/sIdentify.vue &lt;template&gt;   &lt;div class="s-canvas"&gt;     " />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue实现图形验证码">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- bootstrap style sheet -->
+    <link href="/assets/website/css/singboxnode/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--smooth box-->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/smoothbox.css" type='text/css' media="all" />
+    <!--stylesheets-->
+    <link href="/assets/website/css/singboxnode/style.css" rel='stylesheet' type='text/css' media="all">
+    <!-- flexslider -->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/flexslider.css" type="text/css" media="all" />
+    <!-- fontawesome -->
+    <link href="/assets/website/css/singboxnode/fontawesome-all.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Popup css (for Video Popup) -->
+    <link href="/assets/website/css/singboxnode/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-982T9L7Y5V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-982T9L7Y5V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- nav -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/">
+                        <span class="brand-d">SingBox</span>Node            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/">首页</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/free-nodes/">免费节点</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/paid-subscribe/">推荐机场</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/client.htm">客户端</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/news/">新闻资讯</a>
+                    </li>
+                                    </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- //nav -->
+    <!-- Clients -->
+    <div class="clients py-5" id="client">
+        <div class="banner-dott1">
+            <div class="h3-head text-center">
+                <h1 class="banner-text-h3" style="word-break: break-all;">vue实现图形验证码</h1>
+            </div>
+            <div class="container">
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
+            </div>
+        </div>
+    </div>
+    <!-- //Clients -->
+    <!-- about -->
+    <div class="about py-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                            <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h2><a id="_0" rel="nofollow"></a>效果图：</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220707/ae1a8ffe674b158b08bc7e3f3ca17ef5.jpg" alt="vue实现图形验证码"><br /> 或<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220707/1273437f1f5e03fd1e0a3e927690d1b9.jpg" alt="vue实现图形验证码"><br /> 或<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220707/caaa2cbbdbc4e2332137d5906d078938.jpg" alt="vue实现图形验证码"><br /> 或<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220707/e95be699daa1308fd14379717656e5cd.jpg" alt="vue实现图形验证码"></p> <h2><a id="_10" rel="nofollow"></a>代码：</h2> <p><strong>验证码组件：</strong><br /> src/common/sIdentify.vue</p> <pre><code>&lt;template&gt;   &lt;div class="s-canvas"&gt;     &lt;canvas id="s-canvas" :width="contentWidth" :height="contentHeight"&gt;&lt;/canvas&gt;   &lt;/div&gt; &lt;/template&gt; &lt;script&gt;   export default {     name: 'SIdentify',     props: {       identifyCode: {         type: String,         default: '1234'       },       fontSizeMin: {         type: Number,         default: 18       },       fontSizeMax: {         type: Number,         default: 40       },       backgroundColorMin: {         type: Number,         default: 180       },       backgroundColorMax: {         type: Number,         default: 240       },       colorMin: {         type: Number,         default: 50       },       colorMax: {         type: Number,         default: 160       },       lineColorMin: {         type: Number,         default: 40       },       lineColorMax: {         type: Number,         default: 180       },       dotColorMin: {         type: Number,         default: 0       },       dotColorMax: {         type: Number,         default: 255       },       contentWidth: {         type: Number,         default: 111       },       contentHeight: {         type: Number,         default: 38       }     },     methods: {       // 生成一个随机数       randomNum(min, max) {         return Math.floor(Math.random() * (max - min) + min)       },       // 生成一个随机的颜色       randomColor(min, max) {         let r = this.randomNum(min, max)         let g = this.randomNum(min, max)         let b = this.randomNum(min, max)         return 'rgb(' + r + ',' + g + ',' + b + ')'       },       drawPic() {         let canvas = document.getElementById('s-canvas')         let ctx = canvas.getContext('2d')         ctx.textBaseline = 'bottom'         // 绘制背景         ctx.fillStyle = this.randomColor(this.backgroundColorMin, this.backgroundColorMax)         ctx.fillRect(0, 0, this.contentWidth, this.contentHeight)         // 绘制文字         for (let i = 0; i &lt; this.identifyCode.length; i++) {           this.drawText(ctx, this.identifyCode[i], i)         }         // this.drawLine(ctx) // 绘制干扰线         // this.drawDot(ctx) // 绘制干扰点       },       // 绘制文本       drawText(ctx, txt, i) {         ctx.fillStyle = this.randomColor(this.colorMin, this.colorMax)         ctx.font = this.randomNum(this.fontSizeMin, this.fontSizeMax) + 'px SimHei'         let x = (i + 1) * (this.contentWidth / (this.identifyCode.length + 1))         let y = this.randomNum(this.fontSizeMax, this.contentHeight - 5)         var deg = this.randomNum(-30, 30) // 字符旋转角度(不超过45度比较好)         // 修改坐标原点和旋转角度         ctx.translate(x, y)         ctx.rotate(deg * Math.PI / 180)         ctx.fillText(txt, 0, 0)         // 恢复坐标原点和旋转角度         ctx.rotate(-deg * Math.PI / 180)         ctx.translate(-x, -y)       },       drawLine(ctx) {         // 绘制干扰线         for (let i = 0; i &lt; 8; i++) {           ctx.strokeStyle = this.randomColor(this.lineColorMin, this.lineColorMax)           ctx.beginPath()           ctx.moveTo(this.randomNum(0, this.contentWidth), this.randomNum(0, this.contentHeight))           ctx.lineTo(this.randomNum(0, this.contentWidth), this.randomNum(0, this.contentHeight))           ctx.stroke()         }       },       drawDot(ctx) {         // 绘制干扰点         for (let i = 0; i &lt; 100; i++) {           ctx.fillStyle = this.randomColor(0, 255)           ctx.beginPath()           ctx.arc(this.randomNum(0, this.contentWidth), this.randomNum(0, this.contentHeight), 1, 0, 2 * Math.PI)           ctx.fill()         }       }     },     watch: {       identifyCode() {         this.drawPic()       }     },     mounted() {       this.drawPic()     }   } &lt;/script&gt;</code></pre> <p><strong>父组件</strong></p> <pre><code>&lt;template&gt;   &lt;div&gt;     &lt;div&gt;验证码测试&lt;/div&gt;     &lt;div @click="refreshCode()" class="code" style="cursor:pointer;" title="点击切换验证码"&gt;       &lt;s-identify :identifyCode="identifyCode"&gt;&lt;/s-identify&gt;     &lt;/div&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt; import { defineComponent } from 'vue'; import sIdentify from "@/common/sIdentify.vue"; // import axios from 'axios' export default defineComponent({   name: 'WatermarkTest',   components: { sIdentify },   data() {     return {       identifyCode: "",       identifyCodes: ['0','1','2','3','4','5','6','7','8','9','a','b','c','d'], //根据实际需求加入自己想要的字符     }   },   mounted() {     this.refreshCode() 	}, 	unmounted() {  	},   methods: {     // 生成随机数     randomNum(min, max) {       max = max + 1       return Math.floor(Math.random() * (max - min) + min);     },     // 更新验证码     refreshCode() {       this.identifyCode = "";       this.makeCode(this.identifyCodes, 4);       console.log('当前验证码:',this.identifyCode);     },     // 随机生成验证码字符串     makeCode(data, len) {       console.log('data, len:', data, len)       for (let i = 0; i &lt; len; i++) {         this.identifyCode += this.identifyCodes[this.randomNum(0, this.identifyCodes.length-1)]       }     },   }, }); &lt;/script&gt;</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-79683.htm">宠物食品厂需要投资多少钱（宠物食品工厂需要办理哪些证件）</a></p>
+                                        <p>下一个：<a href="/news/article-80354.htm">去哪领养宠物狗（去哪可以领养宠物狗）</a></p>
+                                    </div>
+                                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-45961.htm" title="动物诊疗许可证费用多少钱一个（动物诊疗许可证好办吗）">动物诊疗许可证费用多少钱一个（动物诊疗许可证好办吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-18-clash-node-daily-updates.htm" title="「2月18日」最高速度19.1M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「2月18日」最高速度19.1M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-63931.htm" title="小猫养多久才知道自己的名字好不好（小猫养多久才知道自己的名字好不好呢）">小猫养多久才知道自己的名字好不好（小猫养多久才知道自己的名字好不好呢）</a></li>
+                        <li class="py-2"><a href="/news/article-72902.htm" title="宠物领养协议有法律效力吗多少钱啊 宠物领养协议有法律效力吗多少钱啊怎么写">宠物领养协议有法律效力吗多少钱啊 宠物领养协议有法律效力吗多少钱啊怎么写</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-8-shadowrocket-node.htm" title="「2月8日」最高速度19.1M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「2月8日」最高速度19.1M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-2-free-subscribe-node.htm" title="「2月2日」最高速度21.1M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「2月2日」最高速度21.1M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-69621.htm" title="动物医院绘本故事内容 动物医院绘本故事内容怎么写">动物医院绘本故事内容 动物医院绘本故事内容怎么写</a></li>
+                        <li class="py-2"><a href="/news/article-40983.htm" title="同安宠物医院 同安宠物医院哪家好">同安宠物医院 同安宠物医院哪家好</a></li>
+                        <li class="py-2"><a href="/news/article-35440.htm" title="宠物美容师多少钱一个月工资高（宠物美容师工作时间一般是多少）">宠物美容师多少钱一个月工资高（宠物美容师工作时间一般是多少）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-7-free-shadowrocket-node.htm" title="「1月7日」最高速度21.8M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「1月7日」最高速度21.8M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">75</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about -->
+        <!-- footer -->
+    <footer>
+        <p class="copyright-agileinfo">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+            SingBoxNode官网订阅站 版权所有
+            <br />
+            Powered by WordPress
+        </p>
+    </footer>
+    <!-- //footer -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.min.v3.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/jquery-2.2.3.min.js"></script>
+    <!-- gallery -->
+    <script src="/assets/website/js/frontend/singboxnode/smoothbox.jquery2.js"></script>
+    <!-- //gallery -->
+    <!-- pop-up(for video popup)-->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.magnific-popup.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+    </script>
+    <!-- //pop-up-box (syllabus section video)-->
+    <!-- video js (background) -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.vide.min.js"></script>
+    <!-- //video js (background) -->
+    <!-- banner Slider script  -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider, #slider1").responsiveSlides({
+            auto: true,
+            nav: false,
+            speed: 1500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+    </script>
+    <!-- //banner Slider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: false,
+            speed: 1000,
+            namespace: "callbacks",
+            before: function() {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function() {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    });
+    </script>
+    <!-- start-smooth-scrolling -->
+    <script src="/assets/website/js/frontend/singboxnode/move-top.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/easing.js"></script>
+    <script>
+    // jQuery(document).ready(function($) {
+    //     $(".scroll").click(function(event) {
+    //         event.preventDefault();
+
+    //         $('html,body').animate({
+    //             scrollTop: $(this.hash).offset().top
+    //         }, 1000);
+    //     });
+    // });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+    $(document).ready(function() {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear' 
+        };
+        */
+
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+    </script>
+    <script src="/assets/website/js/frontend/singboxnode/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- FlexSlider-JavaScript -->
+    <script defer src="/assets/website/js/frontend/singboxnode/jquery.flexslider.js"></script>
+    <script>
+    // $(function() {
+    //     SyntaxHighlighter.all();
+    // });
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+    </script>
+    <!-- //FlexSlider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
