@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-100786.htm" />
+    <title>欧拉定理的C ++程序</title>
+    <!--meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="这是一个C ++程序，它演示了Euler定理的实现。数字和模数必须是互质的，才能存在模数乘法逆。 算法 Begin &nbsp;&nbsp;&nbsp;Take&nbsp;input&nbsp;to&" />
+        <!--//meta tags ends here-->
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href="/assets/website/img/singboxnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBoxNode官网订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxnode.github.io/news/article-100786.htm" />
+    <meta property="og:site_name" content="SingBoxNode官网订阅站" />
+    <meta property="og:title" content="欧拉定理的C ++程序" />
+    <meta property="og:image" content="https://singboxnode.github.io/uploads/20240503/1cfb41fff771ef7fed23f91f339d161e.webp" />
+        <meta property="og:release_date" content="2025-04-21T06:51:40" />
+    <meta property="og:updated_time" content="2025-04-21T06:51:40" />
+        <meta property="og:description" content="这是一个C ++程序，它演示了Euler定理的实现。数字和模数必须是互质的，才能存在模数乘法逆。 算法 Begin &nbsp;&nbsp;&nbsp;Take&nbsp;input&nbsp;to&" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="欧拉定理的C ++程序">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- bootstrap style sheet -->
+    <link href="/assets/website/css/singboxnode/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--smooth box-->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/smoothbox.css" type='text/css' media="all" />
+    <!--stylesheets-->
+    <link href="/assets/website/css/singboxnode/style.css" rel='stylesheet' type='text/css' media="all">
+    <!-- flexslider -->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/flexslider.css" type="text/css" media="all" />
+    <!-- fontawesome -->
+    <link href="/assets/website/css/singboxnode/fontawesome-all.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Popup css (for Video Popup) -->
+    <link href="/assets/website/css/singboxnode/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-982T9L7Y5V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-982T9L7Y5V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- nav -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/">
+                        <span class="brand-d">SingBox</span>Node            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/">首页</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/free-nodes/">免费节点</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/paid-subscribe/">推荐机场</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/client.htm">客户端</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/news/">新闻资讯</a>
+                    </li>
+                                    </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- //nav -->
+    <!-- Clients -->
+    <div class="clients py-5" id="client">
+        <div class="banner-dott1">
+            <div class="h3-head text-center">
+                <h1 class="banner-text-h3" style="word-break: break-all;">欧拉定理的C ++程序</h1>
+            </div>
+            <div class="container">
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
+            </div>
+        </div>
+    </div>
+    <!-- //Clients -->
+    <!-- about -->
+    <div class="about py-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                            <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail">
+                      				  				  				<p>这是一个C ++程序，它演示了Euler定理的实现。数字和模数必须是互质的，才能存在模数乘法逆。</p> <h2>算法</h2> <pre>Begin &nbsp;&nbsp;&nbsp;Take&nbsp;input&nbsp;to&nbsp;find&nbsp;modular&nbsp;multiplicative&nbsp;inverse &nbsp;&nbsp;&nbsp;Take&nbsp;input&nbsp;as&nbsp;modular&nbsp;value &nbsp;&nbsp;&nbsp;Perform&nbsp;inverse&nbsp;array&nbsp;function: &nbsp;&nbsp;&nbsp;modInverse(x&nbsp;+&nbsp;1,&nbsp;0); &nbsp;&nbsp;&nbsp;modInverse[1]&nbsp;=&nbsp;1; &nbsp;&nbsp;&nbsp;for&nbsp;i&nbsp;=&nbsp;2&nbsp;to&nbsp;x &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modInverse[i]&nbsp;=&nbsp;(-(y&nbsp;/&nbsp;i)&nbsp;*&nbsp;modInverse[y&nbsp;mod&nbsp;i])&nbsp;mod&nbsp;y&nbsp;+&nbsp;y &nbsp;&nbsp;&nbsp;return&nbsp;modInverse End</pre> <h2>范例程式码</h2> <pre>#include&nbsp;&lt;iostream&gt; #include&nbsp;&lt;vector&gt; using&nbsp;namespace&nbsp;std; vector&lt;int&gt;&nbsp;inverseArray(int&nbsp;x,&nbsp;int&nbsp;y)&nbsp;{ &nbsp;&nbsp;&nbsp;vector&lt;int&gt;&nbsp;modInverse(x&nbsp;+&nbsp;1,&nbsp;0); &nbsp;&nbsp;&nbsp;modInverse[1]&nbsp;=&nbsp;1; &nbsp;&nbsp;&nbsp;for&nbsp;(int&nbsp;i&nbsp;=&nbsp;2;&nbsp;i&nbsp;&lt;=&nbsp;x;&nbsp;i++)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modInverse[i]&nbsp;=&nbsp;(-(y&nbsp;/&nbsp;i)&nbsp;*&nbsp;modInverse[y&nbsp;%&nbsp;i])&nbsp;%&nbsp;y&nbsp;+&nbsp;y; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;return&nbsp;modInverse; } int&nbsp;main()&nbsp;{ &nbsp;&nbsp;&nbsp;vector&lt;int&gt;::iterator&nbsp;it; &nbsp;&nbsp;&nbsp;int&nbsp;a,&nbsp;m; &nbsp;&nbsp;&nbsp;cout&lt;&lt;"Enter&nbsp;number&nbsp;to&nbsp;find&nbsp;modular&nbsp;multiplicative&nbsp;inverse:&nbsp;"; &nbsp;&nbsp;&nbsp;cin&gt;&gt;a; &nbsp;&nbsp;&nbsp;cout&lt;&lt;"Enter&nbsp;Modular&nbsp;Value:&nbsp;"; &nbsp;&nbsp;&nbsp;cin&gt;&gt;m; &nbsp;&nbsp;&nbsp;cout&lt;&lt;inverseArray(a,&nbsp;m)[a]&lt;&lt;endl; }</pre> <p>输出结果</p> <pre>Enter&nbsp;number&nbsp;to&nbsp;find&nbsp;modular&nbsp;multiplicative&nbsp;inverse:&nbsp;26 Enter&nbsp;Modular&nbsp;Value:&nbsp;7 7</pre> <div></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-100108.htm">C#基于自定义事件EventArgs实现发布订阅模式_C#教程</a></p>
+                                        <p>下一个：<a href="/news/article-100787.htm">weak_ptr介绍</a></p>
+                                    </div>
+                                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-66410.htm" title="从 jQuery 到 Vue3 的快捷通道_在线工具">从 jQuery 到 Vue3 的快捷通道_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-90364.htm" title="动物疫苗注射证明怎么开 动物疫苗注射证明怎么开具">动物疫苗注射证明怎么开 动物疫苗注射证明怎么开具</a></li>
+                        <li class="py-2"><a href="/news/article-73574.htm" title="宠颐生动物医院好么（宠颐生动物医院方庄店）">宠颐生动物医院好么（宠颐生动物医院方庄店）</a></li>
+                        <li class="py-2"><a href="/news/article-99271.htm" title="Vue中 Vue.prototype 详解及使用">Vue中 Vue.prototype 详解及使用</a></li>
+                        <li class="py-2"><a href="/news/article-100108.htm" title="C#基于自定义事件EventArgs实现发布订阅模式_C#教程">C#基于自定义事件EventArgs实现发布订阅模式_C#教程</a></li>
+                        <li class="py-2"><a href="/news/article-71588.htm" title="宠物美容师培训学校哪家好（宠物美容师培训班哪个学校好）">宠物美容师培训学校哪家好（宠物美容师培训班哪个学校好）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-26-clash-v2ray-ss-ssr.htm" title="「3月26日」最高速度19.6M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「3月26日」最高速度19.6M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-100787.htm" title="weak_ptr介绍">weak_ptr介绍</a></li>
+                        <li class="py-2"><a href="/news/article-91077.htm" title="丹阳猫咪救助（丹阳流浪猫救助中心电话）">丹阳猫咪救助（丹阳流浪猫救助中心电话）</a></li>
+                        <li class="py-2"><a href="/news/article-73573.htm" title="上海免费领养猫咪网站（上海免费领养猫咪网站有哪些）">上海免费领养猫咪网站（上海免费领养猫咪网站有哪些）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about -->
+        <!-- footer -->
+    <footer>
+        <p class="copyright-agileinfo">
+                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            SingBoxNode官网订阅站 版权所有
+            <br />
+            Powered by WordPress
+        </p>
+    </footer>
+    <!-- //footer -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.min.v3.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/jquery-2.2.3.min.js"></script>
+    <!-- gallery -->
+    <script src="/assets/website/js/frontend/singboxnode/smoothbox.jquery2.js"></script>
+    <!-- //gallery -->
+    <!-- pop-up(for video popup)-->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.magnific-popup.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+    </script>
+    <!-- //pop-up-box (syllabus section video)-->
+    <!-- video js (background) -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.vide.min.js"></script>
+    <!-- //video js (background) -->
+    <!-- banner Slider script  -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider, #slider1").responsiveSlides({
+            auto: true,
+            nav: false,
+            speed: 1500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+    </script>
+    <!-- //banner Slider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: false,
+            speed: 1000,
+            namespace: "callbacks",
+            before: function() {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function() {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    });
+    </script>
+    <!-- start-smooth-scrolling -->
+    <script src="/assets/website/js/frontend/singboxnode/move-top.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/easing.js"></script>
+    <script>
+    // jQuery(document).ready(function($) {
+    //     $(".scroll").click(function(event) {
+    //         event.preventDefault();
+
+    //         $('html,body').animate({
+    //             scrollTop: $(this.hash).offset().top
+    //         }, 1000);
+    //     });
+    // });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+    $(document).ready(function() {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear' 
+        };
+        */
+
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+    </script>
+    <script src="/assets/website/js/frontend/singboxnode/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- FlexSlider-JavaScript -->
+    <script defer src="/assets/website/js/frontend/singboxnode/jquery.flexslider.js"></script>
+    <script>
+    // $(function() {
+    //     SyntaxHighlighter.all();
+    // });
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+    </script>
+    <!-- //FlexSlider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

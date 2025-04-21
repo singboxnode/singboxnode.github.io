@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-100787.htm" />
+    <title>weak_ptr介绍</title>
+    <!--meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="本文转载于http://c.biancheng.net/view/7918.html   在C++98/03的基础上，C++11新标准引入了shared_ptr、unique_ptr以及weak_pt" />
+        <!--//meta tags ends here-->
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href="/assets/website/img/singboxnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBoxNode官网订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxnode.github.io/news/article-100787.htm" />
+    <meta property="og:site_name" content="SingBoxNode官网订阅站" />
+    <meta property="og:title" content="weak_ptr介绍" />
+    <meta property="og:image" content="https://singboxnode.github.io/uploads/20240503/de2d3671845b7fab8c8296ff1dbe5421.webp" />
+        <meta property="og:release_date" content="2025-04-21T06:51:40" />
+    <meta property="og:updated_time" content="2025-04-21T06:51:40" />
+        <meta property="og:description" content="本文转载于http://c.biancheng.net/view/7918.html   在C++98/03的基础上，C++11新标准引入了shared_ptr、unique_ptr以及weak_pt" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="weak_ptr介绍">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- bootstrap style sheet -->
+    <link href="/assets/website/css/singboxnode/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--smooth box-->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/smoothbox.css" type='text/css' media="all" />
+    <!--stylesheets-->
+    <link href="/assets/website/css/singboxnode/style.css" rel='stylesheet' type='text/css' media="all">
+    <!-- flexslider -->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/flexslider.css" type="text/css" media="all" />
+    <!-- fontawesome -->
+    <link href="/assets/website/css/singboxnode/fontawesome-all.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Popup css (for Video Popup) -->
+    <link href="/assets/website/css/singboxnode/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-982T9L7Y5V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-982T9L7Y5V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- nav -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/">
+                        <span class="brand-d">SingBox</span>Node            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/">首页</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/free-nodes/">免费节点</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/paid-subscribe/">推荐机场</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/client.htm">客户端</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/news/">新闻资讯</a>
+                    </li>
+                                    </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- //nav -->
+    <!-- Clients -->
+    <div class="clients py-5" id="client">
+        <div class="banner-dott1">
+            <div class="h3-head text-center">
+                <h1 class="banner-text-h3" style="word-break: break-all;">weak_ptr介绍</h1>
+            </div>
+            <div class="container">
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
+            </div>
+        </div>
+    </div>
+    <!-- //Clients -->
+    <!-- about -->
+    <div class="about py-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                            <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail">
+                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <p>本文转载于http://c.biancheng.net/view/7918.html<br />   在C++98/03的基础上，C++11新标准引入了<code>shared_ptr</code>、<code>unique_ptr</code>以及<code>weak_ptr</code>这3个智能指针。本文介绍<code>weak_ptr</code>智能指针的特性和用法。<br />   和<code>shared_ptr</code>以及<code>unique_ptr</code>类型指针一样，<code>weak_ptr</code>智能指针也是以模板类的方式实现的。<code>weak_ptr&lt;T&gt;</code>（T为指针所指数据的类型）定义在<code>&lt;memory&gt;</code>头文件，并位于<code>std</code>命名空间中。因此，要想使用<code>weak_ptr</code>类型指针，程序中应首先包含以下2条语句：</p> <pre><code class="prism language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span> <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span> </code></pre> <p>第2句不是必须的，可以不添加，则后续在使用<code>unique_ptr</code>指针时，必须标注<code>std::</code>。<br />   需要注意的是，C++11标准虽然将<code>weak_ptr</code>定位为智能指针的一种，但该类型指针通常不单独使用（实际没有用处），只能和<code>shared_ptr</code>类型指针搭配使用。甚至于，我们可以将<code>weak_ptr</code>类型指针视为<code>shared_ptr</code>指针的一种辅助工具，借助<code>weak_ptr</code>类型指针，我们可以获取<code>shared_ptr</code>指针的一些状态信息，比如有多少指向相同的<code>shared_ptr</code>指针，<code>shared_ptr</code>指针指向的堆内存是否已经被释放等等。<br />   需要注意的是，当<code>weak_ptr</code>类型指针的指向和某一<code>shared_ptr</code>指针相同时，<code>weak_ptr</code>指针并不会使所指堆内存的引用计数加1；同样，当<code>weak_ptr</code>指针被释放时，之前所指堆内存的引用计数也不会因此而减1。也就是说，<code>weak_ptr</code>类型指针并不会影响所指堆内存空间的引用计数。<br />   除此之外，<code>weak_ptr&lt;T&gt;</code>模板类中没有重载<code>*</code>和<code>-&gt;</code>运算符，这也就意味着，<code>weak_ptr</code>类型指针只能访问所指的堆内存，而无法修改它。</p> <h2> <a id="1_weak_ptr_12" rel="nofollow"></a>1 <code>weak_ptr</code>指针的创建</h2> <p>  创建一个<code>weak_ptr</code>指针，有以下3种方式：<br /> （1）可以创建一个空的<code>weak_ptr</code>指针，例如：</p> <pre><code class="prism language-cpp">std<span class="token operator">::</span>weak_ptr<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> wp1<span class="token punctuation">;</span> </code></pre> <p>（2）凭借已有的<code>weak_ptr</code>指针，可以创建一个新的<code>weak_ptr</code>指针，例如：</p> <pre><code class="prism language-cpp">std<span class="token operator">::</span>weak_ptr<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">wp2</span><span class="token punctuation">(</span>wp1<span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre> <p>若<code>wp1</code>为空指针，则<code>wp2</code>也为空指针；反之，如果<code>wp1</code>指向某一<code>shared_ptr</code>指针拥有的堆内存，则<code>wp2</code>也指向该块存储空间（可以访问，但无所有权）。<br /> （3）<code>weak_ptr</code>指针更常用于指向某一<code>shared_ptr</code>指针拥有的堆内存，因为在构建<code>weak_ptr</code>指针对象时，可以利用已有的<code>shared_ptr</code>指针为其初始化。例如：</p> <pre><code class="prism language-cpp">std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">sp</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span> std<span class="token operator">::</span>weak_ptr<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">wp3</span><span class="token punctuation">(</span>sp<span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre> <p>由此，<code>wp3</code>指针和<code>sp</code>指针有相同的指针。再次强调，<code>weak_ptr</code>类型指针不会导致堆内存空间的引用计数增加或减少。</p> <h2> <a id="2_weak_ptr_30" rel="nofollow"></a>2 <code>weak_ptr</code>模板类提供的成员方法</h2> <p>  和<code>shared_ptr&lt;T&gt;</code>以及<code>unique_ptr&lt;T&gt;</code>相比，<code>weak_ptr&lt;T&gt;</code>模板类提供的成员方法不多，下表罗列了常用的成员方法及各自的功能。</p> <table> <thead> <tr> <th>成员方法</th> <th>功能</th> </tr> </thead> <tbody> <tr> <td><code>operator=()</code></td> <td>重载<code>=</code>赋值运算符，<code>weak_ptr</code>指针可以直接被<code>weak_ptr</code>或者<code>shared_ptr</code>类型指针赋值。</td> </tr> <tr> <td><code>swap(x)</code></td> <td>其中<code>x</code>表示一个同类型的<code>weak_ptr</code>类型指针，该函数可以互换2个共同类型<code>weak_ptr</code>指针的内容。</td> </tr> <tr> <td><code>reset()</code></td> <td>将当前<code>weak_ptr</code>指针置为空指针。</td> </tr> <tr> <td><code>use_count()</code></td> <td>查看指向和当前<code>weak_ptr</code>指针相同的<code>shared_ptr</code>指针的数量。</td> </tr> <tr> <td><code>expired()</code></td> <td>判断当前<code>weak_ptr</code>指针是否过期（指针为空，或者指向的堆内存已经被释放）。</td> </tr> <tr> <td><code>lock()</code></td> <td>如果当前<code>weak_ptr</code>已经过期，则该函数会返回一个空的<code>shared_ptr</code>指针；反之，该函数返回一个和当前<code>weak_ptr</code>指针指向相同的<code>shared_ptr</code>指针。</td> </tr> </tbody> </table> <p>再次强调，<code>weak_ptr&lt;T&gt;</code>模板类没有重载<code>*</code>和<code>-&gt;</code>运算符，因此<code>weak_ptr</code>类型指针只能访问某一<code>shared_ptr</code>指针指向的堆内存空间，无法对其进行修改。<br />   下面的样例演示了<code>weak_ptr</code>指针以及上表中部分成员方法的基本用法：</p> <pre><code class="prism language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span> <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;memory&gt;</span></span>  <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>  <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	shared_ptr<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">sp1</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 	shared_ptr<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">sp2</span><span class="token punctuation">(</span>sp1<span class="token punctuation">)</span><span class="token punctuation">;</span> 	weak_ptr<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">wp</span><span class="token punctuation">(</span>sp2<span class="token punctuation">)</span><span class="token punctuation">;</span> 	cout <span class="token operator">&lt;&lt;</span> wp<span class="token punctuation">.</span><span class="token function">use_count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>   <span class="token comment">//输出和wp同指向的shared_ptr类型指针的数量</span> 	sp2<span class="token punctuation">.</span><span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      <span class="token comment">//释放sp2</span> 	cout <span class="token operator">&lt;&lt;</span> wp<span class="token punctuation">.</span><span class="token function">use_count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>    	cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token punctuation">(</span>wp<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">//借助lock()函数，返回一个和wp同指向的shared_ptr类型指针，获取其存储的数据</span> 	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> <p>程序执行结果为：</p> <pre><code class="prism language-cpp"><span class="token number">2</span> <span class="token number">1</span> <span class="token number">10</span> </code></pre> </p></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-100786.htm">欧拉定理的C ++程序</a></p>
+                                    </div>
+                                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-93935.htm" title="vue element&#8212;&#8211;实现table前端分页">vue element&#8212;&#8211;实现table前端分页</a></li>
+                        <li class="py-2"><a href="/news/article-85306.htm" title="电话簿荣耀升级版">电话簿荣耀升级版</a></li>
+                        <li class="py-2"><a href="/news/article-83865.htm" title="SpringBoot如何配置Druid数据源监控页面">SpringBoot如何配置Druid数据源监控页面</a></li>
+                        <li class="py-2"><a href="/news/article-77616.htm" title="猫粮狗粮加工机器（猫粮狗粮生产设备小型）">猫粮狗粮加工机器（猫粮狗粮生产设备小型）</a></li>
+                        <li class="py-2"><a href="/news/article-74260.htm" title="动物医院名字有哪些好听的（动物医院名字大气）">动物医院名字有哪些好听的（动物医院名字大气）</a></li>
+                        <li class="py-2"><a href="/news/article-70921.htm" title="动物疫苗的种类有哪些,各有什么特点（动物疫苗的种类有哪些,各有什么特点呢）">动物疫苗的种类有哪些,各有什么特点（动物疫苗的种类有哪些,各有什么特点呢）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-13-free-high-speed-nodes.htm" title="「3月13日」最高速度22.9M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「3月13日」最高速度22.9M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-9-free-node-subscribe.htm" title="「4月9日」最高速度19.2M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「4月9日」最高速度19.2M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-72250.htm" title="ES 文档与索引介绍">ES 文档与索引介绍</a></li>
+                        <li class="py-2"><a href="/news/article-86037.htm" title="领养宠物协议书范本图片大全集（领养宠物协议书在法律上属于什么合同）">领养宠物协议书范本图片大全集（领养宠物协议书在法律上属于什么合同）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about -->
+        <!-- footer -->
+    <footer>
+        <p class="copyright-agileinfo">
+                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            SingBoxNode官网订阅站 版权所有
+            <br />
+            Powered by WordPress
+        </p>
+    </footer>
+    <!-- //footer -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.min.v3.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/jquery-2.2.3.min.js"></script>
+    <!-- gallery -->
+    <script src="/assets/website/js/frontend/singboxnode/smoothbox.jquery2.js"></script>
+    <!-- //gallery -->
+    <!-- pop-up(for video popup)-->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.magnific-popup.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+    </script>
+    <!-- //pop-up-box (syllabus section video)-->
+    <!-- video js (background) -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.vide.min.js"></script>
+    <!-- //video js (background) -->
+    <!-- banner Slider script  -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider, #slider1").responsiveSlides({
+            auto: true,
+            nav: false,
+            speed: 1500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+    </script>
+    <!-- //banner Slider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: false,
+            speed: 1000,
+            namespace: "callbacks",
+            before: function() {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function() {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    });
+    </script>
+    <!-- start-smooth-scrolling -->
+    <script src="/assets/website/js/frontend/singboxnode/move-top.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/easing.js"></script>
+    <script>
+    // jQuery(document).ready(function($) {
+    //     $(".scroll").click(function(event) {
+    //         event.preventDefault();
+
+    //         $('html,body').animate({
+    //             scrollTop: $(this.hash).offset().top
+    //         }, 1000);
+    //     });
+    // });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+    $(document).ready(function() {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear' 
+        };
+        */
+
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+    </script>
+    <script src="/assets/website/js/frontend/singboxnode/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- FlexSlider-JavaScript -->
+    <script defer src="/assets/website/js/frontend/singboxnode/jquery.flexslider.js"></script>
+    <script>
+    // $(function() {
+    //     SyntaxHighlighter.all();
+    // });
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+    </script>
+    <!-- //FlexSlider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
