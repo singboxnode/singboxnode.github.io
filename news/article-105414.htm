@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-105414.htm" />
+    <title>vue3-setup中使用mapState</title>
+    <!--meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="vue3项目开发中，项目里都会在vuex中存储一些公共的资源，方便在各个组件之间使用，大项目中一个.vue文件中可能会用到state里面多个数据，每次都用$store.state.xxx这样写的话，代" />
+        <!--//meta tags ends here-->
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href="/assets/website/img/singboxnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBoxNode官网订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxnode.github.io/news/article-105414.htm" />
+    <meta property="og:site_name" content="SingBoxNode官网订阅站" />
+    <meta property="og:title" content="vue3-setup中使用mapState" />
+    <meta property="og:image" content="https://singboxnode.github.io/uploads/20240503/f2c17e3a79fda288106280e1be3afbd4.webp" />
+        <meta property="og:release_date" content="2025-04-27T08:27:35" />
+    <meta property="og:updated_time" content="2025-04-27T08:27:35" />
+        <meta property="og:description" content="vue3项目开发中，项目里都会在vuex中存储一些公共的资源，方便在各个组件之间使用，大项目中一个.vue文件中可能会用到state里面多个数据，每次都用$store.state.xxx这样写的话，代" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue3-setup中使用mapState">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- bootstrap style sheet -->
+    <link href="/assets/website/css/singboxnode/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--smooth box-->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/smoothbox.css" type='text/css' media="all" />
+    <!--stylesheets-->
+    <link href="/assets/website/css/singboxnode/style.css" rel='stylesheet' type='text/css' media="all">
+    <!-- flexslider -->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/flexslider.css" type="text/css" media="all" />
+    <!-- fontawesome -->
+    <link href="/assets/website/css/singboxnode/fontawesome-all.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Popup css (for Video Popup) -->
+    <link href="/assets/website/css/singboxnode/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-982T9L7Y5V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-982T9L7Y5V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- nav -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/">
+                        <span class="brand-d">SingBox</span>Node            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/">首页</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/free-nodes/">免费节点</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/paid-subscribe/">推荐机场</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/client.htm">客户端</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/news/">新闻资讯</a>
+                    </li>
+                                    </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- //nav -->
+    <!-- Clients -->
+    <div class="clients py-5" id="client">
+        <div class="banner-dott1">
+            <div class="h3-head text-center">
+                <h1 class="banner-text-h3" style="word-break: break-all;">vue3-setup中使用mapState</h1>
+            </div>
+            <div class="container">
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
+            </div>
+        </div>
+    </div>
+    <!-- //Clients -->
+    <!-- about -->
+    <div class="about py-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                            <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>vue3项目开发中，项目里都会在vuex中存储一些公共的资源，方便在各个组件之间使用，大项目中一个.vue文件中可能会用到state里面多个数据，每次都用<code>$store.state.xxx</code>这样写的话，代码阅读起来也不是很友好。<br /> 下面是在vue3中如何使用mapState获取到vuex中state里面的数据</p> <blockquote> <p>最后面提供了将mapstate封装是hooks，可直接在页面中调用</p> </blockquote> <pre><code class="prism language-bash">vuex最新版本安装命令：npm<span class="token function">install</span> vuex@next</code></pre> <p><strong>store文件</strong></p> <pre><code class="prism language-javascript"><span class="token keyword">import</span><span class="token punctuation">{<!-- --></span> createStore<span class="token punctuation">}</span><span class="token keyword">from</span><span class="token string">'vuex'</span><span class="token keyword">const</span> store<span class="token operator">=</span><span class="token function">createStore</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span><span class="token function">state</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token punctuation">{<!-- --></span><span class="token literal-property property">count</span><span class="token operator">:</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">'code'</span><span class="token punctuation">,</span><span class="token literal-property property">age</span><span class="token operator">:</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token literal-property property">mutations</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token literal-property property">actions</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token keyword">export</span><span class="token keyword">default</span> store</code></pre> <p><strong>vue页面中使用</strong></p> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>sCount<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span><span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>sName<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span><span class="token operator">&lt;</span>hr<span class="token operator">&gt;</span><span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>count<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span><span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>name<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span><span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>age<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>script<span class="token operator">&gt;</span><span class="token keyword">import</span><span class="token punctuation">{<!-- --></span> computed<span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token keyword">from</span><span class="token string">'vue'</span><span class="token keyword">import</span><span class="token punctuation">{<!-- --></span> mapState<span class="token punctuation">,</span> useStore<span class="token punctuation">}</span><span class="token keyword">from</span><span class="token string">'vuex'</span><span class="token keyword">export</span><span class="token keyword">default</span><span class="token punctuation">{<!-- --></span><span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">// setup中是没有this的， 这里使用vue提供的hooks：useStore</span><span class="token keyword">const</span> store<span class="token operator">=</span><span class="token function">useStore</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">// 单个获取vuex中state里面的数据</span><span class="token comment">/*	不推荐	这样写的话会很繁琐，      const sCount = computed(()=&gt;store.state.count)     const sName = computed(()=&gt;store.state.name)     */</span><span class="token comment">// 推荐</span><span class="token comment">// 在项目中会有很多资源要从vuex的state里获取数据， 下面是提供一个简单的方法</span><span class="token comment">//需要取哪些数据，全部放在数组里即可</span><span class="token keyword">const</span> storeStateFns<span class="token operator">=</span><span class="token function">mapState</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'count'</span><span class="token punctuation">,</span><span class="token string">'name'</span><span class="token punctuation">,</span><span class="token string">'age'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token comment">// storeStateFns = {count:function(){},name:function(){},age:function(){}}</span><span class="token comment">// 对数据进行转化</span><span class="token keyword">const</span> storeState<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token comment">//对sotreStateFns进行Object.keys(sotreStateFns) = [count,name,age]</span>     Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>storeStateFns<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">fnKey</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span><span class="token keyword">const</span> fn<span class="token operator">=</span> storeStateFns<span class="token punctuation">[</span>fnKey<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span><span class="token literal-property property">$store</span><span class="token operator">:</span>store<span class="token punctuation">}</span><span class="token punctuation">)</span>       storeState<span class="token punctuation">[</span>fnKey<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">computed</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token keyword">return</span><span class="token punctuation">{<!-- --></span>       sCount<span class="token punctuation">,</span>       sName<span class="token punctuation">,</span><span class="token operator">...</span>storeState<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span></code></pre> <h2><a id="mapStatehooks_76" rel="nofollow"></a>把mapState封装成一个hooks，方便页面中调用</h2> <p><strong>创建useState.js文件，里面是封装的mapState</strong></p> <pre><code class="prism language-javascript"><span class="token keyword">import</span><span class="token punctuation">{<!-- --></span> computed<span class="token punctuation">}</span><span class="token keyword">from</span><span class="token string">'vue'</span><span class="token keyword">import</span><span class="token punctuation">{<!-- --></span> mapState<span class="token punctuation">,</span> useStore<span class="token punctuation">}</span><span class="token keyword">from</span><span class="token string">'vuex'</span><span class="token keyword">export</span><span class="token keyword">function</span><span class="token function">useState</span><span class="token punctuation">(</span><span class="token parameter">mapper</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 拿到store独享</span><span class="token keyword">const</span> store<span class="token operator">=</span><span class="token function">useStore</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">// 获取到对应的对象的functions: {name: function, age: function}</span><span class="token keyword">const</span> storeStateFns<span class="token operator">=</span><span class="token function">mapState</span><span class="token punctuation">(</span>mapper<span class="token punctuation">)</span><span class="token comment">// 对数据进行转换</span><span class="token keyword">const</span> storeState<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span>   Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>storeStateFns<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">fnKey</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span><span class="token keyword">const</span> fn<span class="token operator">=</span> storeStateFns<span class="token punctuation">[</span>fnKey<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span><span class="token literal-property property">$store</span><span class="token operator">:</span> store<span class="token punctuation">}</span><span class="token punctuation">)</span>     storeState<span class="token punctuation">[</span>fnKey<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">computed</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token keyword">return</span> storeState<span class="token punctuation">}</span></code></pre> <p><strong>在setup中使用封装好的mapState</strong></p> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>count<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span><span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>name<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span><span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>age<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>script<span class="token operator">&gt;</span><span class="token keyword">import</span><span class="token punctuation">{<!-- --></span>useState<span class="token punctuation">}</span><span class="token keyword">from</span><span class="token string">'引入刚刚封装的useState.js文件'</span><span class="token keyword">export</span><span class="token keyword">default</span><span class="token punctuation">{<!-- --></span><span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">const</span> storeState<span class="token operator">=</span><span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'count'</span><span class="token punctuation">,</span><span class="token string">'name'</span><span class="token punctuation">,</span><span class="token string">'age'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token keyword">return</span><span class="token punctuation">{<!-- --></span><span class="token operator">...</span>storeState<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span></code></pre> </div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-104701.htm">动物诊疗许可证在哪办手续啊（动物诊疗许可证在哪办手续啊多少钱）</a></p>
+                                        <p>下一个：<a href="/news/article-105415.htm">如何识别猫的品种（如何识别猫的品种名称）</a></p>
+                                    </div>
+                                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-73573.htm" title="上海免费领养猫咪网站（上海免费领养猫咪网站有哪些）">上海免费领养猫咪网站（上海免费领养猫咪网站有哪些）</a></li>
+                        <li class="py-2"><a href="/news/article-85307.htm" title="沈阳宠物用品市场搬到啥地方了（沈阳宠物用品超市）">沈阳宠物用品市场搬到啥地方了（沈阳宠物用品超市）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-16-free-ssr-node.htm" title="「4月16日」最高速度19.6M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「4月16日」最高速度19.6M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-29-clash-node-daily-updates.htm" title="「3月29日」最高速度21.9M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「3月29日」最高速度21.9M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-18-clash-windows.htm" title="「4月18日」最高速度22.8M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「4月18日」最高速度22.8M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-73574.htm" title="宠颐生动物医院好么（宠颐生动物医院方庄店）">宠颐生动物医院好么（宠颐生动物医院方庄店）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-14-free-clash.htm" title="「4月14日」最高速度19.8M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「4月14日」最高速度19.8M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-7-free-high-speed-nodes.htm" title="「3月7日」最高速度21.1M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「3月7日」最高速度21.1M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-68303.htm" title="猫挠出血不打针有事吗（猫挠出血不打针有事吗科普）">猫挠出血不打针有事吗（猫挠出血不打针有事吗科普）</a></li>
+                        <li class="py-2"><a href="/news/article-91841.htm" title="socket.io在egg+vue中的使用">socket.io在egg+vue中的使用</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">86</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about -->
+        <!-- footer -->
+    <footer>
+        <p class="copyright-agileinfo">
+                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            SingBoxNode官网订阅站 版权所有
+            <br />
+            Powered by WordPress
+        </p>
+    </footer>
+    <!-- //footer -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.min.v3.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/jquery-2.2.3.min.js"></script>
+    <!-- gallery -->
+    <script src="/assets/website/js/frontend/singboxnode/smoothbox.jquery2.js"></script>
+    <!-- //gallery -->
+    <!-- pop-up(for video popup)-->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.magnific-popup.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+    </script>
+    <!-- //pop-up-box (syllabus section video)-->
+    <!-- video js (background) -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.vide.min.js"></script>
+    <!-- //video js (background) -->
+    <!-- banner Slider script  -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider, #slider1").responsiveSlides({
+            auto: true,
+            nav: false,
+            speed: 1500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+    </script>
+    <!-- //banner Slider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: false,
+            speed: 1000,
+            namespace: "callbacks",
+            before: function() {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function() {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    });
+    </script>
+    <!-- start-smooth-scrolling -->
+    <script src="/assets/website/js/frontend/singboxnode/move-top.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/easing.js"></script>
+    <script>
+    // jQuery(document).ready(function($) {
+    //     $(".scroll").click(function(event) {
+    //         event.preventDefault();
+
+    //         $('html,body').animate({
+    //             scrollTop: $(this.hash).offset().top
+    //         }, 1000);
+    //     });
+    // });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+    $(document).ready(function() {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear' 
+        };
+        */
+
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+    </script>
+    <script src="/assets/website/js/frontend/singboxnode/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- FlexSlider-JavaScript -->
+    <script defer src="/assets/website/js/frontend/singboxnode/jquery.flexslider.js"></script>
+    <script>
+    // $(function() {
+    //     SyntaxHighlighter.all();
+    // });
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+    </script>
+    <!-- //FlexSlider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
