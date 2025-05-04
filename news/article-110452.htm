@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxnode.github.io/news/article-110452.htm" />
+    <title>Vue实现评论功能</title>
+    <!--meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="实现评论功能最开始确实是令我头疼的一件时间，因为不确定评论的字数，就要自适应高度，还不确定评论的层级，这看起来就很令人头疼。评论功能麻烦在于它是由层次的，有不停的回复功能，这点是令人比较头疼的地方，我" />
+        <!--//meta tags ends here-->
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href="/assets/website/img/singboxnode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBoxNode官网订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxnode.github.io/news/article-110452.htm" />
+    <meta property="og:site_name" content="SingBoxNode官网订阅站" />
+    <meta property="og:title" content="Vue实现评论功能" />
+    <meta property="og:image" content="https://singboxnode.github.io/uploads/20240503/f2c17e3a79fda288106280e1be3afbd4.webp" />
+        <meta property="og:release_date" content="2025-05-03T10:28:31" />
+    <meta property="og:updated_time" content="2025-05-03T10:28:31" />
+        <meta property="og:description" content="实现评论功能最开始确实是令我头疼的一件时间，因为不确定评论的字数，就要自适应高度，还不确定评论的层级，这看起来就很令人头疼。评论功能麻烦在于它是由层次的，有不停的回复功能，这点是令人比较头疼的地方，我" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Vue实现评论功能">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- bootstrap style sheet -->
+    <link href="/assets/website/css/singboxnode/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--smooth box-->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/smoothbox.css" type='text/css' media="all" />
+    <!--stylesheets-->
+    <link href="/assets/website/css/singboxnode/style.css" rel='stylesheet' type='text/css' media="all">
+    <!-- flexslider -->
+    <link rel="stylesheet" href="/assets/website/css/singboxnode/flexslider.css" type="text/css" media="all" />
+    <!-- fontawesome -->
+    <link href="/assets/website/css/singboxnode/fontawesome-all.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Popup css (for Video Popup) -->
+    <link href="/assets/website/css/singboxnode/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-982T9L7Y5V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-982T9L7Y5V');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- nav -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/">
+                        <span class="brand-d">SingBox</span>Node            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/">首页</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/free-nodes/">免费节点</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/paid-subscribe/">推荐机场</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/client.htm">客户端</a>
+                    </li>
+                                        <li class="nav-item">
+                        <a class="nav-link scroll" href="/news/">新闻资讯</a>
+                    </li>
+                                    </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- //nav -->
+    <!-- Clients -->
+    <div class="clients py-5" id="client">
+        <div class="banner-dott1">
+            <div class="h3-head text-center">
+                <h1 class="banner-text-h3" style="word-break: break-all;">Vue实现评论功能</h1>
+            </div>
+            <div class="container">
+                <p><a href="/">首页</a> / <a href="/news/">新闻资讯</a> / 正文</p>
+            </div>
+        </div>
+    </div>
+    <!-- //Clients -->
+    <!-- about -->
+    <div class="about py-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row py-3">
+                        <div class="col-md-12 about-content">
+                                            <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="htmledit_views"> <p>实现评论功能最开始确实是令我头疼的一件时间，因为不确定评论的字数，就要自适应高度，还不确定评论的层级，这看起来就很令人头疼。评论功能麻烦在于它是由层次的，有不停的回复功能，这点是令人比较头疼的地方，我在写这个功能的时候做了比较笨的一个方法去处理它。</p> <p>我先选择了布局页面，先把页面布局好以后在去想怎么发表评论怎么回复评论一起渲染不确定层次的评论内容。</p> <h3>1、布局页面</h3> <p class="img-center"><img fetchpriority="high" decoding="async" alt="" height="605" src="http://img.555519.xyz/uploads/20230205/7459f12260101478b182ee9387b436ad.jpg"></p> <p>&nbsp;想要实现以上布局方式，我在这个地方采取了flex布局， 让他自己去撑开盒子，这样就实现了高度自适应的一个方式，我在每一条评论内容下面隐藏一个评论发表框，这样点击评论的时候出现当前评论下面的评论框，点击下一个评论内容的评论时利用排他思想隐藏了其他评论框显示当前点击的评论框，其实每个评论框的内容都是用的一个变量接收的，但是当我在点击下一条评论或者发表评论后有做一个清空接收评论变量的一个操作，具体的布局代码如下所示：</p> <pre><code class="language-html">&lt;div style="letter-spacing: 1px"&gt;     &lt;div class="head"&gt;       &lt;!-- 评论区域如果当前用户有头像则显示头像,没有则显示默认头像 --&gt;       &lt;img v-if="picture" :src="`http://` + picture" alt="" /&gt;       &lt;img v-else src="../../assets/头像.jpg" alt="Vue实现评论功能" alt="" /&gt;       &lt;!-- 评论框 --&gt;       &lt;input         type="text"         placeholder="请输入评论 . . ."         ref="input"         @focus="obtain"         @blur="lose"         v-model="firstComments"         @keyup.enter="sumbit"       /&gt;       &lt;!-- 发布按钮 --&gt;       &lt;button @click="sumbit"&gt;发表评论&lt;/button&gt;     &lt;/div&gt;     &lt;div class="content"&gt;       &lt;!-- 一级评论 --&gt;       &lt;div class="first" v-for="(item, index) in comments" :key="index"&gt;         &lt;a href="javascript:;" class="first-img"&gt;           &lt;!-- 如果当前用户有头像则显示头像,没有则显示默认头像 --&gt;           &lt;!-- &lt;img :src="`http://` + item.picture" /&gt; --&gt;           &lt;img v-if="item.picture" :src="`http://` + item.picture" alt="" /&gt;           &lt;img v-else src="../../assets/头像.jpg" alt="Vue实现评论功能" alt="" /&gt;         &lt;/a&gt;         &lt;div class="first-content"&gt;           &lt;!-- 一级评论用户昵称 --&gt;           &lt;h3 class="first-username"&gt;{<!-- -->{ item.username }}&lt;/h3&gt;           &lt;!-- 一级评论发布时间 --&gt;           &lt;span class="first-time"&gt;{<!-- -->{ item.date }}&lt;/span&gt;           &lt;!-- 一级评论评论内容 --&gt;           &lt;p class="first-comment"&gt;             {<!-- -->{ item.content }}           &lt;/p&gt;           &lt;!-- 一级评论评论点赞 --&gt;           &lt;div             class="first-right"             @mouseleave="delete_leave(item)"             @mouseover="delete_after(item)"           &gt;             &lt;span               class="delete"               v-if="item.delete"               @click="comment_delete(item, 0)"               &gt;删除&lt;/span             &gt;             &lt;span class="comments" @click="comment_input(item)"&gt;评论&lt;/span&gt;             &lt;!-- 一级评论点赞数 --&gt;             &lt;span               class="praise"               :class="item.like"               @click="comment_like(item, 0)"             &gt;               &lt;span v-if="item.numbers"&gt;{<!-- -->{ item.numbers }}&lt;/span&gt;             &lt;/span&gt;           &lt;/div&gt;           &lt;!-- 回复一级评论 --&gt;           &lt;div class="reply-comment" v-if="item.display"&gt;             &lt;input               type="text"               placeholder="请输入评论 . . ."               v-model="childComments"               @keyup.enter="reply_sumbit(item, 0)"             /&gt;             &lt;!-- 0为回复一级评论 --&gt;             &lt;button @click="reply_sumbit(item, 0)"&gt;发表评论&lt;/button&gt;           &lt;/div&gt;           &lt;!-- 次级评论 --&gt;           &lt;div class="second"&gt;             &lt;ul&gt;               &lt;li v-for="(sons, index) in item.sons" :key="index"&gt;                 &lt;div class="top"&gt;                   &lt;!-- 次级评论头像,该用户没有头像则显示默认头像 --&gt;                   &lt;a href="JavaScript:;" class="second-img"&gt;                     &lt;img v-if="sons.picture" :src="`http://` + sons.picture" /&gt;                     &lt;img v-else src="../../assets/头像.jpg" alt="Vue实现评论功能" /&gt;                   &lt;/a&gt;                   &lt;div class="second-content"&gt;                     &lt;!-- 次级评论用户昵称 --&gt;                     &lt;h3 class="second-username"&gt;{<!-- -->{ sons.username }}&lt;/h3&gt;                     &lt;!-- 次级评论评论时间 --&gt;                     &lt;span class="second-time"&gt;{<!-- -->{ sons.date }}&lt;/span&gt;                     &lt;!-- 次级评论内容 xxx回复xxx：评论内容--&gt;                     &lt;p class="second-comment"&gt;                       &lt;span class="second-reply"&gt;                         &lt;span class="to_reply"&gt;{<!-- -->{ sons.username }}&lt;/span&gt;                         回复                         &lt;span class="to_reply"&gt;{<!-- -->{ sons.to_username }}&lt;/span                         &gt;：                       &lt;/span&gt;                       {<!-- -->{ sons.content }}                     &lt;/p&gt;                     &lt;!-- 次级评论评论点赞 --&gt;                     &lt;div                       class="second-right"                       @mouseleave="delete_leave(sons)"                       @mouseover="delete_after(sons)"                     &gt;                       &lt;span                         class="delete"                         v-if="sons.delete"                         @click="comment_delete(sons, 1)"                         &gt;删除&lt;/span                       &gt;                       &lt;span class="comments" @click="comment_input(sons)"                         &gt;评论&lt;/span                       &gt;                       &lt;!-- 次级评论点赞数 --&gt;                       &lt;span                         class="praise"                         :class="sons.like"                         @click="comment_like(sons, 1)"                       &gt;                         &lt;span v-if="sons.numbers"&gt;{<!-- -->{                           sons.numbers                         }}&lt;/span&gt;&lt;/span                       &gt;                     &lt;/div&gt;                   &lt;/div&gt;                 &lt;/div&gt;                 &lt;!-- 回复次级评论 --&gt;                 &lt;div class="reply-comment reply_li" v-if="sons.display"&gt;                   &lt;input                     type="text"                     placeholder="请输入评论 . . ."                     v-model="childComments"                     @keyup.enter="reply_sumbit(sons, 1)"                   /&gt;                   &lt;!-- 1为回复次级评论 --&gt;                   &lt;button @click="reply_sumbit(sons, 1)"&gt;发表评论&lt;/button&gt;                 &lt;/div&gt;               &lt;/li&gt;             &lt;/ul&gt;           &lt;/div&gt;         &lt;/div&gt;       &lt;/div&gt;       &lt;!-- 暂无评论的空状态 --&gt;       &lt;el-empty description="暂无评论" v-if="show"&gt;&lt;/el-empty&gt;     &lt;/div&gt;     &lt;!-- 页码 --&gt;     &lt;div style="text-align: center; margin-top: 15px" v-if="showPage"&gt;       &lt;el-pagination         background         layout="prev, pager, next"         :total="totalNumber * 10"         @current-change="currentPage"         :current-page="page"       &gt;       &lt;/el-pagination&gt;     &lt;/div&gt;   &lt;/div&gt;</code></pre> <p>布局css代码如下：</p> <pre><code class="language-css">/* 评论框 */ .head {   background-color: rgb(248, 248, 248);   position: relative;   height: 75px;   border-radius: 5px; } .head img {   width: 55px;   height: 55px;   border-radius: 50%;   position: absolute;   top: 10px;   left: 13px; } /* 评论框 */ .head input {   position: absolute;   top: 13px;   left: 80px;   height: 45px;   border-radius: 5px;   outline: none;   width: 65%;   font-size: 20px;   padding: 0 20px;   border: 2px solid #f8f8f8; } /* 发布评论按钮 */ .head button {   position: absolute;   top: 13px;   right: 20px;   width: 120px;   height: 48px;   border: 0;   border-radius: 5px;   font-size: 20px;   font-weight: 500;   color: #fff;   background-color: rgb(118, 211, 248);   cursor: pointer;   letter-spacing: 2px; } /* 鼠标经过字体加粗 */ .head button:hover {   font-weight: 600; }  /* 评论内容区域 */ .content .first {   display: flex;   position: relative;   padding: 10px 10px 0px 0; } .first .first-img {   flex: 1;   text-align: center; } .first img {   width: 50px;   height: 50px;   border-radius: 50%; } .first-username, .second-username {   color: #504f4f; } .first-content {   flex: 9; } .first-time, .second-time {   color: #767575; } .first-comment, .second-comment {   margin-top: 5px; } /* 右边点赞和评论 */ .first-right, .second-right {   position: absolute;   right: 1%;   top: 10px; } .first-right span, .second-right span {   margin-right: 20px;   cursor: pointer; } /* 删除评论 */ .delete:hover {   color: red; } /* 评论字体图标 */ .comments::before {   /* 想使用的icon的十六制编码，去掉&amp;#x之后的 */   content: "\e8b9";   /* 必须加 */   font-family: "iconfont";   margin-right: 4px;   font-size: 16px; } /* 点赞字体图标 */ .praise::before {   /* 想使用的icon的十六制编码，去掉&amp;#x之后的 */   content: "\ec7f";   /* 必须加 */   font-family: "iconfont";   margin-right: 4px;   font-size: 19px; } .second {   background-color: #f3f3f3;   margin-top: 10px; } .second li {   padding: 10px 10px 10px 0;   border-bottom: 1px solid rgb(237, 237, 237); } .second .top {   display: flex;   position: relative; } .second-img {   flex: 1;   text-align: center; } .to_reply {   color: rgb(106, 106, 106); } .second-content {   flex: 9; } .second .reply_li {   margin-left: 70px; } /* 评论框 */ .reply-comment {   margin: 10px 0 0 0; } .reply-comment input {   height: 40px;   border-radius: 5px;   outline: none;   width: 70%;   font-size: 18px;   padding: 0 20px;   /* border: 2px solid #f8f8f8; */   border: 2px solid skyblue; } /* 发布评论按钮 */ .reply-comment button {   width: 15%;   height: 43px;   border: 0;   border-radius: 5px;   font-size: 18px;   font-weight: 500;   color: #fff;   background-color: rgb(118, 211, 248);   cursor: pointer;   letter-spacing: 2px;   margin-left: 20px; } /* 鼠标经过字体加粗 */ .reply-comment button:hover {   font-weight: 600; } /* 评论点赞颜色 */ .comment-like {   color: red; }</code></pre> <p>当我拿回后端的评论数据的时候，我做了一个递归遍历取出所有孩子评论追加到二级孩子评论处，然后渲染的时候只渲染到二级评论处就可以查看所有评论了。&nbsp;</p> <p>&nbsp;拿回后端数据是下面这个样子：</p> <p><img decoding="async" alt="" height="357" src="http://img.555519.xyz/uploads/20230205/0e2b6a5d5f818505e63feaa23a6a73a7.jpg"><img decoding="async" alt="" height="202" src="http://img.555519.xyz/uploads/20230205/69150767e5fdbeccf49f9e93ec78fa16.jpg"></p> <p>我做了下面几个处理：</p> <pre><code class="language-javascript">// 当list不为空时(当评论内容不为空)         this.comments = []; //清空评论列表         if (data.data.list.length) {           this.show = false; //当有评论时，隐藏空状态           this.showPage = true; //当有评论时，显示页码           this.totalNumber = data.data.pages; //总页数           this.comments = data.data.list; //评论列表            // 利用forwach递归去除次级评论数据           this.comments.forEach((element) =&gt; {             var comment_blog = []; //定义空数组装取出的次级评论             var son = element.sons; //将当前次级评论列表赋值给变量son             function child(sonchild) {               // 嵌套foreach               sonchild.forEach((element) =&gt; {                 comment_blog.push(element); //将次级评论追加到该数组                 if (element.son.length) {                   // 当次级评论部位空时一直进行递归                   // 递归追加次级评论                   child(element.son);                 }               });             }             child(son); //调用函数             // 将取出的评论信息覆盖到当前评论列表的次级评论处             element.sons = comment_blog;           });            // 双重for循环给一级评论和次级评论添加对象属性           for (let i = 0; i &lt; this.comments.length; i++) {             //给每条评论添加一个属性用于控制评论框的显示与隐藏             this.$set(this.comments[i], "display", false);              //给每条评论添加一个属性用于删除按钮的显示与隐藏             // 当 当前登录用户id和当前博客的用户id相同则可以删除所有评论             if (this.uid === this.$store.getters.getLoginxMessage.uid) {               this.$set(this.comments[i], "delete", false);             } else if (               this.comments[i].user_id ===               this.$store.getters.getLoginxMessage.uid             ) {               // 当 当前评论的用户id和当前登录的用户id相同时则可删除该条评论               this.$set(this.comments[i], "delete", false);             }              //给每条评论添加一个属性用于点赞的颜色变化，true表示当前用户已点赞该条评论             if (this.comments[i].flag) {               this.$set(this.comments[i], "like", "comment-like");             } else {               this.$set(this.comments[i], "like", "");             }              for (let j = 0; j &lt; this.comments[i].sons.length; j++) {               //给每条评论添加一个属性用于控制评论框的显示与隐藏               this.$set(this.comments[i].sons[j], "display", false);                //给每条评论添加一个属性用于删除按钮的显示与隐藏               // 当 当前登录用户id和当前博客的用户id相同则可以删除所有评论               if (this.uid === this.$store.getters.getLoginxMessage.uid) {                 this.$set(this.comments[i].sons[j], "delete", false);               } else if (                 this.comments[i].sons[j].user_id ===                 this.$store.getters.getLoginxMessage.uid               ) {                 // 当 当前评论的用户id和当前登录的用户id相同时则可删除该条评论                 this.$set(this.comments[i].sons[j], "delete", false);               }               //给每条评论添加一个属性用于点赞的颜色变化，true表示当前用户已点赞该条评论               if (this.comments[i].sons[j].flag) {                 this.$set(this.comments[i].sons[j], "like", "comment-like");               } else {                 this.$set(this.comments[i].sons[j], "like", "");               }             }           }         } else {           // 若删除第一页以后的评论则重新调用查看评论方法查看刚刚删除评论页的上一页评论（最后一页的评论）           if (this.page &gt; 1) {             this.page--;             this.view_comments(); //更新评论列表           } else {             this.show = true; //空状态显示与隐藏             this.showPage = false; //当空状态显示时隐藏页码           }         }</code></pre> </p></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-109660.htm">开宠物店需要去哪里学（开宠物店去哪里学技术）</a></p>
+                                        <p>下一个：<a href="/news/article-110453.htm">Python数据分析实例</a></p>
+                                    </div>
+                                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-97850.htm" title="「Spring Boot 系列」05. Spring Boot Profiles（多环境配置）">「Spring Boot 系列」05. Spring Boot Profiles（多环境配置）</a></li>
+                        <li class="py-2"><a href="/news/article-90360.htm" title="判断数A中是否存在一棵同构于B的子树">判断数A中是否存在一棵同构于B的子树</a></li>
+                        <li class="py-2"><a href="/news/article-86036.htm" title="动物疫苗的重要性有哪些（动物疫苗的重要性有哪些方面）">动物疫苗的重要性有哪些（动物疫苗的重要性有哪些方面）</a></li>
+                        <li class="py-2"><a href="/news/article-87468.htm" title="国内动物疫苗龙头企业排行榜最新 国内动物疫苗龙头企业排行榜最新名单">国内动物疫苗龙头企业排行榜最新 国内动物疫苗龙头企业排行榜最新名单</a></li>
+                        <li class="py-2"><a href="/news/article-86741.htm" title="Windows配置kubectl,执行yaml配置文件">Windows配置kubectl,执行yaml配置文件</a></li>
+                        <li class="py-2"><a href="/news/article-110453.htm" title="Python数据分析实例">Python数据分析实例</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-4-free-clash.htm" title="「4月4日」最高速度18.2M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「4月4日」最高速度18.2M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-101452.htm" title="Linux网络服务之NFS共享服务">Linux网络服务之NFS共享服务</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-25-free-v2ray-subscribe.htm" title="「4月25日」最高速度19.5M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「4月25日」最高速度19.5M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-93936.htm" title="长沙市宠物领养中心地址 长沙市宠物领养中心地址在哪里">长沙市宠物领养中心地址 长沙市宠物领养中心地址在哪里</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about -->
+        <!-- footer -->
+    <footer>
+        <p class="copyright-agileinfo">
+                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+            SingBoxNode官网订阅站 版权所有
+            <br />
+            Powered by WordPress
+        </p>
+    </footer>
+    <!-- //footer -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.min.v3.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/jquery-2.2.3.min.js"></script>
+    <!-- gallery -->
+    <script src="/assets/website/js/frontend/singboxnode/smoothbox.jquery2.js"></script>
+    <!-- //gallery -->
+    <!-- pop-up(for video popup)-->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.magnific-popup.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+    </script>
+    <!-- //pop-up-box (syllabus section video)-->
+    <!-- video js (background) -->
+    <script src="/assets/website/js/frontend/singboxnode/jquery.vide.min.js"></script>
+    <!-- //video js (background) -->
+    <!-- banner Slider script  -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider, #slider1").responsiveSlides({
+            auto: true,
+            nav: false,
+            speed: 1500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+    </script>
+    <!-- //banner Slider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/responsiveslides.min.js"></script>
+    <script>
+    $(function() {
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: false,
+            speed: 1000,
+            namespace: "callbacks",
+            before: function() {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function() {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    });
+    </script>
+    <!-- start-smooth-scrolling -->
+    <script src="/assets/website/js/frontend/singboxnode/move-top.js"></script>
+    <script src="/assets/website/js/frontend/singboxnode/easing.js"></script>
+    <script>
+    // jQuery(document).ready(function($) {
+    //     $(".scroll").click(function(event) {
+    //         event.preventDefault();
+
+    //         $('html,body').animate({
+    //             scrollTop: $(this.hash).offset().top
+    //         }, 1000);
+    //     });
+    // });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+    $(document).ready(function() {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear' 
+        };
+        */
+
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+    </script>
+    <script src="/assets/website/js/frontend/singboxnode/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- FlexSlider-JavaScript -->
+    <script defer src="/assets/website/js/frontend/singboxnode/jquery.flexslider.js"></script>
+    <script>
+    // $(function() {
+    //     SyntaxHighlighter.all();
+    // });
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+    </script>
+    <!-- //FlexSlider-JavaScript -->
+    <script src="/assets/website/js/frontend/singboxnode/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
