@@ -1,4 +1,4 @@
-# 「8月5日」最高速度18.4M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐  更新时间 2025-08-05 08:52:47
+# 「8月11日」最高速度20.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐  更新时间 2025-08-11 07:59:28
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://singboxnode.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### Clash订阅链接
 
-- https://singboxnode.github.io/uploads/2025/08/0-20250805.yaml
-- https://singboxnode.github.io/uploads/2025/08/1-20250805.yaml
-- https://singboxnode.github.io/uploads/2025/08/2-20250805.yaml
-- https://singboxnode.github.io/uploads/2025/08/3-20250805.yaml
-- https://singboxnode.github.io/uploads/2025/08/4-20250805.yaml
+- https://singboxnode.github.io/uploads/2025/08/0-20250811.yaml
+- https://singboxnode.github.io/uploads/2025/08/1-20250811.yaml
+- https://singboxnode.github.io/uploads/2025/08/2-20250811.yaml
+- https://singboxnode.github.io/uploads/2025/08/3-20250811.yaml
+- https://singboxnode.github.io/uploads/2025/08/4-20250811.yaml
 
 ### V2ray订阅链接
 
-- https://singboxnode.github.io/uploads/2025/08/0-20250805.txt
-- https://singboxnode.github.io/uploads/2025/08/1-20250805.txt
-- https://singboxnode.github.io/uploads/2025/08/2-20250805.txt
-- https://singboxnode.github.io/uploads/2025/08/3-20250805.txt
-- https://singboxnode.github.io/uploads/2025/08/4-20250805.txt
+- https://singboxnode.github.io/uploads/2025/08/0-20250811.txt
+- https://singboxnode.github.io/uploads/2025/08/1-20250811.txt
+- https://singboxnode.github.io/uploads/2025/08/2-20250811.txt
+- https://singboxnode.github.io/uploads/2025/08/3-20250811.txt
+- https://singboxnode.github.io/uploads/2025/08/4-20250811.txt
 
 ### Sing-box订阅链接
 
-- https://singboxnode.github.io/uploads/2025/08/20250805.json
+- https://singboxnode.github.io/uploads/2025/08/20250811.json
 
 ## 更多clash节点订阅 ：
 
