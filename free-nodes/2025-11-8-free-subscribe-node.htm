@@ -381,9 +381,14 @@ A4：可以，推荐使用OpenWrt结合Passwall或Clash配置。但免费节点�
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VLess 与 Reality 协议可以结合使用吗？</h5></div>
+    <div class="panel-heading"><h5>Mihomo 可以同时管理多少节点？</h5></div>
     <div class="panel-body">
-        可以。VLess + Reality 是目前最受欢迎的组合之一。它在无证书情况下实现加密传输，同时具备隐蔽性与速度优势，非常适合需要安全访问的高级代理配置。<hr />    </div>
+        Mihomo 可以管理大量节点，理论上没有固定上限。通过策略组和节点分类，用户可以轻松管理数百个节点，同时进行测速和自动切换。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Mellow TUN 模式如何拦截全局流量？</h5></div>
+    <div class="panel-body">
+        TUN 模式会拦截系统 IP 层的所有流量，实现全局代理。相比 SOCKS5 只影响部分应用，TUN 可以覆盖游戏、视频和浏览器等所有流量，提高科学上网体验的全面性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VMess AEAD 加密在高封锁网络的作用？</h5></div>
@@ -391,9 +396,9 @@ A4：可以，推荐使用OpenWrt结合Passwall或Clash配置。但免费节点�
         AEAD 加密可防止数据篡改和流量特征泄露，降低被封锁和 DPI 检测风险。保证节点长期可用，提高数据传输安全性和访问可靠性，优化用户科学上网体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 节点延迟排序可以自动切换吗？</h5></div>
+    <div class="panel-heading"><h5>V2Ray 如何隐藏真实 IP？</h5></div>
     <div class="panel-body">
-        Matsuri 会定期测速节点延迟，结合策略组，可自动选择延迟最低的节点处理流量。这样用户无需手动切换节点，就能保持访问速度和稳定性，优化网络体验。<hr />    </div>
+        通过启用 TLS、Reality 或 WebSocket + CDN 转发，V2Ray 可有效隐藏真实服务器 IP。这样外部监测只能看到中转节点，从而提升匿名性与安全性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Trojan 的伪装域名有什么要求？</h5></div>
@@ -406,24 +411,19 @@ A4：可以，推荐使用OpenWrt结合Passwall或Clash配置。但免费节点�
         支持自定义 DNS，可配置本地或远程 DNS 服务器，包括 DoH/DoT。正确配置可提升解析速度、防止 DNS 污染，提高访问稳定性和安全性。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>VLess 与 Reality 协议可以结合使用吗？</h5></div>
+    <div class="panel-body">
+        可以。VLess + Reality 是目前最受欢迎的组合之一。它在无证书情况下实现加密传输，同时具备隐蔽性与速度优势，非常适合需要安全访问的高级代理配置。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray 的 Reality 功能是什么？</h5></div>
     <div class="panel-body">
         Reality 是 V2Ray 新增的伪装技术，可替代传统 TLS。它无需真实证书，通过公钥验证机制实现端到端加密。相比 Trojan 的 HTTPS 伪装方式，Reality 更轻量、安全且配置更简洁。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Mellow TUN 模式如何拦截全局流量？</h5></div>
+    <div class="panel-heading"><h5>Matsuri 节点延迟排序可以自动切换吗？</h5></div>
     <div class="panel-body">
-        TUN 模式会拦截系统 IP 层的所有流量，实现全局代理。相比 SOCKS5 只影响部分应用，TUN 可以覆盖游戏、视频和浏览器等所有流量，提高科学上网体验的全面性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 如何隐藏真实 IP？</h5></div>
-    <div class="panel-body">
-        通过启用 TLS、Reality 或 WebSocket + CDN 转发，V2Ray 可有效隐藏真实服务器 IP。这样外部监测只能看到中转节点，从而提升匿名性与安全性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Mihomo 可以同时管理多少节点？</h5></div>
-    <div class="panel-body">
-        Mihomo 可以管理大量节点，理论上没有固定上限。通过策略组和节点分类，用户可以轻松管理数百个节点，同时进行测速和自动切换。<hr />    </div>
+        Matsuri 会定期测速节点延迟，结合策略组，可自动选择延迟最低的节点处理流量。这样用户无需手动切换节点，就能保持访问速度和稳定性，优化网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VLESS + Reality 模式如何隐藏流量特征？</h5></div>
@@ -459,16 +459,16 @@ A4：可以，推荐使用OpenWrt结合Passwall或Clash配置。但免费节点�
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-10-12-free-node-subscribe.htm" title="「10月12日」最高速度20.1M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月12日」最高速度20.1M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-4-node-share-links.htm" title="「11月4日」最高速度21.6M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月4日」最高速度21.6M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-19-free-ssr-node.htm" title="「10月19日」最高速度22M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月19日」最高速度22M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-11-12-node-share-links.htm" title="「11月12日」最高速度22.3M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月12日」最高速度22.3M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-6-free-clash-subscribe.htm" title="「10月6日」最高速度20.8M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月6日」最高速度20.8M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-13-node-share-links.htm" title="「10月13日」最高速度18.9M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月13日」最高速度18.9M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-15-clash-node.htm" title="「11月15日」最高速度20.9M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月15日」最高速度20.9M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-28-free-v2ray.htm" title="「11月28日」最高速度18.2M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月28日」最高速度18.2M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-5-free-clash.htm" title="「11月5日」最高速度18.2M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月5日」最高速度18.2M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-29-free-high-speed-nodes.htm" title="「11月29日」最高速度22M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月29日」最高速度22M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-18-clash-windows.htm" title="「11月18日」最高速度23M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月18日」最高速度23M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-10-free-node-subscribe-links.htm" title="「11月10日」最高速度19.6M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月10日」最高速度19.6M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-30-free-v2ray-subscribe.htm" title="「11月30日」最高速度20.5M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月30日」最高速度20.5M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-11-free-subscribe-node.htm" title="「11月11日」最高速度20.5M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月11日」最高速度20.5M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-22-shadowrocket-node.htm" title="「11月22日」最高速度22.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月22日」最高速度22.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-11-13-free-subscribe-node.htm" title="「11月13日」最高速度19.9M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「11月13日」最高速度19.9M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-27-free-high-speed-nodes.htm" title="「10月27日」最高速度21.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月27日」最高速度21.7M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-10-free-clash-subscribe.htm" title="「10月10日」最高速度18.4M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐">「10月10日」最高速度18.4M/S，2025年SingBox节点每日更新订阅免费节点链接，代理机场推荐</a></li>
                     </ul>
     </div>
 </div>
@@ -480,10 +480,10 @@ A4：可以，推荐使用OpenWrt结合Passwall或Clash配置。但免费节点�
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">17</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
+                <h4><span class="badge" style="float: right;">4</span> <a href="/date/2025-12/" title="2025-12 归档">2025-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-10/" title="2025-10 归档">2025-10</a></h4>
+                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
             </li>
                     </ul>
     </div>
